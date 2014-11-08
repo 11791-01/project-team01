@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** A triple, e.g., and RDF triple.
- * Updated by JCasGen Sat Nov 08 01:24:02 EST 2014
+ * Updated by JCasGen Sat Nov 08 12:24:35 EST 2014
  * @generated */
 public class Triple_Type extends TOP_Type {
   /** @generated 

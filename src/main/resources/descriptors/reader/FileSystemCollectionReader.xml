@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>InFilePath</name>
         <value>
-          <string>/questions.json</string>
+          <string>/data/questions.json</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
