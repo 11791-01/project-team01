@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.project.annotator.Query</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.project.annotator.QueryTriple</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>Query</name>
+    <name>QueryTriple</name>
     <description/>
     <version>1.0</version>
     <vendor/>
