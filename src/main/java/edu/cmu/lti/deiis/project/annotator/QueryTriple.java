@@ -41,13 +41,14 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
     try {
       Question question = (Question) QuestionIter.next();
 
-      String text = question.getText();
+      /*String text = question.getText();
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
       System.out.println("MeSH: " + meshResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
                 + finding.getConcept().getUri());
-      }
+      }*/
+      System.out.println("Query Triple!");
     } catch (Exception ex) {
 
     }

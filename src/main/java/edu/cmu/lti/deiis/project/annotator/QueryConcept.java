@@ -48,6 +48,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
                 + finding.getConcept().getUri());
       }
+      System.out.println("Query Concept!");
     } catch (Exception ex) {
 
     }
