@@ -10,6 +10,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
+import edu.cmu.lti.oaqa.bio.bioasq.services.LinkedLifeDataServiceResponse;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
 import edu.cmu.lti.oaqa.type.input.Question;
 
@@ -41,12 +42,19 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
     try {
       Question question = (Question) QuestionIter.next();
 
-      /*String text = question.getText();
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
-      System.out.println("MeSH: " + meshResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri());
+      String text = question.getText();
+
+      /*LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
+              .findLinkedLifeDataEntitiesPaged(text, 0);
+      System.out.println("LinkedLifeData: " + linkedLifeDataResult.getEntities().size());
+      for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult.getEntities()) {
+        System.out.println(" > " + entity.getEntity());
+        for (LinkedLifeDataServiceResponse.Relation relation : entity.getRelations()) {
+          System.out.println("   - labels: " + relation.getLabels());
+          System.out.println("   - pred: " + relation.getPred());
+          System.out.println("   - sub: " + relation.getSubj());
+          System.out.println("   - obj: " + relation.getObj());
+        }
       }*/
       System.out.println("Query Triple!");
     } catch (Exception ex) {

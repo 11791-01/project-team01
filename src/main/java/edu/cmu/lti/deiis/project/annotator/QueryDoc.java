@@ -11,6 +11,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
+import edu.cmu.lti.oaqa.bio.bioasq.services.PubMedSearchServiceResponse;
 import edu.cmu.lti.oaqa.type.input.Question;
 
 public class QueryDoc extends JCasAnnotator_ImplBase {
@@ -42,13 +43,9 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
       Question question = (Question) QuestionIter.next();
 
       /*String text = question.getText();
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
-      System.out.println("MeSH: " + meshResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri());
-      }*/
-
+     
+      PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0);
+      pubmedResult.getDocuments();*/
       System.out.println("Query Doc!");
     } catch (Exception ex) {
 
