@@ -4,7 +4,7 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.project.annotator.QueryAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>queryAnnotator</name>
+    <name>QueryAnnotator</name>
     <description/>
     <version>1.0</version>
     <vendor/>

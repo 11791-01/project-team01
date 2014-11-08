@@ -29,22 +29,22 @@ public class QueryAnnotator extends JCasAnnotator_ImplBase {
    */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
-    FSIterator<Annotation> iter = aJCas.getAnnotationIndex().iterator();
-    Question question = null;
-    if (iter.isValid()) {
-      iter.moveToNext();
-       question = (Question) iter.get();
+    FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
+    
+    if (iter.isValid() && iter.hasNext()) {
+      Question question = (Question) iter.next();
+      
+      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+      atomicQuery.setText(question.getText());
+      atomicQuery.addToIndexes();
+      List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
+      terms.add(atomicQuery);
+      
+      // Create the query for the following Annotators.
+      ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
+      query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
+      query.addToIndexes();
     }
-    
-    AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
-    atomicQuery.setText(question.getText());
-    List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
-    terms.add(atomicQuery);
-    
-    // Create the query for the following Annotators.
-    ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
-    query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-    query.addToIndexes(aJCas);
   }
 
 }
