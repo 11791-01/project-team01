@@ -34,6 +34,8 @@ public class QueryAnnotator extends JCasAnnotator_ImplBase {
     if (iter.isValid() && iter.hasNext()) {
       Question question = (Question) iter.next();
       
+      System.out.println(question.getText().replace("?", ""));
+      
       AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
       atomicQuery.setText(question.getText());
       atomicQuery.addToIndexes();
