@@ -6,6 +6,12 @@
     <delegateAnalysisEngine key="QueryConcept">
       <import name="descriptors.ae.QueryConcept"/>
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="QueryDoc">
+      <import name="descriptors.ae.QueryDoc"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QueryTriple">
+      <import name="descriptors.ae.QueryTriple"/>
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>AAE</name>
@@ -17,6 +23,8 @@
     <flowConstraints>
       <fixedFlow>
         <node>QueryConcept</node>
+      <node>QueryDoc</node>
+        <node>QueryTriple</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
