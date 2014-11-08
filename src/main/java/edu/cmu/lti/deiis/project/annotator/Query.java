@@ -22,13 +22,14 @@ public class Query extends JCasAnnotator_ImplBase {
       Question question = (Question) QuestionIter.next();
 
       String text = question.getText();
+      System.out.println(text);
       GoPubMedService service = new GoPubMedService("project.properties");
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
-      System.out.println("MeSH: " + meshResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri());
-      }
+      //OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
+      //System.out.println("MeSH: " + meshResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
+        //System.out.println(" > " + finding.getConcept().getLabel() + " "
+         //       + finding.getConcept().getUri());
+      //}
     } catch (Exception ex) {
 
     }
