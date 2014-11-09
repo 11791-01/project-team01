@@ -225,18 +225,20 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     List<Triple> gttrpls = new ArrayList<Triple>();
     
       
-      String qid = question.getId();
-      for(Question cqst:goldout){
-        
-        if(qid==cqst.getId()){
-          gtconcepts=cqst.getConcepts();
-          gtdocs=cqst.getDocuments();
-          List<json.gson.Triple> tempTrips = cqst.getTriples();
-          for (json.gson.Triple t : tempTrips) {
+    String qid = question.getId();
+    for(Question cqst : goldout){
+      
+      if(qid.equals(cqst.getId())){
+        gtconcepts=cqst.getConcepts();
+        gtdocs=cqst.getDocuments();
+        List<Triple> tempTrips = cqst.getTriples();
+        if (tempTrips != null) {
+          for (Triple t : tempTrips) {
             gttrpls.add(new Triple(t.getS(), t.getP(), t.getO()));
           }
         }
       }
+    }
     
     
     //COmpute All Values Precision, Recall, AP, F-Score
@@ -252,7 +254,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     qrec[1]=recall(gtdocs,retDocs);
     qrec[2]=recall(gttrpls,retTriples);
     
-    recalls.add(qprec);
+    recalls.add(qrec);
     
     Double[] qfms = new Double[3];
     qfms[0]=fmeasure(qprec[0],qrec[0]);
@@ -270,11 +272,21 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     
     AvgPrecisions.add(qap);
     System.out.println("************");
-    System.out.println("conc"+qap[0]+"doc"+qap[1]+"trps"+qap[2]);
+    System.out.println("GTDocs:");
+    for(String c : gtconcepts) {
+      System.out.println("\t"+c);
+    }
+    System.out.println("RetDocs:");
+    for(String c : retConcepts) {
+      System.out.println("\t"+c);
+    }
+    
+    System.out.println("conc"+qprec[0]+"  doc"+qprec[1]+"  trps"+qprec[2]);
+    System.out.println("conc"+qrec[0]+"  doc"+qrec[1]+"  trps"+qrec[2]);
     System.out.println("************");
   }
 
-  private <T> Double precision(List<T> trueval,List<T>retval){
+  private <T> double precision(List<T> trueval,List<T>retval){
     
     Set<T> trueset = new HashSet<T>(trueval);
     Set<T> retset  = new HashSet<T>(retval);
@@ -283,27 +295,34 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     
     Integer TP  = retset.size();
     
+    if (retval.size() == 0) {
+      return 0;
+    }
     return ((double)TP)/((double)retval.size());
         
   }
   
- private <T> Double recall(List<T> trueval,List<T>retval){
+ private <T> double recall(List<T> trueval,List<T>retval){
     
     Set<T> trueset = new HashSet<T>(trueval);
     Set<T> retset  = new HashSet<T>(retval);
     
     retset.retainAll(trueset);
-    //List<String> intersect = 
-    //for (int i=0;i<trueval.size();i++)
     
     Integer TP  = retset.size();
     
+    if (trueval.size()==0){
+      return 0;
+    }
     return ((double)TP)/((double)trueval.size());
         
   }
   
- private Double fmeasure(Double prec,Double rec){
+ private double fmeasure(Double prec,Double rec){
    
+   if (prec + rec == 0){
+     return 0;
+   }
    return (2*prec*rec)/(prec+rec);
        
  }
@@ -317,7 +336,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
      
      if(trueval.contains(item)){
        poscount+=1;
-       ap+=(poscount/(c+1));
+       ap+=(poscount / ((double)(c+1)) );
      }
      c=c+1;
    }
@@ -370,23 +389,27 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     FileOp.writeToFile(oPath, jsonOutput);
 
     // if evaluation path exists, do the evaluation
-    Double[] MAPs=new Double[3];
-    Double[] GMAPs=new Double[3];
-    Double[] meanprecs=new Double[3];
-    Double[] meanfmss=new Double[3];
-    Double[] meanrecs=new Double[3];
+    double[] MAPs=new double[3];
+    double[] GMAPs= {1, 1, 1} ;
+    double[] meanprecs=new double[3];
+    double[] meanfmss=new double[3];
+    double[] meanrecs=new double[3];
     int numQues=precisions.size();
     
+    try {
     for(int i=0;i<precisions.size();i++){
-      
       for(int j=0;j<3;j++){
-        GMAPs[j]*=AvgPrecisions.get(i)[j];
+        GMAPs[j]*=(AvgPrecisions.get(i)[j]+0.00001);
         MAPs[j]+=AvgPrecisions.get(i)[j];
         meanprecs[j]+=precisions.get(i)[j];
         meanrecs[j]+=recalls.get(i)[j];
         meanfmss[j]+=fmeasures.get(i)[j];
         
       } 
+    }
+    } catch (Exception ex) {
+      System.err.println(ex);
+      ex.printStackTrace();
     }
     System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
     for (int i=0;i<3;i++){
@@ -395,7 +418,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       meanrecs[i]/=numQues;
       meanprecs[i]/=numQues;
       GMAPs[i]=Math.pow(GMAPs[i], 1.0/numQues);
-      System.out.println("" + meanprecs[i] + meanrecs[i] + meanfmss[i] + MAPs[i] + GMAPs[i]);
+      System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n",meanprecs[i], meanrecs[i], meanfmss[i], MAPs[i], GMAPs[i]);
     }
     
   }

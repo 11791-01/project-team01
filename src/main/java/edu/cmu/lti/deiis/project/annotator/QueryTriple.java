@@ -57,7 +57,7 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
       String text = queryList.get(0).getText();
 
       LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
-              .findLinkedLifeDataEntitiesPaged(text, 0);
+              .findLinkedLifeDataEntitiesPaged(text, 0, 1);
 
       List<LinkedLifeDataServiceResponse.Entity> entities = linkedLifeDataResult.getEntities();
      
