@@ -56,6 +56,7 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 import util.FileOp;
+import util.TripleHelper;
 
 
 /**
@@ -204,11 +205,12 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     
     FSIndex<?> trpIndex = jcas.getAnnotationIndex(TripleSearchResult.type);
     Iterator<?> TrpIter = trpIndex.iterator();
-    Map<Integer,Triple> trpmaps = new TreeMap<Integer,Triple>();  
+    Map<Integer,TripleHelper> trpmaps = new TreeMap<Integer,TripleHelper>();  
     while(TrpIter.hasNext()){
       
-      TripleSearchResult trp = (TripleSearchResult) TrpIter.next(); 
-      trpmaps.put(trp.getRank(),trp.getTriple());
+      TripleSearchResult trp = (TripleSearchResult) TrpIter.next();
+      Triple temp = trp.getTriple();
+      trpmaps.put(trp.getRank(),new TripleHelper(temp.getSubject(), temp.getPredicate(), temp.getObject()));
       
     }
     
@@ -220,7 +222,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     List<Integer> gtlabel = new ArrayList<Integer>();
     List<String> gtconcepts = new ArrayList<String>();
     List<String> gtdocs = new ArrayList<String>();
-    List<json.gson.Triple> gttrpls = new ArrayList<json.gson.Triple>();
+    List<TripleHelper> gttrpls = new ArrayList<TripleHelper>();
     
       
       String qid = question.getId();
@@ -229,13 +231,10 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
         if(qid==cqst.getId()){
           gtconcepts=cqst.getConcepts();
           gtdocs=cqst.getDocuments();
-          gttrpls=cqst.getTriples();
-          //if(gtconcepts.contains(cpt)){
-          //  gtlabel.add(1);
-          //}
-          //else{
-          //  gtlabel.add(0);
-          //}
+          List<json.gson.Triple> tempTrips = cqst.getTriples();
+          for (json.gson.Triple t : tempTrips) {
+            gttrpls.add(new TripleHelper(t.getS(), t.getP(), t.getO()));
+          }
         }
       }
     
@@ -244,14 +243,14 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     Double[] qprec = new Double[3];
     qprec[0]=precision(gtconcepts,(List<String>)conceptmaps.values());
     qprec[1]=precision(gtdocs,(List<String>)docmaps.values());
-    //qprec[2]=precisionTriple(gttrpls,(List<Triple>)trpmaps.values());
+    qprec[2]=precision(gttrpls,(List<TripleHelper>)trpmaps.values());
     
     precisions.add(qprec);
     
     Double[] qrec = new Double[3];
     qrec[0]=recall(gtconcepts,(List<String>)conceptmaps.values());
     qrec[1]=recall(gtdocs,(List<String>)docmaps.values());
-    //qrec[2]=recallTriple(gttrpls,(List<Triple>)trpmaps.values());
+    qrec[2]=recall(gttrpls,(List<TripleHelper>)trpmaps.values());
     
     recalls.add(qprec);
     
@@ -267,7 +266,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     Double[] qap = new Double[3];
     qap[0]=AP(gtconcepts,(List<String>)conceptmaps.values());
     qap[1]=AP(gtdocs,(List<String>)docmaps.values());
-    //qap[2]=APTriple(gttrpls,(List<String>)docmaps.values());
+    qap[2]=AP(gttrpls,(List<TripleHelper>)trpmaps.values());
     
     AvgPrecisions.add(qap);
     
@@ -280,8 +279,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     Set<T> retset  = new HashSet<T>(retval);
     
     retset.retainAll(trueset);
-    //List<String> intersect = 
-    //for (int i=0;i<trueval.size();i++)
     
     Integer TP  = retset.size();
     
@@ -314,14 +311,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
    
    int poscount = 0;
    Double ap = 0.0;
-   //for(int i =0;i<stlabel.size();i++){
-     
-     
-   //  if(stlabel.get(i)==1){
-   //    poscount+=1;
-   //    ap+=(poscount/(i+1));
-   //  }
-   //} 
    int c=0;
    for (T item:retval){
      
