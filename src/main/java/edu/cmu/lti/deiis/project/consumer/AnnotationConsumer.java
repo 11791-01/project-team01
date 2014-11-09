@@ -380,11 +380,14 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
         
       } 
     }
+    System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
     for (int i=0;i<3;i++){
       MAPs[i]/=numQues;
       meanfmss[i]/=numQues;
       meanrecs[i]/=numQues;
       meanprecs[i]/=numQues;
+      
+      System.out.printf("{0}\t{1}\t{2}\t{3}",meanprecs[i], meanrecs[i], meanfmss[i], MAPs[i]);
     }
     
   }
