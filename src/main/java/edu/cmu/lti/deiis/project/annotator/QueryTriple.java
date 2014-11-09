@@ -18,8 +18,10 @@ import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
 import edu.cmu.lti.oaqa.bio.bioasq.services.LinkedLifeDataServiceResponse;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
 import edu.cmu.lti.oaqa.type.input.Question;
+import edu.cmu.lti.oaqa.type.kb.Triple;
 import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
+import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
 public class QueryTriple extends JCasAnnotator_ImplBase {
 
@@ -54,18 +56,25 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
 
-      System.out.println("Query Triple!");
       LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
               .findLinkedLifeDataEntitiesPaged(text, 0);
-      System.out.println("LinkedLifeData: " + linkedLifeDataResult.getEntities().size());
-      for (LinkedLifeDataServiceResponse.Entity entity : linkedLifeDataResult.getEntities()) {
-        System.out.println(" > " + entity.getEntity());
-        for (LinkedLifeDataServiceResponse.Relation relation : entity.getRelations()) {
-          System.out.println("   - labels: " + relation.getLabels());
-          System.out.println("   - pred: " + relation.getPred());
-          System.out.println("   - sub: " + relation.getSubj());
-          System.out.println("   - obj: " + relation.getObj());
-        }
+
+      List<LinkedLifeDataServiceResponse.Entity> entities = linkedLifeDataResult.getEntities();
+     
+      for (int i = 0; i < entities.size(); ++i) {
+        LinkedLifeDataServiceResponse.Entity entity = entities.get(i);
+        LinkedLifeDataServiceResponse.Relation relation = entity.getRelations().get(0);
+        
+        Triple triple = new Triple(aJCas);
+        triple.setSubject(relation.getSubj());
+        triple.setPredicate(relation.getPred());
+        triple.setObject(relation.getObj());
+        triple.addToIndexes();
+
+        TripleSearchResult tripleSR = new TripleSearchResult(aJCas);
+        tripleSR.setRank(i);
+        tripleSR.setTriple(triple);
+        tripleSR.addToIndexes();
       }
 
     } catch (Exception ex) {

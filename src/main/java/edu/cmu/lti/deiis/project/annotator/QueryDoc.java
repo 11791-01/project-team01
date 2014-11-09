@@ -17,10 +17,10 @@ import util.Utils;
 import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
 import edu.cmu.lti.oaqa.bio.bioasq.services.PubMedSearchServiceResponse;
-import edu.cmu.lti.oaqa.bio.bioasq.services.PubMedSearchServiceResponse.Document;
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
+import edu.cmu.lti.oaqa.type.retrieval.Document;
 
 public class QueryDoc extends JCasAnnotator_ImplBase {
 
@@ -55,14 +55,20 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
 
-      System.out.println("Query Doc!");
       PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0);
 
-      List<Document> docList = pubmedResult.getDocuments();
-      for (Document doc : docList) {
+      List<PubMedSearchServiceResponse.Document> docList = pubmedResult.getDocuments();
+      for (int i = 0; i < docList.size(); ++i) {
+        PubMedSearchServiceResponse.Document doc = docList.get(i);
         String docID = doc.getPmid();
         String uri = DOCURI_PREFIX + docID;
-        System.out.println(" > " + uri);
+
+        Document document = new Document(aJCas);
+        document.setUri(uri);
+        document.setRank(i);
+        document.setTitle(doc.getTitle());
+        document.setDocId(docID);
+        document.addToIndexes();
       }
 
     } catch (Exception ex) {
