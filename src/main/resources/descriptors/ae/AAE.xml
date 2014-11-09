@@ -9,7 +9,10 @@
   <delegateAnalysisEngine key="QueryDoc">
       <import name="descriptors.ae.QueryDoc"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="QueryTriple">
+    <delegateAnalysisEngine key="QueryAnnotator">
+      <import name="descriptors.ae.QueryAnnotator"/>
+    </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="QueryTriple">
       <import name="descriptors.ae.QueryTriple"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
@@ -22,9 +25,10 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>QueryConcept</node>
-      <node>QueryDoc</node>
-        <node>QueryTriple</node>
+        <node>QueryAnnotator</node>
+      <node>QueryConcept</node>
+        <node>QueryDoc</node>
+      <node>QueryTriple</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
