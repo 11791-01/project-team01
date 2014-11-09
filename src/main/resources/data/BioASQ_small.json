@@ -1,0 +1,163 @@
+{"questions": [
+    {
+        "body": "Is Rheumatoid Arthritis more common in men or women?", 
+        "concepts": [
+            "http://www.disease-ontology.org/api/metadata/DOID:7148", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001171", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012217", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013167", 
+            "http://www.nlm.nih.gov/cgi/mesh/2012/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015535"
+        ], 
+        "documents": [
+            "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/21340496", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/19158113", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/18759162", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/17965425", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/16418123", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/15083883", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/12723987", 
+            "http://www.ncbi.nlm.nih.gov/pubmed/1563036"
+        ], 
+        "exact_answer": [
+            "Women"
+        ], 
+        "id": "5118dd1305c10fae75000001", 
+        "ideal_answer": "Disease patterns in RA vary between the sexes; the condition is more commonly seen in women, who exhibit a more aggressive disease and a poorer long-term outcome.", 
+        "snippets": [
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 591, 
+                "offsetInEndSection": 678, 
+                "text": "Our results show a high prevalence of RA in LAC women with a ratio of 5.2 women per man"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/23217568", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1140, 
+                "offsetInEndSection": 1394, 
+                "text": "RA in LAC women is not only more common but presents with some clinical characteristics that differ from RA presentation in men. Some of those characteristics could explain the high rates of disability and worse prognosis observed in women with RA in LAC"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 559, 
+                "offsetInEndSection": 718, 
+                "text": "The expression and clinical course of RA are influenced by gender. In developed countries the prevalence of RA is 0,5 to 1.0%, with a male:female ratio of 1:3."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/22853635", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 897, 
+                "offsetInEndSection": 1031, 
+                "text": "women were found to have higher disease activity scores, more pain and greater loss of function, both in early and established disease"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/21340496", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 993, 
+                "offsetInEndSection": 1062, 
+                "text": "Intense anti-CCP2 reaction was 19.8-fold higher in females vs. males,"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 911, 
+                "offsetInEndSection": 944, 
+                "text": " men (n = 67) and women (n = 225)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20889597", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1808, 
+                "offsetInEndSection": 1943, 
+                "text": " Responses to treatment over time were better among men in this prebiologic era; women had worse progression despite similar treatment."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 1550, 
+                "offsetInEndSection": 1629, 
+                "text": "BMI appears to be associated with RA disease activity in women, but not in men."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/20810033", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 729, 
+                "offsetInEndSection": 785, 
+                "text": "A total of 5,161 RA patients (4,082 women and 1,079 men)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/19158113", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 561, 
+                "offsetInEndSection": 744, 
+                "text": "In women the DAS28 was significantly higher than in men due to higher scores for general health and tender joints. Likewise, HAQ and VAS pain were rated significantly higher in women."
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/18759162", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 263, 
+                "offsetInEndSection": 285, 
+                "text": "432 females, 125 males"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/17965425", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 862, 
+                "offsetInEndSection": 1017, 
+                "text": "ESR significantly increased with age, independent of other variables of disease activity. This increase was more pronounced in male than in female patients"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/1563036", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 0, 
+                "offsetInEndSection": 162, 
+                "text": "Disease patterns in RA vary between the sexes; the condition is more commonly seen in women, who exhibit a more aggressive disease and a poorer long-term outcome."
+            }, 
+            {
+                "beginSection": "sections.2", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/12723987", 
+                "endSection": "sections.2", 
+                "offsetInBeginSection": 7, 
+                "offsetInEndSection": 89, 
+                "text": "The mean age of the patients was 62 years (range 19\u201396 years) and 71% were female;"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/15083883", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 688, 
+                "offsetInEndSection": 830, 
+                "text": "The female to male ratio was 2.5:1 and the mean age at diagnosis was 49.4 +/- 14.9 years for women and 55.3 +/-15.6 years for men (P < 0.0003)"
+            }, 
+            {
+                "beginSection": "sections.0", 
+                "document": "http://www.ncbi.nlm.nih.gov/pubmed/16418123", 
+                "endSection": "sections.0", 
+                "offsetInBeginSection": 453, 
+                "offsetInEndSection": 514, 
+                "text": "in 244 female and 91 male patients with rheumatoid arthritis."
+            }
+        ], 
+        "type": "factoid"
+    }
+  ]
+}
