@@ -364,6 +364,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
     // if evaluation path exists, do the evaluation
     Double[] MAPs=new Double[3];
+    Double[] GMAPs=new Double[3];
     Double[] meanprecs=new Double[3];
     Double[] meanfmss=new Double[3];
     Double[] meanrecs=new Double[3];
@@ -372,7 +373,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     for(int i=0;i<precisions.size();i++){
       
       for(int j=0;j<3;j++){
-        
+        GMAPs[j]*=AvgPrecisions.get(i)[j];
         MAPs[j]+=AvgPrecisions.get(i)[j];
         meanprecs[j]+=precisions.get(i)[j];
         meanrecs[j]+=recalls.get(i)[j];
@@ -386,8 +387,8 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       meanfmss[i]/=numQues;
       meanrecs[i]/=numQues;
       meanprecs[i]/=numQues;
-      
-      System.out.printf("{0}\t{1}\t{2}\t{3}",meanprecs[i], meanrecs[i], meanfmss[i], MAPs[i]);
+      GMAPs[i]=Math.pow(GMAPs[i], 1.0/numQues);
+      System.out.printf("{0}\t{1}\t{2}\t{3}",meanprecs[i], meanrecs[i], meanfmss[i], MAPs[i],GMAPs[i]);
     }
     
   }
