@@ -53,12 +53,9 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       String text = queryList.get(0).getText();
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0);
 
-      System.out.println("MeSH: " + meshResult.getFindings().size());
-
       int currRank = 0;
       for (Finding finding : meshResult.getFindings()) {
         Concept concept = new Concept(aJCas);
-        System.out.println(finding.getConcept().getLabel());
         concept.setName(finding.getConcept().getLabel());
         concept.addToIndexes();
 
@@ -70,9 +67,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         result.setRank(currRank++);
         result.setQueryString(text);
         result.addToIndexes();
-
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri());
       }
     } catch (Exception ex) {
       System.err.println("Ontology Service Exception!");

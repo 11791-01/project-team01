@@ -55,7 +55,6 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
 
-      System.out.println("Query Doc!");
       PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0);
 
       List<PubMedSearchServiceResponse.Document> docList = pubmedResult.getDocuments();
