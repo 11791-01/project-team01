@@ -28,6 +28,12 @@
           <string>project-team01.out</string>
         </value>
       </nameValuePair>
+    <nameValuePair>
+        <name>goldDataFile</name>
+        <value>
+          <string>/data/BioASQ-SampleData1B.json</string>
+        </value>
+      </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription/>
     <typePriorities/>
