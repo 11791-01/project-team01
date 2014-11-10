@@ -34,7 +34,7 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
   /**
    * The GoPubMedService
    */
-  GoPubMedService service;
+  private GoPubMedService service;
 
   /**
    * Perform initialization logic. Initialize the service.
