@@ -48,6 +48,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
+import util.Evaluation;
 import util.FileOp;
 
 import com.google.gson.Gson;
@@ -85,6 +86,8 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   Boolean ifeval;
 
   List<OutputAnswer> retrievedAnswers;
+  
+  Evaluation eval;
 
   List<Question> goldout;
 
@@ -141,6 +144,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     }
 
     retrievedAnswers = new ArrayList<OutputAnswer>();
+    eval = new Evaluation(goldout);
 
     precisions = new ArrayList<Double[]>();
     recalls = new ArrayList<Double[]>();
@@ -216,6 +220,8 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     List<String> gtdocs = new ArrayList<String>();
     List<Triple> gttrpls = new ArrayList<Triple>();
 
+    eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
+    /*
     String qid = question.getId();
     for (Question cqst : goldout) {
 
@@ -271,7 +277,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
     System.out.println("conc" + qprec[0] + "  doc" + qprec[1] + "  trps" + qprec[2]);
     System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
-    System.out.println("************");
+    System.out.println("************");*/
   }
 
   private <T> double precision(List<T> trueval, List<T> retval) {
@@ -371,6 +377,8 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
     // if evaluation path exists, do the evaluation
     if (ifeval) {
+      eval.evalAllQuestion();
+      /*
       double[] MAPs = new double[3];
       double[] GMAPs = { 1, 1, 1 };
       double[] meanprecs = new double[3];
@@ -402,7 +410,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
         GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
         System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
                 MAPs[i], GMAPs[i]);
-      }
+      }*/
     }
   }
 
