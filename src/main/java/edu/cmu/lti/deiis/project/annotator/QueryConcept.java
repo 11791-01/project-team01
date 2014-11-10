@@ -27,10 +27,10 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
-  /**
+  /*
    * The GoPubMedService
    */
-  GoPubMedService service;
+  private GoPubMedService service;
 
   /**
    * Perform initialization logic. Initialize the service.
