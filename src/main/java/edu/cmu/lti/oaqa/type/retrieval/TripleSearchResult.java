@@ -11,8 +11,8 @@ import edu.cmu.lti.oaqa.type.kb.Triple;
 
 
 /** A search result from a triple store, e.g., an RDF store.
- * Updated by JCasGen Sat Nov 08 12:24:35 EST 2014
- * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/descriptors/ae/Query.xml
+ * Updated by JCasGen Sat Nov 08 23:55:43 EST 2014
+ * XML source: /home/jeremy/git/project-team01/src/main/resources/descriptors/ae/AAE.xml
  * @generated */
 public class TripleSearchResult extends AnswerSearchResult {
   /** @generated

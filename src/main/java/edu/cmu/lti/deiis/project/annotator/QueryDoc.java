@@ -22,10 +22,22 @@ import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 
+/**
+ * Query to get the document
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
 public class QueryDoc extends JCasAnnotator_ImplBase {
 
+  /**
+   * The document uri prefix, used to construct the final document uri
+   */
   private static final String DOCURI_PREFIX = "http://www.ncbi.nlm.nih.gov/pubmed/";
 
+  /**
+   * The GoPubMedService
+   */
   private GoPubMedService service;
 
   /**
@@ -44,6 +56,10 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
     }
   }
 
+  /**
+   * Get the documents and add them to JCas index
+   * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(
