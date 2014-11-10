@@ -174,7 +174,8 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
-
+    // Getting the Retrieved Concepts, Documents and Triples 
+    //Iterators for all of them
     FSIndex<?> QuestionIndex = jcas.getAnnotationIndex(edu.cmu.lti.oaqa.type.input.Question.type);
     Iterator<?> QuestionIter = QuestionIndex.iterator();
     edu.cmu.lti.oaqa.type.input.Question question = (edu.cmu.lti.oaqa.type.input.Question) QuestionIter
@@ -199,7 +200,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       docmaps.put(doc.getRank(), doc.getUri());
 
     }
-
+    
     FSIterator<TOP> TrpIter = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
     Map<Integer, Triple> trpmaps = new TreeMap<Integer, Triple>();
     while (TrpIter.hasNext()) {
@@ -210,7 +211,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
               new Triple(temp.getSubject(), temp.getPredicate(), temp.getObject()));
 
     }
-
+    //Maps for each Concepts, Documents and Triples
     List<String> retDocs = new ArrayList<String>(docmaps.values());
     List<String> retConcepts = new ArrayList<String>(conceptmaps.values());
     List<Triple> retTriples = new ArrayList<Triple>(trpmaps.values());
@@ -260,7 +261,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
      * System.out.println("************");
      */
   }
-
+  //All measures computation
   private <T> double precision(List<T> trueval, List<T> retval) {
 
     Set<T> trueset = new HashSet<T>(trueval);
