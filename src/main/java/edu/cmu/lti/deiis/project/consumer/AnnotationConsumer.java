@@ -82,11 +82,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
    */
   String evalDataPath;
 
-  /*
-   * The StringBuilder used to concatenate the output string
-   */
-  StringBuilder sb;
-
   Boolean ifeval;
 
   List<OutputAnswer> retrievedAnswers;
@@ -151,7 +146,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     recalls = new ArrayList<Double[]>();
     fmeasures = new ArrayList<Double[]>();
     AvgPrecisions = new ArrayList<Double[]>();
-    sb = new StringBuilder();
   }
 
   /**
@@ -174,8 +168,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
-
-    // do sb append here.
 
     FSIndex<?> QuestionIndex = jcas.getAnnotationIndex(edu.cmu.lti.oaqa.type.input.Question.type);
     Iterator<?> QuestionIter = QuestionIndex.iterator();
