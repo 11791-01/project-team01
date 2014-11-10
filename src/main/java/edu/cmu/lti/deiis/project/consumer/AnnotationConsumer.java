@@ -86,18 +86,19 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   Boolean ifeval;
 
   List<OutputAnswer> retrievedAnswers;
-  
+
   Evaluation eval;
 
   List<Question> goldout;
 
+  /*
   List<Double[]> precisions;
 
   List<Double[]> recalls;
 
   List<Double[]> fmeasures;
 
-  List<Double[]> AvgPrecisions;
+  List<Double[]> AvgPrecisions;*/
 
   public AnnotationConsumer() {
   }
@@ -138,18 +139,19 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
         goldout.stream().filter(input -> input.getBody() != null)
                 .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
         ifeval = true;
+
+        eval = new Evaluation(goldout);
       }
     } catch (Exception ex) {
       ifeval = false;
     }
 
     retrievedAnswers = new ArrayList<OutputAnswer>();
-    eval = new Evaluation(goldout);
 
-    precisions = new ArrayList<Double[]>();
+    /*precisions = new ArrayList<Double[]>();
     recalls = new ArrayList<Double[]>();
     fmeasures = new ArrayList<Double[]>();
-    AvgPrecisions = new ArrayList<Double[]>();
+    AvgPrecisions = new ArrayList<Double[]>();*/
   }
 
   /**
@@ -220,64 +222,43 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     List<String> gtdocs = new ArrayList<String>();
     List<Triple> gttrpls = new ArrayList<Triple>();
 
-    eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
+    if (ifeval) {
+      eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
+    }
     /*
-    String qid = question.getId();
-    for (Question cqst : goldout) {
-
-      if (qid.equals(cqst.getId())) {
-        gtconcepts = cqst.getConcepts();
-        gtdocs = cqst.getDocuments();
-        List<Triple> tempTrips = cqst.getTriples();
-        if (tempTrips != null) {
-          for (Triple t : tempTrips) {
-            gttrpls.add(new Triple(t.getS(), t.getP(), t.getO()));
-          }
-        }
-      }
-    }
-
-    // Compute All Values Precision, Recall, AP, F-Score
-    Double[] qprec = new Double[3];
-    qprec[0] = precision(gtconcepts, retConcepts);
-    qprec[1] = precision(gtdocs, retDocs);
-    qprec[2] = precision(gttrpls, retTriples);
-
-    precisions.add(qprec);
-
-    Double[] qrec = new Double[3];
-    qrec[0] = recall(gtconcepts, retConcepts);
-    qrec[1] = recall(gtdocs, retDocs);
-    qrec[2] = recall(gttrpls, retTriples);
-
-    recalls.add(qrec);
-
-    Double[] qfms = new Double[3];
-    qfms[0] = fmeasure(qprec[0], qrec[0]);
-    qfms[1] = fmeasure(qprec[1], qrec[1]);
-    qfms[2] = fmeasure(qprec[2], qrec[2]);
-
-    fmeasures.add(qfms);
-
-    Double[] qap = new Double[3];
-    qap[0] = AP(gtconcepts, retConcepts);
-    qap[1] = AP(gtdocs, retDocs);
-    qap[2] = AP(gttrpls, retTriples);
-
-    AvgPrecisions.add(qap);
-    System.out.println("************");
-    System.out.println("GTDocs:");
-    for (String c : gtconcepts) {
-      System.out.println("\t" + c);
-    }
-    System.out.println("RetDocs:");
-    for (String c : retConcepts) {
-      System.out.println("\t" + c);
-    }
-
-    System.out.println("conc" + qprec[0] + "  doc" + qprec[1] + "  trps" + qprec[2]);
-    System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
-    System.out.println("************");*/
+     * String qid = question.getId(); for (Question cqst : goldout) {
+     * 
+     * if (qid.equals(cqst.getId())) { gtconcepts = cqst.getConcepts(); gtdocs =
+     * cqst.getDocuments(); List<Triple> tempTrips = cqst.getTriples(); if (tempTrips != null) { for
+     * (Triple t : tempTrips) { gttrpls.add(new Triple(t.getS(), t.getP(), t.getO())); } } } }
+     * 
+     * // Compute All Values Precision, Recall, AP, F-Score Double[] qprec = new Double[3]; qprec[0]
+     * = precision(gtconcepts, retConcepts); qprec[1] = precision(gtdocs, retDocs); qprec[2] =
+     * precision(gttrpls, retTriples);
+     * 
+     * precisions.add(qprec);
+     * 
+     * Double[] qrec = new Double[3]; qrec[0] = recall(gtconcepts, retConcepts); qrec[1] =
+     * recall(gtdocs, retDocs); qrec[2] = recall(gttrpls, retTriples);
+     * 
+     * recalls.add(qrec);
+     * 
+     * Double[] qfms = new Double[3]; qfms[0] = fmeasure(qprec[0], qrec[0]); qfms[1] =
+     * fmeasure(qprec[1], qrec[1]); qfms[2] = fmeasure(qprec[2], qrec[2]);
+     * 
+     * fmeasures.add(qfms);
+     * 
+     * Double[] qap = new Double[3]; qap[0] = AP(gtconcepts, retConcepts); qap[1] = AP(gtdocs,
+     * retDocs); qap[2] = AP(gttrpls, retTriples);
+     * 
+     * AvgPrecisions.add(qap); System.out.println("************"); System.out.println("GTDocs:");
+     * for (String c : gtconcepts) { System.out.println("\t" + c); } System.out.println("RetDocs:");
+     * for (String c : retConcepts) { System.out.println("\t" + c); }
+     * 
+     * System.out.println("conc" + qprec[0] + "  doc" + qprec[1] + "  trps" + qprec[2]);
+     * System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
+     * System.out.println("************");
+     */
   }
 
   private <T> double precision(List<T> trueval, List<T> retval) {
@@ -379,38 +360,21 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     if (ifeval) {
       eval.evalAllQuestion();
       /*
-      double[] MAPs = new double[3];
-      double[] GMAPs = { 1, 1, 1 };
-      double[] meanprecs = new double[3];
-      double[] meanfmss = new double[3];
-      double[] meanrecs = new double[3];
-      int numQues = precisions.size();
-
-      try {
-        for (int i = 0; i < precisions.size(); i++) {
-          for (int j = 0; j < 3; j++) {
-            GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.00001);
-            MAPs[j] += AvgPrecisions.get(i)[j];
-            meanprecs[j] += precisions.get(i)[j];
-            meanrecs[j] += recalls.get(i)[j];
-            meanfmss[j] += fmeasures.get(i)[j];
-
-          }
-        }
-      } catch (Exception ex) {
-        System.err.println(ex);
-        ex.printStackTrace();
-      }
-      System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
-      for (int i = 0; i < 3; i++) {
-        MAPs[i] /= numQues;
-        meanfmss[i] /= numQues;
-        meanrecs[i] /= numQues;
-        meanprecs[i] /= numQues;
-        GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
-        System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
-                MAPs[i], GMAPs[i]);
-      }*/
+       * double[] MAPs = new double[3]; double[] GMAPs = { 1, 1, 1 }; double[] meanprecs = new
+       * double[3]; double[] meanfmss = new double[3]; double[] meanrecs = new double[3]; int
+       * numQues = precisions.size();
+       * 
+       * try { for (int i = 0; i < precisions.size(); i++) { for (int j = 0; j < 3; j++) { GMAPs[j]
+       * *= (AvgPrecisions.get(i)[j] + 0.00001); MAPs[j] += AvgPrecisions.get(i)[j]; meanprecs[j] +=
+       * precisions.get(i)[j]; meanrecs[j] += recalls.get(i)[j]; meanfmss[j] += fmeasures.get(i)[j];
+       * 
+       * } } } catch (Exception ex) { System.err.println(ex); ex.printStackTrace(); }
+       * System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP"); for (int i = 0; i < 3; i++) {
+       * MAPs[i] /= numQues; meanfmss[i] /= numQues; meanrecs[i] /= numQues; meanprecs[i] /=
+       * numQues; GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
+       * System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
+       * MAPs[i], GMAPs[i]); }
+       */
     }
   }
 
