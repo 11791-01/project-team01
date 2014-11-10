@@ -20,8 +20,16 @@ import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 
+/**
+ * Query to get the concept.
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
+  /**
+   * The GoPubMedService
+   */
   GoPubMedService service;
 
   /**
@@ -40,6 +48,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
   }
 
+  /**
+   * Get the concepts and add them to JCas index
+   * 
+   * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(

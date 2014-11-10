@@ -23,8 +23,17 @@ import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
+/**
+ * Query to get the triples
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
 public class QueryTriple extends JCasAnnotator_ImplBase {
 
+  /**
+   * The GoPubMedService
+   */
   GoPubMedService service;
 
   /**
@@ -43,6 +52,10 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
     }
   }
 
+  /**
+   * Get the triples and add them to the JCas index
+   * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
 
@@ -58,13 +71,12 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
 
       LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
               .findLinkedLifeDataEntitiesPaged(text, 0, 1);
-
       List<LinkedLifeDataServiceResponse.Entity> entities = linkedLifeDataResult.getEntities();
-     
+
       for (int i = 0; i < entities.size(); ++i) {
         LinkedLifeDataServiceResponse.Entity entity = entities.get(i);
         LinkedLifeDataServiceResponse.Relation relation = entity.getRelations().get(0);
-        
+
         Triple triple = new Triple(aJCas);
         triple.setSubject(relation.getSubj());
         triple.setPredicate(relation.getPred());
