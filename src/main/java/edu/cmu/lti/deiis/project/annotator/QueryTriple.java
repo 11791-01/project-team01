@@ -31,7 +31,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  */
 public class QueryTriple extends JCasAnnotator_ImplBase {
 
-  /**
+  /*
    * The GoPubMedService
    */
   private GoPubMedService service;
