@@ -130,28 +130,19 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
                     "outputFile" });
     }
 
-    // evalDataPath = (String) getUimaContext().getConfigParameterValue("goldDataFile");
-    evalDataPath = "src/main/resources/data/BioASQ-SampleData1B.json";
-
-    if (evalDataPath != null && evalDataPath.trim().length() != 0) {
-      File theFile = new File(evalDataPath.trim());
-
-      if (theFile.exists() && !theFile.isDirectory()) {
-        // Evaluation eval = new Evaluation(sb.toString(),
-        // FileOp.readFromFile(evalDataPath.trim()));
-        // eval.evaluate();
-        ifeval = true;
-
-        evalDataPath = (String) getUimaContext().getConfigParameterValue("goldDataFile");
+    evalDataPath = (String) getUimaContext().getConfigParameterValue("goldDataFile");
+    try {
+      ifeval = false;
+      if (evalDataPath != null && evalDataPath.trim().length() != 0) {
         goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
                 .collect(toList());
         // trim question texts
         goldout.stream().filter(input -> input.getBody() != null)
                 .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
-        System.out.println("*******************");
-        System.out.println(goldout.get(0));
-      } else
-        ifeval = false;
+        ifeval = true;
+      }
+    } catch (Exception ex) {
+      ifeval = false;
     }
 
     retrievedAnswers = new ArrayList<OutputAnswer>();
@@ -248,7 +239,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       }
     }
 
-    // COmpute All Values Precision, Recall, AP, F-Score
+    // Compute All Values Precision, Recall, AP, F-Score
     Double[] qprec = new Double[3];
     qprec[0] = precision(gtconcepts, retConcepts);
     qprec[1] = precision(gtdocs, retDocs);
@@ -350,9 +341,6 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
   }
 
-  // private static Double computeAP(ArrayList<Double>,ArrayList<Integer>){
-
-  // }
   /**
    * Called when a batch of processing is completed.
    * 
@@ -372,7 +360,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   }
 
   /**
-   * Called when the entire collection is completed. Write the string to file.
+   * Called when the entire collection is completed. Write results to file.
    * 
    * @param aTrace
    *          ProcessTrace object that will log events in this method.
@@ -390,39 +378,40 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     FileOp.writeToFile(oPath, jsonOutput);
 
     // if evaluation path exists, do the evaluation
-    double[] MAPs = new double[3];
-    double[] GMAPs = { 1, 1, 1 };
-    double[] meanprecs = new double[3];
-    double[] meanfmss = new double[3];
-    double[] meanrecs = new double[3];
-    int numQues = precisions.size();
+    if (ifeval) {
+      double[] MAPs = new double[3];
+      double[] GMAPs = { 1, 1, 1 };
+      double[] meanprecs = new double[3];
+      double[] meanfmss = new double[3];
+      double[] meanrecs = new double[3];
+      int numQues = precisions.size();
 
-    try {
-      for (int i = 0; i < precisions.size(); i++) {
-        for (int j = 0; j < 3; j++) {
-          GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.00001);
-          MAPs[j] += AvgPrecisions.get(i)[j];
-          meanprecs[j] += precisions.get(i)[j];
-          meanrecs[j] += recalls.get(i)[j];
-          meanfmss[j] += fmeasures.get(i)[j];
+      try {
+        for (int i = 0; i < precisions.size(); i++) {
+          for (int j = 0; j < 3; j++) {
+            GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.00001);
+            MAPs[j] += AvgPrecisions.get(i)[j];
+            meanprecs[j] += precisions.get(i)[j];
+            meanrecs[j] += recalls.get(i)[j];
+            meanfmss[j] += fmeasures.get(i)[j];
 
+          }
         }
+      } catch (Exception ex) {
+        System.err.println(ex);
+        ex.printStackTrace();
       }
-    } catch (Exception ex) {
-      System.err.println(ex);
-      ex.printStackTrace();
+      System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
+      for (int i = 0; i < 3; i++) {
+        MAPs[i] /= numQues;
+        meanfmss[i] /= numQues;
+        meanrecs[i] /= numQues;
+        meanprecs[i] /= numQues;
+        GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
+        System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
+                MAPs[i], GMAPs[i]);
+      }
     }
-    System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
-    for (int i = 0; i < 3; i++) {
-      MAPs[i] /= numQues;
-      meanfmss[i] /= numQues;
-      meanrecs[i] /= numQues;
-      meanprecs[i] /= numQues;
-      GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
-      System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
-              MAPs[i], GMAPs[i]);
-    }
-
   }
 
   /**
