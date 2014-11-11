@@ -119,16 +119,22 @@ public class Evaluation {
       }
     }
 
-    System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP");
+    StringBuilder sb = new StringBuilder();
+    sb.append(String.format("%12s%12s%12s%12s%12s%12s\n", "Ret. Item", "Prec","Recall","F-measure","MAP","GMAP"));
+    sb.append("----------------------------------------------------------------------------\n");
+    String[] retItems = {"Concepts", "Documents", "Triples"};
     for (int i = 0; i < 3; i++) {
       MAPs[i] /= numQues;
       meanfmss[i] /= numQues;
       meanrecs[i] /= numQues;
       meanprecs[i] /= numQues;
       GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
-      System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
-              MAPs[i], GMAPs[i]);
+      sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", retItems[i], meanprecs[i], meanrecs[i], meanfmss[i],
+              MAPs[i], GMAPs[i]));
     }
+    
+    String evalOutputFile = "project-team01.eval";
+    FileOp.writeToFile(evalOutputFile, sb.toString());
   }
 
   /**
