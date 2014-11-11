@@ -26,7 +26,9 @@ import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import util.Utils;
 
 /**
- * @author Zexi Mao
+ * An annotator that generates query terms for each question using LingPipe Statistical NER.
+ * 
+ * @author Zexi Mao <zexim@cs.cmu.edu>
  *
  */
 public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
@@ -35,22 +37,26 @@ public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
    * Name of configuration parameter that must be set to the path of the model file.
    */
   public static final String PARAM_MODEL_FILE = "ModelFile";
-  
+
   /**
    * Name of configuration parameter that must be set to the max chunk number.
    */
   public static final String PARAM_MAX_N_BEST_CHUNKS = "MaxNBestChunks";
-  
+
   /**
    * Name of configuration parameter that must be set to the threshold.
    */
   public static final String PARAM_THRESHOLD = "Threshold";
-  
+
+  // LingPipe chunker
   private ConfidenceChunker mChunker;
+
   private String mModelPath;
+
   private Integer mMAX_N_BEST_CHUNKS;
+
   private Float mThreashold;
-  
+
   /**
    * Initialize the annotator, create the chunker in LinePipe.
    * 
@@ -59,57 +65,54 @@ public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
   @Override
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
-    
+
     mMAX_N_BEST_CHUNKS = (Integer) aContext.getConfigParameterValue(PARAM_MAX_N_BEST_CHUNKS);
     mThreashold = (Float) aContext.getConfigParameterValue(PARAM_THRESHOLD);
-    
+
+    // Load the LingPipe pre-trained model
     try {
-      File modelFile = new File(((String) aContext.getConfigParameterValue(PARAM_MODEL_FILE)).trim());
+      File modelFile = new File(
+              ((String) aContext.getConfigParameterValue(PARAM_MODEL_FILE)).trim());
       mChunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-  
-  
-  /** 
-   * Create queries for questions.
+
+  /**
+   * Create queries for each question.
    * 
    * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
    */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
-    
+
     if (iter.isValid() && iter.hasNext()) {
+      // Get the questions
       Question question = (Question) iter.next();
-      
+
       String queString = question.getText();
       char[] cs = queString.toCharArray();
       Iterator<Chunk> it = mChunker.nBestChunks(cs, 0, cs.length, mMAX_N_BEST_CHUNKS);
       String queryString = "";
-      
-      /*
+
       while (it.hasNext()) {
         Chunk chunk = (Chunk) it.next();
-        queryString += queString.substring(chunk.start(), chunk.end());
-        queryString += " ";
+        queryString += queString.substring(chunk.start(), chunk.end()); queryString += " ";
         System.out.println(queString.substring(chunk.start(), chunk.end()));
         System.out.println(chunk.score());
       }
-      
-      System.out.println(queString);
-      System.out.println(queryString);
-      */
-      
+      System.out.println(queString); System.out.println(queryString);
+
+      // Create an atomic query first
       AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
-      //atomicQuery.setText(question.getText().replace("?", ""));
       atomicQuery.setText(queryString);
       atomicQuery.addToIndexes();
       List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
       terms.add(atomicQuery);
-      
-      // Create the query for the following Annotators.
+
+      // Create the complex query for the following Annotators.
       ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
       query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
       query.addToIndexes();

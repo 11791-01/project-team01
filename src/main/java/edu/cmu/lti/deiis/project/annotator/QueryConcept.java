@@ -23,7 +23,7 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 /**
  * Query to get the concept.
  * 
- * @author Fei Xia <feixia@cs.cmu.edu>
+ * @author Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu>
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
@@ -32,25 +32,22 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
    * service.
    */
   public static final String PARAM_RESULTS_PER_PAGE = "ResultsPerPage";
-  
+
   private Integer mResultsPerPage;
 
-  /*
-   * The GoPubMedService
-   */
+  // The GoPubMedService
   private GoPubMedService service;
 
   /**
    * Perform initialization logic. Initialize the service.
    * 
-   * @param aContext
-   *          the UimaContext object
+   * @see org.apache.uima.analysis_component.AnalysisComponent_ImplBase#initialize(UimaContext)
    */
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
 
     mResultsPerPage = (Integer) aContext.getConfigParameterValue(PARAM_RESULTS_PER_PAGE);
-    
+
     try {
       service = new GoPubMedService("project.properties");
     } catch (Exception ex) {
@@ -69,16 +66,19 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
             ComplexQueryConcept.type);
 
     try {
+      // TODO: add other services and combine them to get an overall ranking
+
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
 
       List<AtomicQueryConcept> queryList = (ArrayList<AtomicQueryConcept>) Utils
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
+      // Get the query text
       String text = queryList.get(0).getText();
-      System.out.println(text);
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
-      // OntologyServiceResponse.Result meshResult = service.findDiseaseOntologyEntitiesPaged(text,
-      // 0);
+      // Use Mesh service
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,
+              mResultsPerPage);
 
+      // Rank the returned concepts and add them to CAS
       int currRank = 0;
       for (Finding finding : meshResult.getFindings()) {
         Concept concept = new Concept(aJCas);
