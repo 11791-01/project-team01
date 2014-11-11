@@ -2,10 +2,10 @@ package util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  * Perform Basic File Operation, read or write.
@@ -24,8 +24,8 @@ public class FileOp {
 	 */
 	public static void writeToFile(String filePath, String content) {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(
-					filePath)));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+					filePath), "UTF-8"));
 			bw.write(content);
 			bw.close();
 		} catch (IOException ex) {
