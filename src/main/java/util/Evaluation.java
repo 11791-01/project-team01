@@ -8,16 +8,22 @@ import java.util.Set;
 import json.gson.Question;
 import json.gson.Triple;
 
+/*
+ * For Evaluating Performance
+ * Only when gold Standard Exists
+ */
+
+
 public class Evaluation {
-  List<Question> goldout;
+  List<Question> goldout; //gold standard
 
-  List<Double[]> precisions;
+  List<Double[]> precisions; // storing precision for all questions
 
-  List<Double[]> recalls;
+  List<Double[]> recalls;    // storing recall for all questions
 
-  List<Double[]> fmeasures;
+  List<Double[]> fmeasures;  // storing f-measure for all questions
 
-  List<Double[]> AvgPrecisions;
+  List<Double[]> AvgPrecisions; // storing AP for all questions
 
   public Evaluation(List<Question> gold) {
     goldout = gold;
@@ -27,8 +33,14 @@ public class Evaluation {
     AvgPrecisions = new ArrayList<Double[]>();
   }
 
+  /*
+   * For evaluating just one question
+   * 
+   */
   public void evalOneQuestion(String qid, List<String> retDocs, List<String> retConcepts,
           List<Triple> retTriples) {
+   //Getting Ground Truth for each Retrieval types by matching qid
+   // 
     List<String> gtconcepts = new ArrayList<String>();
     List<String> gtdocs = new ArrayList<String>();
     List<Triple> gttrpls = new ArrayList<Triple>();
@@ -47,7 +59,8 @@ public class Evaluation {
       }
     }
 
-    // Compute All Values Precision, Recall, AP, F-Score
+    // Compute All Values Precision, Recall, AP, F-Score for Each retrieval type
+    //
     Double[] qprec = new Double[3];
     qprec[0] = precision(gtconcepts, retConcepts);
     qprec[1] = precision(gtdocs, retDocs);
@@ -97,7 +110,7 @@ public class Evaluation {
     double[] meanfmss = new double[3];
     double[] meanrecs = new double[3];
     int numQues = precisions.size();
-
+    //Final Measures Computed
     for (int i = 0; i < precisions.size(); i++) {
       for (int j = 0; j < 3; j++) {
         GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.00001);
@@ -121,6 +134,10 @@ public class Evaluation {
     }
   }
 
+  /*Precision
+   * Takes retrieved and true values as list and computes the precision.
+   * Generic can handle all types
+   */
   private <T> double precision(List<T> trueval, List<T> retval) {
 
     Set<T> trueset = new HashSet<T>(trueval);
@@ -137,6 +154,10 @@ public class Evaluation {
 
   }
 
+  /*Recall
+   * Takes retrieved and true values as list and computes the precision.
+   * Generic can handle all types
+   */
   private <T> double recall(List<T> trueval, List<T> retval) {
 
     Set<T> trueset = new HashSet<T>(trueval);
@@ -153,6 +174,9 @@ public class Evaluation {
 
   }
 
+  /*F-measure
+   * Takes precision and recall values and computes the F-measure.
+   */
   private double fmeasure(Double prec, Double rec) {
 
     if (prec + rec == 0) {
@@ -162,6 +186,10 @@ public class Evaluation {
 
   }
 
+  /*AP
+   * Takes retrieved and true values as list and computes the precision.
+   * Generic can handle all types
+   */
   private <T> Double AP(List<T> trueval, List<T> retval) {
 
     int poscount = 0;

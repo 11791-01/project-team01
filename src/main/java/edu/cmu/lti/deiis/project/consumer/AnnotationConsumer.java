@@ -24,11 +24,9 @@ import static java.util.stream.Collectors.toList;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import json.gson.OutputAnswer;
@@ -53,7 +51,7 @@ import util.FileOp;
 
 import com.google.gson.Gson;
 
-import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
+//import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
@@ -207,89 +205,14 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     retrievedAnswers.add(new OutputAnswer(question.getId(), question.getText(), retDocs,
             retConcepts, retTriples));
 
-    //Getting Ground Truth for each Retriveal tyoes
-    List<String> gtconcepts = new ArrayList<String>();
-    List<String> gtdocs = new ArrayList<String>();
-    List<Triple> gttrpls = new ArrayList<Triple>();
-
     //Evaluating the current question in CAS
+    //Do only if gold standard exists
     if (ifeval) {
       eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
     }
   }
-  /*Precision
-   * Takes retrieved and true values as list and computes the precision.
-   * Generic can handle all types
-   */
-  private <T> double precision(List<T> trueval, List<T> retval) {
-
-    Set<T> trueset = new HashSet<T>(trueval);
-    Set<T> retset = new HashSet<T>(retval);
-
-    retset.retainAll(trueset);
-
-    Integer TP = retset.size();
-
-    if (retval.size() == 0) {
-      return 0;
-    }
-    return ((double) TP) / ((double) retval.size());
-
-  }
-  /*Recall
-   * Takes retrieved and true values as list and computes the precision.
-   * Generic can handle all types
-   */
-  private <T> double recall(List<T> trueval, List<T> retval) {
-
-    Set<T> trueset = new HashSet<T>(trueval);
-    Set<T> retset = new HashSet<T>(retval);
-
-    retset.retainAll(trueset);
-
-    Integer TP = retset.size();
-
-    if (trueval.size() == 0) {
-      return 0;
-    }
-    return ((double) TP) / ((double) trueval.size());
-
-  }
-
-  /*F-measure
-   * Takes precision and recall values and computes the F-measure.
-   * Generic can handle all types
-   */
-  private double fmeasure(Double prec, Double rec) {
-
-    if (prec + rec == 0) {
-      return 0;
-    }
-    return (2 * prec * rec) / (prec + rec);
-
-  }
-
-  /*AP
-   * Takes retrieved and true values as list and computes the precision.
-   * Generic can handle all types
-   */
-  private <T> Double AP(List<T> trueval, List<T> retval) {
-
-    int poscount = 0;
-    Double ap = 0.0;
-    int c = 0;
-    for (T item : retval) {
-
-      if (trueval.contains(item)) {
-        poscount += 1;
-        ap += (poscount / ((double) (c + 1)));
-      }
-      c = c + 1;
-    }
-
-    return ap / (poscount + Math.pow(10, -15));
-
-  }
+  
+  
 
   /**
    * Called when a batch of processing is completed.
@@ -323,6 +246,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   public void collectionProcessComplete(ProcessTrace aTrace) throws ResourceProcessException,
           IOException {
 
+    //Writing it as json file
     Gson gson = new Gson();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
