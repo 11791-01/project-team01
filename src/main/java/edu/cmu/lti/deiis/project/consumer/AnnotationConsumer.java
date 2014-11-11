@@ -162,7 +162,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
       ConceptSearchResult cpt = (ConceptSearchResult) ConceptIter.next();
       conceptmaps.put(cpt.getRank(), cpt.getUri());
-
+      
     }
 
     FSIterator<TOP> DocIter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
@@ -232,7 +232,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
           IOException {
 
     // Writing it as json file
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
 

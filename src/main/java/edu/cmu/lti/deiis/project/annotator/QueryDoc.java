@@ -30,12 +30,12 @@ import edu.cmu.lti.oaqa.type.retrieval.Document;
  */
 public class QueryDoc extends JCasAnnotator_ImplBase {
 
-  /**
+  /*
    * The document uri prefix, used to construct the final document uri
    */
   private static final String DOCURI_PREFIX = "http://www.ncbi.nlm.nih.gov/pubmed/";
 
-  /**
+  /*
    * The GoPubMedService
    */
   private GoPubMedService service;
