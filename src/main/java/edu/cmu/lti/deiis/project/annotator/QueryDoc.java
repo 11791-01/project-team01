@@ -41,6 +41,11 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
   private GoPubMedService service;
 
   /**
+   * The number of results in each retrieved pages
+   */
+  private int mResultsPerPage;
+
+  /**
    * Perform initialization logic. Initialize the service.
    * 
    * @param aContext
@@ -54,10 +59,13 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
     } catch (Exception ex) {
       throw new ResourceInitializationException();
     }
+
+    mResultsPerPage = (int) getContext().getConfigParameterValue("ResultsPerPage");
   }
 
   /**
    * Get the documents and add them to JCas index
+   * 
    * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
    */
   @Override
@@ -71,7 +79,7 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
 
-      PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0);
+      PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0, mResultsPerPage);
 
       List<PubMedSearchServiceResponse.Document> docList = pubmedResult.getDocuments();
       for (int i = 0; i < docList.size(); ++i) {

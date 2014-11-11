@@ -110,7 +110,7 @@ public class Evaluation {
     // Final Measures Computed
     for (int i = 0; i < precisions.size(); i++) {
       for (int j = 0; j < 3; j++) {
-        GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.00001);
+        GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.001);
         MAPs[j] += AvgPrecisions.get(i)[j];
         meanprecs[j] += precisions.get(i)[j];
         meanrecs[j] += recalls.get(i)[j];
