@@ -65,7 +65,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
       System.out.println(text);
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 1, 10);
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, 10);
       System.out.println(meshResult.getFindings().size());
       //OntologyServiceResponse.Result meshResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
 
