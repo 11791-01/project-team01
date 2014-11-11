@@ -8,9 +8,10 @@ import java.util.Set;
 import json.gson.Question;
 import json.gson.Triple;
 
-/*
- * For Evaluating Performance
- * Only when gold Standard Exists
+/**
+ * 
+ * @author anurag
+ *
  */
 
 
@@ -33,14 +34,17 @@ public class Evaluation {
     AvgPrecisions = new ArrayList<Double[]>();
   }
 
-  /*
-   * For evaluating just one question
+  /**
    * 
+   * @param qid question id
+   * @param retDocs retrieved documents
+   * @param retConcepts retrieved concepts
+   * @param retTriples retrieved concepts
    */
   public void evalOneQuestion(String qid, List<String> retDocs, List<String> retConcepts,
           List<Triple> retTriples) {
    //Getting Ground Truth for each Retrieval types by matching qid
-   // 
+   //
     List<String> gtconcepts = new ArrayList<String>();
     List<String> gtdocs = new ArrayList<String>();
     List<Triple> gttrpls = new ArrayList<Triple>();
@@ -102,7 +106,9 @@ public class Evaluation {
     System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
     System.out.println("************");
   }
-
+/**
+ * Evaluate Just One Question
+ */
   public void evalAllQuestion() {
     double[] MAPs = new double[3];
     double[] GMAPs = { 1, 1, 1 };
@@ -133,11 +139,17 @@ public class Evaluation {
               MAPs[i], GMAPs[i]);
     }
   }
-
-  /*Precision
+  
+  /**
+   *  Precision
    * Takes retrieved and true values as list and computes the precision.
    * Generic can handle all types
+   * @param trueval ground truth list
+   * @param retval  retrieved list
+   * @return precision
    */
+
+ 
   private <T> double precision(List<T> trueval, List<T> retval) {
 
     Set<T> trueset = new HashSet<T>(trueval);
@@ -154,9 +166,13 @@ public class Evaluation {
 
   }
 
-  /*Recall
+  /**
+   * Recall
    * Takes retrieved and true values as list and computes the precision.
    * Generic can handle all types
+   * @param trueval ground truth list
+   * @param retval  retrieved list
+   * @return recall
    */
   private <T> double recall(List<T> trueval, List<T> retval) {
 
@@ -174,8 +190,12 @@ public class Evaluation {
 
   }
 
-  /*F-measure
-   * Takes precision and recall values and computes the F-measure.
+  /**
+   * F-measure
+   * Takes retrieved and true values as list and computes the f-measure.
+   * @param prec precision
+   * @param rec  recall
+   * @return F-Measure
    */
   private double fmeasure(Double prec, Double rec) {
 
@@ -186,9 +206,13 @@ public class Evaluation {
 
   }
 
-  /*AP
+  /**
+   * Average Precision
    * Takes retrieved and true values as list and computes the precision.
    * Generic can handle all types
+   * @param trueval ground truth list
+   * @param retval  retrieved list
+   * @return Average Precision
    */
   private <T> Double AP(List<T> trueval, List<T> retval) {
 
