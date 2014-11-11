@@ -31,6 +31,7 @@ import util.Evaluation;
 import util.FileOp;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
@@ -231,7 +232,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
           IOException {
 
     // Writing it as json file
-    Gson gson = new Gson();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
 
