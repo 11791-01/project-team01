@@ -37,6 +37,11 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
   GoPubMedService service;
 
   /**
+   * The number of results in each retrieved pages
+   */
+  private int mResultsPerPage;
+
+  /**
    * Perform initialization logic. Initialize the service.
    * 
    * @param aContext
@@ -50,10 +55,13 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
     } catch (Exception ex) {
       throw new ResourceInitializationException();
     }
+
+    mResultsPerPage = (int) getContext().getConfigParameterValue("ResultsPerPage");
   }
 
   /**
    * Get the triples and add them to the JCas index
+   * 
    * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
    */
   @Override
@@ -70,7 +78,7 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
       String text = queryList.get(0).getText();
 
       LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
-              .findLinkedLifeDataEntitiesPaged(text, 0, 1);
+              .findLinkedLifeDataEntitiesPaged(text, 0, mResultsPerPage);
       List<LinkedLifeDataServiceResponse.Entity> entities = linkedLifeDataResult.getEntities();
 
       for (int i = 0; i < entities.size(); ++i) {
