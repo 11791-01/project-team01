@@ -1,22 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package edu.cmu.lti.deiis.project.consumer;
 
 import static java.util.stream.Collectors.toList;
@@ -24,11 +5,9 @@ import static java.util.stream.Collectors.toList;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import json.gson.OutputAnswer;
@@ -54,13 +33,12 @@ import util.FileOp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
 /**
- * AnnotationConsumer prints to an output file the gene entity annotation in the CAS. <br>
+ * AnnotationConsumer prints to an output file the result annotation in the CAS. <br>
  * Parameters needed by the AnnotationConsumer are
  * <ol>
  * <li>"outputFile" : file to which the output files should be written.</li>
@@ -70,36 +48,33 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  * These parameters are set in the initialize method to the values specified in the descriptor file. <br>
  * These may also be set by the application by using the setConfigParameterValue methods.
  * 
- * 
  */
 
 public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjectProcessor {
-  /*
-   * output file path
+  /**
+   * Output file path
    */
   String oPath;
 
-  /*
-   * gold dataset file path
+  /**
+   * Gold dataset file path
    */
   String evalDataPath;
 
+  /**
+   * If we need to do the evaluation or not
+   */
   Boolean ifeval;
 
+  /**
+   * The retrieved answers list
+   */
   List<OutputAnswer> retrievedAnswers;
 
+  /**
+   * The Evaluation
+   */
   Evaluation eval;
-
-  List<Question> goldout;
-
-  /*
-  List<Double[]> precisions;
-
-  List<Double[]> recalls;
-
-  List<Double[]> fmeasures;
-
-  List<Double[]> AvgPrecisions;*/
 
   public AnnotationConsumer() {
   }
@@ -130,11 +105,12 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
                     "outputFile" });
     }
 
+    // try to get the ground truth data path
     evalDataPath = (String) getUimaContext().getConfigParameterValue("goldDataFile");
     try {
       ifeval = false;
       if (evalDataPath != null && evalDataPath.trim().length() != 0) {
-        goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
+        List<Question> goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
                 .collect(toList());
         // trim question texts
         goldout.stream().filter(input -> input.getBody() != null)
@@ -148,17 +124,12 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     }
 
     retrievedAnswers = new ArrayList<OutputAnswer>();
-
-    /*precisions = new ArrayList<Double[]>();
-    recalls = new ArrayList<Double[]>();
-    fmeasures = new ArrayList<Double[]>();
-    AvgPrecisions = new ArrayList<Double[]>();*/
   }
 
   /**
    * Processes the CasContainer which was populated by the TextAnalysisEngines. <br>
    * In this case, the CAS index is iterated over selected annotations and append the relevant
-   * information to StringBuilder sb
+   * information to corresponding data structure 
    * 
    * @param aCAS
    *          CasContainer which has been populated by the TAEs
@@ -175,12 +146,14 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
-
+    // Getting the Retrieved Concepts, Documents and Triples
+    // Iterators for all of them
     FSIndex<?> QuestionIndex = jcas.getAnnotationIndex(edu.cmu.lti.oaqa.type.input.Question.type);
     Iterator<?> QuestionIter = QuestionIndex.iterator();
     edu.cmu.lti.oaqa.type.input.Question question = (edu.cmu.lti.oaqa.type.input.Question) QuestionIter
             .next();
 
+    // Create Tree Map for each type of Retrievals
     FSIterator<TOP> ConceptIter = jcas.getJFSIndexRepository().getAllIndexedFS(
             ConceptSearchResult.type);
 
@@ -211,7 +184,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
               new Triple(temp.getSubject(), temp.getPredicate(), temp.getObject()));
 
     }
-
+    // Storing Results in List
     List<String> retDocs = new ArrayList<String>(docmaps.values());
     List<String> retConcepts = new ArrayList<String>(conceptmaps.values());
     List<Triple> retTriples = new ArrayList<Triple>(trpmaps.values());
@@ -219,106 +192,11 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     retrievedAnswers.add(new OutputAnswer(question.getId(), question.getText(), retDocs,
             retConcepts, retTriples));
 
-    List<String> gtconcepts = new ArrayList<String>();
-    List<String> gtdocs = new ArrayList<String>();
-    List<Triple> gttrpls = new ArrayList<Triple>();
-
+    // Evaluating the current question in CAS
+    // Do only if gold standard exists
     if (ifeval) {
       eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
     }
-    /*
-     * String qid = question.getId(); for (Question cqst : goldout) {
-     * 
-     * if (qid.equals(cqst.getId())) { gtconcepts = cqst.getConcepts(); gtdocs =
-     * cqst.getDocuments(); List<Triple> tempTrips = cqst.getTriples(); if (tempTrips != null) { for
-     * (Triple t : tempTrips) { gttrpls.add(new Triple(t.getS(), t.getP(), t.getO())); } } } }
-     * 
-     * // Compute All Values Precision, Recall, AP, F-Score Double[] qprec = new Double[3]; qprec[0]
-     * = precision(gtconcepts, retConcepts); qprec[1] = precision(gtdocs, retDocs); qprec[2] =
-     * precision(gttrpls, retTriples);
-     * 
-     * precisions.add(qprec);
-     * 
-     * Double[] qrec = new Double[3]; qrec[0] = recall(gtconcepts, retConcepts); qrec[1] =
-     * recall(gtdocs, retDocs); qrec[2] = recall(gttrpls, retTriples);
-     * 
-     * recalls.add(qrec);
-     * 
-     * Double[] qfms = new Double[3]; qfms[0] = fmeasure(qprec[0], qrec[0]); qfms[1] =
-     * fmeasure(qprec[1], qrec[1]); qfms[2] = fmeasure(qprec[2], qrec[2]);
-     * 
-     * fmeasures.add(qfms);
-     * 
-     * Double[] qap = new Double[3]; qap[0] = AP(gtconcepts, retConcepts); qap[1] = AP(gtdocs,
-     * retDocs); qap[2] = AP(gttrpls, retTriples);
-     * 
-     * AvgPrecisions.add(qap); System.out.println("************"); System.out.println("GTDocs:");
-     * for (String c : gtconcepts) { System.out.println("\t" + c); } System.out.println("RetDocs:");
-     * for (String c : retConcepts) { System.out.println("\t" + c); }
-     * 
-     * System.out.println("conc" + qprec[0] + "  doc" + qprec[1] + "  trps" + qprec[2]);
-     * System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
-     * System.out.println("************");
-     */
-  }
-
-  private <T> double precision(List<T> trueval, List<T> retval) {
-
-    Set<T> trueset = new HashSet<T>(trueval);
-    Set<T> retset = new HashSet<T>(retval);
-
-    retset.retainAll(trueset);
-
-    Integer TP = retset.size();
-
-    if (retval.size() == 0) {
-      return 0;
-    }
-    return ((double) TP) / ((double) retval.size());
-
-  }
-
-  private <T> double recall(List<T> trueval, List<T> retval) {
-
-    Set<T> trueset = new HashSet<T>(trueval);
-    Set<T> retset = new HashSet<T>(retval);
-
-    retset.retainAll(trueset);
-
-    Integer TP = retset.size();
-
-    if (trueval.size() == 0) {
-      return 0;
-    }
-    return ((double) TP) / ((double) trueval.size());
-
-  }
-
-  private double fmeasure(Double prec, Double rec) {
-
-    if (prec + rec == 0) {
-      return 0;
-    }
-    return (2 * prec * rec) / (prec + rec);
-
-  }
-
-  private <T> Double AP(List<T> trueval, List<T> retval) {
-
-    int poscount = 0;
-    Double ap = 0.0;
-    int c = 0;
-    for (T item : retval) {
-
-      if (trueval.contains(item)) {
-        poscount += 1;
-        ap += (poscount / ((double) (c + 1)));
-      }
-      c = c + 1;
-    }
-
-    return ap / (poscount + Math.pow(10, -15));
-
   }
 
   /**
@@ -335,7 +213,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
    */
   public void batchProcessComplete(ProcessTrace aTrace) throws ResourceProcessException,
           IOException {
-    // nothing to do in this case as AnnotationPrinter doesnot do
+    // nothing to do in this case as AnnotationPrinter does not do
     // anything cumulatively
   }
 
@@ -353,29 +231,15 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   public void collectionProcessComplete(ProcessTrace aTrace) throws ResourceProcessException,
           IOException {
 
+    // Writing it as json file
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
 
     // if evaluation path exists, do the evaluation
+    // Evaluating Final Performance for all Questions
     if (ifeval) {
       eval.evalAllQuestion();
-      /*
-       * double[] MAPs = new double[3]; double[] GMAPs = { 1, 1, 1 }; double[] meanprecs = new
-       * double[3]; double[] meanfmss = new double[3]; double[] meanrecs = new double[3]; int
-       * numQues = precisions.size();
-       * 
-       * try { for (int i = 0; i < precisions.size(); i++) { for (int j = 0; j < 3; j++) { GMAPs[j]
-       * *= (AvgPrecisions.get(i)[j] + 0.00001); MAPs[j] += AvgPrecisions.get(i)[j]; meanprecs[j] +=
-       * precisions.get(i)[j]; meanrecs[j] += recalls.get(i)[j]; meanfmss[j] += fmeasures.get(i)[j];
-       * 
-       * } } } catch (Exception ex) { System.err.println(ex); ex.printStackTrace(); }
-       * System.out.println("Prec\tRecall\tF-measure\tMAP\tGMAP"); for (int i = 0; i < 3; i++) {
-       * MAPs[i] /= numQues; meanfmss[i] /= numQues; meanrecs[i] /= numQues; meanprecs[i] /=
-       * numQues; GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
-       * System.out.printf("%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n", meanprecs[i], meanrecs[i], meanfmss[i],
-       * MAPs[i], GMAPs[i]); }
-       */
     }
   }
 
