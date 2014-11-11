@@ -52,6 +52,7 @@ import util.Evaluation;
 import util.FileOp;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
@@ -352,7 +353,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   public void collectionProcessComplete(ProcessTrace aTrace) throws ResourceProcessException,
           IOException {
 
-    Gson gson = new Gson();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
 
