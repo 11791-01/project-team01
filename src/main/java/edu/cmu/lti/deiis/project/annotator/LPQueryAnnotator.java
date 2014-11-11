@@ -22,6 +22,8 @@ import org.apache.uima.resource.ResourceInitializationException;
 import util.Utils;
 
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
+import com.aliasi.tokenizer.LowerCaseTokenizerFactory;
+import com.aliasi.tokenizer.PorterStemmerTokenizerFactory;
 import com.aliasi.tokenizer.StopTokenizerFactory;
 import com.aliasi.tokenizer.Tokenizer;
 import com.aliasi.tokenizer.TokenizerFactory;
@@ -65,6 +67,7 @@ public class LPQueryAnnotator extends JCasAnnotator_ImplBase {
     }
 
     mTokenizerFactory = IndoEuropeanTokenizerFactory.INSTANCE;
+    mTokenizerFactory = new LowerCaseTokenizerFactory(mTokenizerFactory);
     mTokenizerFactory = new StopTokenizerFactory(mTokenizerFactory, mStopSet);
   }
 
@@ -88,7 +91,6 @@ public class LPQueryAnnotator extends JCasAnnotator_ImplBase {
       for (String token : tokens) {
         queryString += token;
         queryString += " ";
-        System.out.println(token);
       }
       
       AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);

@@ -27,6 +27,14 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
+  /**
+   * Name of configuration parameter that must be set to the number of returned concepts in each
+   * service.
+   */
+  public static final String PARAM_RESULTS_PER_PAGE = "ResultsPerPage";
+  
+  private Integer mResultsPerPage;
+
   /*
    * The GoPubMedService
    */
@@ -41,6 +49,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
 
+    mResultsPerPage = (Integer) aContext.getConfigParameterValue(PARAM_RESULTS_PER_PAGE);
+    
     try {
       service = new GoPubMedService("project.properties");
     } catch (Exception ex) {
@@ -65,9 +75,9 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
               .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
       String text = queryList.get(0).getText();
       System.out.println(text);
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, 10);
-      System.out.println(meshResult.getFindings().size());
-      //OntologyServiceResponse.Result meshResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
+      // OntologyServiceResponse.Result meshResult = service.findDiseaseOntologyEntitiesPaged(text,
+      // 0);
 
       int currRank = 0;
       for (Finding finding : meshResult.getFindings()) {
@@ -83,8 +93,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         result.setRank(currRank++);
         result.setQueryString(text);
         result.addToIndexes();
-        
-        System.out.println(finding.getScore());
       }
     } catch (Exception ex) {
       System.err.println("Ontology Service Exception!");
