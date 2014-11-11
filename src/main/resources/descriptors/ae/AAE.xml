@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="QueryConcept">
-      <import name="descriptors.ae.QueryConcept"/>
-    </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="QueryDoc">
+    <delegateAnalysisEngine key="QueryDoc">
       <import name="descriptors.ae.QueryDoc"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="QueryAnnotator">
-      <import name="descriptors.ae.QueryAnnotator"/>
+  <delegateAnalysisEngine key="QueryConcept">
+      <import name="descriptors.ae.QueryConcept"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="QueryTriple">
-      <import name="descriptors.ae.QueryTriple"/>
+    <delegateAnalysisEngine key="LPQueryAnnotator">
+      <import name="descriptors.ae.LPQueryAnnotator"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -25,10 +23,9 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>QueryAnnotator</node>
+        <node>LPQueryAnnotator</node>
       <node>QueryConcept</node>
         <node>QueryDoc</node>
-      <node>QueryTriple</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>
