@@ -1,22 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package edu.cmu.lti.deiis.project.consumer;
 
 import static java.util.stream.Collectors.toList;
@@ -51,13 +32,12 @@ import util.FileOp;
 
 import com.google.gson.Gson;
 
-//import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
 /**
- * AnnotationConsumer prints to an output file the gene entity annotation in the CAS. <br>
+ * AnnotationConsumer prints to an output file the result annotation in the CAS. <br>
  * Parameters needed by the AnnotationConsumer are
  * <ol>
  * <li>"outputFile" : file to which the output files should be written.</li>
@@ -67,28 +47,33 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  * These parameters are set in the initialize method to the values specified in the descriptor file. <br>
  * These may also be set by the application by using the setConfigParameterValue methods.
  * 
- * 
  */
 
 public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjectProcessor {
-  /*
-   * output file path
+  /**
+   * Output file path
    */
   String oPath;
 
-  /*
-   * gold dataset file path
+  /**
+   * Gold dataset file path
    */
   String evalDataPath;
 
+  /**
+   * If we need to do the evaluation or not
+   */
   Boolean ifeval;
 
+  /**
+   * The retrieved answers list
+   */
   List<OutputAnswer> retrievedAnswers;
 
+  /**
+   * The Evaluation
+   */
   Evaluation eval;
-
-  List<Question> goldout;
-
 
   public AnnotationConsumer() {
   }
@@ -119,11 +104,12 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
                     "outputFile" });
     }
 
+    // try to get the ground truth data path
     evalDataPath = (String) getUimaContext().getConfigParameterValue("goldDataFile");
     try {
       ifeval = false;
       if (evalDataPath != null && evalDataPath.trim().length() != 0) {
-        goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
+        List<Question> goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
                 .collect(toList());
         // trim question texts
         goldout.stream().filter(input -> input.getBody() != null)
@@ -142,7 +128,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   /**
    * Processes the CasContainer which was populated by the TextAnalysisEngines. <br>
    * In this case, the CAS index is iterated over selected annotations and append the relevant
-   * information to StringBuilder sb
+   * information to corresponding data structure 
    * 
    * @param aCAS
    *          CasContainer which has been populated by the TAEs
@@ -159,14 +145,14 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
-    // Getting the Retrieved Concepts, Documents and Triples 
-    //Iterators for all of them
+    // Getting the Retrieved Concepts, Documents and Triples
+    // Iterators for all of them
     FSIndex<?> QuestionIndex = jcas.getAnnotationIndex(edu.cmu.lti.oaqa.type.input.Question.type);
     Iterator<?> QuestionIter = QuestionIndex.iterator();
     edu.cmu.lti.oaqa.type.input.Question question = (edu.cmu.lti.oaqa.type.input.Question) QuestionIter
             .next();
 
-  //Create Tree Map for each type of Retrievals
+    // Create Tree Map for each type of Retrievals
     FSIterator<TOP> ConceptIter = jcas.getJFSIndexRepository().getAllIndexedFS(
             ConceptSearchResult.type);
 
@@ -186,7 +172,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       docmaps.put(doc.getRank(), doc.getUri());
 
     }
-    
+
     FSIterator<TOP> TrpIter = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
     Map<Integer, Triple> trpmaps = new TreeMap<Integer, Triple>();
     while (TrpIter.hasNext()) {
@@ -197,7 +183,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
               new Triple(temp.getSubject(), temp.getPredicate(), temp.getObject()));
 
     }
-    //Storing Results in List
+    // Storing Results in List
     List<String> retDocs = new ArrayList<String>(docmaps.values());
     List<String> retConcepts = new ArrayList<String>(conceptmaps.values());
     List<Triple> retTriples = new ArrayList<Triple>(trpmaps.values());
@@ -205,14 +191,12 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
     retrievedAnswers.add(new OutputAnswer(question.getId(), question.getText(), retDocs,
             retConcepts, retTriples));
 
-    //Evaluating the current question in CAS
-    //Do only if gold standard exists
+    // Evaluating the current question in CAS
+    // Do only if gold standard exists
     if (ifeval) {
       eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
     }
   }
-  
-  
 
   /**
    * Called when a batch of processing is completed.
@@ -246,13 +230,13 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   public void collectionProcessComplete(ProcessTrace aTrace) throws ResourceProcessException,
           IOException {
 
-    //Writing it as json file
+    // Writing it as json file
     Gson gson = new Gson();
     String jsonOutput = gson.toJson(retrievedAnswers);
     FileOp.writeToFile(oPath, jsonOutput);
 
     // if evaluation path exists, do the evaluation
-    //Evaluating Final Performance for all Questions
+    // Evaluating Final Performance for all Questions
     if (ifeval) {
       eval.evalAllQuestion();
     }
