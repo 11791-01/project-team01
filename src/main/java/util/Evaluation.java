@@ -92,19 +92,6 @@ public class Evaluation {
     qap[2] = AP(gttrpls, retTriples);
 
     AvgPrecisions.add(qap);
-    System.out.println("************");
-    System.out.println("GTDocs:");
-    for (String c : gtconcepts) {
-      System.out.println("\t" + c);
-    }
-    System.out.println("RetDocs:");
-    for (String c : retConcepts) {
-      System.out.println("\t" + c);
-    }
-
-    System.out.println("conc" + qprec[0] + "  doc" + qprec[1] + "  trps" + qprec[2]);
-    System.out.println("conc" + qrec[0] + "  doc" + qrec[1] + "  trps" + qrec[2]);
-    System.out.println("************");
   }
 /**
  * Evaluate Just One Question
