@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <name>OAQATypes</name>
   <description>Type system descriptor for the OAQA data model.</description>
@@ -479,6 +480,10 @@
           <string>QUOTEDPHRASE</string>
           <description/>
         </value>
+      <value>
+          <string>AND</string>
+          <description/>
+        </value>
       </allowedValues>
     </typeDescription>
     <typeDescription>
@@ -495,6 +500,11 @@
           <name>docId</name>
           <description>A unique identifier for this document.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>fullTextAvailable</name>
+          <description>whether the full text is available</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
