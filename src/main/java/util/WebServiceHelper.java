@@ -43,6 +43,10 @@ public class WebServiceHelper {
       is = new URL(url).openStream();
       BufferedReader rd = new BufferedReader(new InputStreamReader(is));
       String jsonStr = readAll(rd);
+      if (jsonStr.trim().length() == 0) {
+        return null;
+      }
+
       JsonElement jsonEle = new JsonParser().parse(jsonStr);
       jsonObj = jsonEle.getAsJsonObject();
     } catch (IOException e) {
