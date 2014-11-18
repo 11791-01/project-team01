@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Annotates a span of text identified as a candidate answer.
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
+ * Updated by JCasGen Tue Nov 18 00:56:21 EST 2014
  * @generated */
 public class CandidateAnswerOccurrence_Type extends Annotation_Type {
   /** @generated 

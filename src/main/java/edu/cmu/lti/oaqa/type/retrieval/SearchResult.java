@@ -13,7 +13,7 @@ import edu.cmu.lti.oaqa.type.answer.CandidateAnswerVariant;
 
 
 /** A search result.
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
+ * Updated by JCasGen Tue Nov 18 00:56:22 EST 2014
  * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class SearchResult extends TOP {

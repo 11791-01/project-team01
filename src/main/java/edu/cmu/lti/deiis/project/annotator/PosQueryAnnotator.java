@@ -60,25 +60,24 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
       Question question = (Question) iter.next();
       String queString = question.getText();
       
-      String queryString = "";
       TreeMap<Integer, Integer> begin2end = (TreeMap<Integer, Integer>) mRecognizer.getGeneSpans(queString);
       for (Map.Entry<Integer, Integer> entry : begin2end.entrySet()) {
-        queryString += queString.substring(entry.getKey(), entry.getValue());
-        queryString += " ";
+        // Create an atomic query first
+        AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+        atomicQuery.setText(queString.substring(entry.getKey(), entry.getValue()));
+        atomicQuery.addToIndexes();
+        System.out.println(atomicQuery.getText());
       }
-      System.out.println(queryString);
       
-      // Create an atomic query first
-      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
-      atomicQuery.setText(queryString);
-      atomicQuery.addToIndexes();
-      List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
-      terms.add(atomicQuery);
+      
+      
+      //List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
+      //terms.add(atomicQuery);
 
       // Create the query for the following Annotators.
-      ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
-      query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-      query.addToIndexes();
+      //ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
+      //query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
+      //query.addToIndexes();
     }
 
   }

@@ -12,7 +12,7 @@ import org.apache.uima.jcas.cas.TOP;
 
 
 /** A query concept in the abstract search query model.
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
+ * Updated by JCasGen Tue Nov 18 00:56:21 EST 2014
  * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class QueryConcept extends TOP {

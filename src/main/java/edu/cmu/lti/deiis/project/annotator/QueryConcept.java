@@ -69,35 +69,34 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       // TODO: add other services and combine them to get an overall ranking
 
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
-
-      List<AtomicQueryConcept> queryList = (ArrayList<AtomicQueryConcept>) Utils
-              .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
+      
       // Get the query text
-      String text = queryList.get(0).getText();
+      String text = query.getWholeQueryWithOp();
+      System.out.println(text);
       // Use Mesh service
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,mResultsPerPage);
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
             
       //Add multiple sources here
       //Combine them in some way
       
       //GoPubMedService service = new GoPubMedService("project.properties");
-      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
+      //OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
       
-      System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri());
-      }
+      //System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
+      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
+      //          + finding.getConcept().getUri());
+      //}
       
       
-      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, 10);
+      //OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, 10);
       //System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
       //  System.out.println(" > " + finding.getConcept().getLabel() + " "
        //         + finding.getConcept().getUri());
       //}
       
-      OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0);
+      //OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0);
       //System.out.println("Jochem: " + jochemResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
       //  System.out.println(" > " + finding.getConcept().getLabel() + " "
@@ -105,7 +104,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //}
       
       
-      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0);
+      //OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0);
       //System.out.println("UniProt: " + uniprotResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
       //  System.out.println(" > " + finding.getConcept().getLabel() + " "
