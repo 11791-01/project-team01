@@ -75,8 +75,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       // Get the query text
       String text = queryList.get(0).getText();
       // Use Mesh service
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,
-              mResultsPerPage);
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,mResultsPerPage);
             
       //Add multiple sources here
       //Combine them in some way
@@ -84,11 +83,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //GoPubMedService service = new GoPubMedService("project.properties");
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
       
-      //System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
-      //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
-      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
-      //          + finding.getConcept().getUri());
-      //}
+      System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
+      for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
+        System.out.println(" > " + finding.getConcept().getLabel() + " "
+                + finding.getConcept().getUri());
+      }
       
       
       OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, 10);
