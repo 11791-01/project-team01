@@ -11,8 +11,8 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
- * Updated by JCasGen Tue Nov 18 00:56:21 EST 2014
- * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Tue Nov 18 01:44:16 EST 2014
+ * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class ComplexQueryConcept extends QueryConcept {
   /** @generated
