@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import json.gson.OutputAnswer;
+import json.gson.OutputQuestion;
 import json.gson.Question;
 import json.gson.TestSet;
 import json.gson.Triple;
@@ -50,7 +50,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  * 
  */
 
-public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjectProcessor {
+public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProcessor {
   /**
    * Output file path
    */
@@ -67,16 +67,16 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
   Boolean ifeval;
 
   /**
-   * The retrieved answers list
+   * The retrieved output list
    */
-  List<OutputAnswer> retrievedAnswers;
+  List<OutputQuestion> retrievedOutput;
 
   /**
    * The Evaluation
    */
   Evaluation eval;
 
-  public AnnotationConsumer() {
+  public OutputWriter() {
   }
 
   /**
@@ -123,7 +123,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
       ifeval = false;
     }
 
-    retrievedAnswers = new ArrayList<OutputAnswer>();
+    retrievedOutput = new ArrayList<OutputQuestion>();
   }
 
   /**
@@ -154,42 +154,42 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
             .next();
 
     // Create Tree Map for each type of Retrievals
-    FSIterator<TOP> ConceptIter = jcas.getJFSIndexRepository().getAllIndexedFS(
+    FSIterator<TOP> conceptIter = jcas.getJFSIndexRepository().getAllIndexedFS(
             ConceptSearchResult.type);
 
-    Map<Integer, String> conceptmaps = new TreeMap<Integer, String>();
-    while (ConceptIter.hasNext()) {
+    Map<Integer, String> conceptMap = new TreeMap<Integer, String>();
+    while (conceptIter.hasNext()) {
 
-      ConceptSearchResult cpt = (ConceptSearchResult) ConceptIter.next();
-      conceptmaps.put(cpt.getRank(), cpt.getUri());
+      ConceptSearchResult cpt = (ConceptSearchResult) conceptIter.next();
+      conceptMap.put(cpt.getRank(), cpt.getUri());
       
     }
 
-    FSIterator<TOP> DocIter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
-    Map<Integer, String> docmaps = new TreeMap<Integer, String>();
-    while (DocIter.hasNext()) {
+    FSIterator<TOP> docIter = jcas.getJFSIndexRepository().getAllIndexedFS(Document.type);
+    Map<Integer, String> docMap = new TreeMap<Integer, String>();
+    while (docIter.hasNext()) {
 
-      Document doc = (Document) DocIter.next();
-      docmaps.put(doc.getRank(), doc.getUri());
+      Document doc = (Document) docIter.next();
+      docMap.put(doc.getRank(), doc.getUri());
 
     }
 
-    FSIterator<TOP> TrpIter = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
-    Map<Integer, Triple> trpmaps = new TreeMap<Integer, Triple>();
-    while (TrpIter.hasNext()) {
+    FSIterator<TOP> tripleIter = jcas.getJFSIndexRepository().getAllIndexedFS(TripleSearchResult.type);
+    Map<Integer, Triple> tripleMap = new TreeMap<Integer, Triple>();
+    while (tripleIter.hasNext()) {
 
-      TripleSearchResult trp = (TripleSearchResult) TrpIter.next();
+      TripleSearchResult trp = (TripleSearchResult) tripleIter.next();
       edu.cmu.lti.oaqa.type.kb.Triple temp = trp.getTriple();
-      trpmaps.put(trp.getRank(),
+      tripleMap.put(trp.getRank(),
               new Triple(temp.getSubject(), temp.getPredicate(), temp.getObject()));
 
     }
     // Storing Results in List
-    List<String> retDocs = new ArrayList<String>(docmaps.values());
-    List<String> retConcepts = new ArrayList<String>(conceptmaps.values());
-    List<Triple> retTriples = new ArrayList<Triple>(trpmaps.values());
+    List<String> retDocs = new ArrayList<String>(docMap.values());
+    List<String> retConcepts = new ArrayList<String>(conceptMap.values());
+    List<Triple> retTriples = new ArrayList<Triple>(tripleMap.values());
 
-    retrievedAnswers.add(new OutputAnswer(question.getId(), question.getText(), retDocs,
+    retrievedOutput.add(new OutputQuestion(question.getId(), question.getText(), retDocs,
             retConcepts, retTriples));
 
     // Evaluating the current question in CAS
@@ -233,7 +233,7 @@ public class AnnotationConsumer extends CasConsumer_ImplBase implements CasObjec
 
     // Writing it as json file
     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    String jsonOutput = gson.toJson(retrievedAnswers);
+    String jsonOutput = gson.toJson(retrievedOutput);
     FileOp.writeToFile(oPath, jsonOutput);
 
     // if evaluation path exists, do the evaluation
