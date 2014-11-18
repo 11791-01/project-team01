@@ -238,8 +238,13 @@ public class Evaluation {
     int overlapAmt = 0;
     for (Snippet testSnip : test) {
       //find gold snips matching sect/doc
-      List<Snippet> goldcands = gold;
-      for (Snippet goldSnip : goldcands) {
+      List<Snippet> goldMatches = new ArrayList<Snippet>();
+      for (Snippet s : gold) {
+        if (s.getDocument().equals(testSnip.getDocument()) && s.getBeginSection().equals(testSnip.getBeginSection()))
+          goldMatches.add(s);
+      }
+      //calculate overlap
+      for (Snippet goldSnip : goldMatches) {
         int overlapBegin = Math.max(testSnip.getOffsetInBeginSection(), goldSnip.getOffsetInBeginSection());
         int overlapEnd = Math.min(testSnip.getOffsetInEndSection(), goldSnip.getOffsetInEndSection());
         if (overlapBegin < overlapEnd) {
