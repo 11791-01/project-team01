@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>edu.cmu.lti.deiis.project.consumer.AnnotationConsumer</implementationName>
+  <implementationName>edu.cmu.lti.deiis.project.consumer.OutputWriter</implementationName>
   <processingResourceMetaData>
-    <name>AnnotationConsumer</name>
+    <name>OutputWriter</name>
     <description/>
     <version>1.0</version>
     <vendor/>
@@ -25,7 +25,7 @@
       <nameValuePair>
         <name>outputFile</name>
         <value>
-          <string>project-team01.out</string>
+          <string>project-team01.out.json</string>
         </value>
       </nameValuePair>
     <nameValuePair>

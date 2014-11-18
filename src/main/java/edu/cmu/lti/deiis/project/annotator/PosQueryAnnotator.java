@@ -6,6 +6,7 @@ package edu.cmu.lti.deiis.project.annotator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
@@ -22,6 +23,8 @@ import util.PosTagNamedEntityRecognizer;
 import util.Utils;
 
 /**
+ * A annotator that generates queries based on the POS tag NER results.
+ * 
  * @author Zexi Mao <zexim@cs.cmu.edu>
  *
  */
@@ -43,7 +46,9 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
     }
   }
 
-  /* (non-Javadoc)
+  /** 
+   * Generate the query strings and put them into ComplexQueryConcept.
+   * 
    * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
    */
   @Override
@@ -55,25 +60,13 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
       Question question = (Question) iter.next();
       String queString = question.getText();
       
-      String queryString = "";
-      Map<Integer, Integer> begin2end = mRecognizer.getGeneSpans(queString);
+      TreeMap<Integer, Integer> begin2end = (TreeMap<Integer, Integer>) mRecognizer.getGeneSpans(queString);
       for (Map.Entry<Integer, Integer> entry : begin2end.entrySet()) {
-        queryString += queString.substring(entry.getKey(), entry.getValue());
-        queryString += " ";
+        // Create an atomic query first
+        AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+        atomicQuery.setText(queString.substring(entry.getKey(), entry.getValue()));
+        atomicQuery.addToIndexes();
       }
-      System.out.println(queryString);
-      
-      // Create an atomic query first
-      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
-      atomicQuery.setText(queryString);
-      atomicQuery.addToIndexes();
-      List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
-      terms.add(atomicQuery);
-
-      // Create the query for the following Annotators.
-      ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
-      query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-      query.addToIndexes();
     }
 
   }

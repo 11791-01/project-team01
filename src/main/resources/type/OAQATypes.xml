@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <name>OAQATypes</name>
   <description>Type system descriptor for the OAQA data model.</description>
@@ -479,6 +480,10 @@
           <string>QUOTEDPHRASE</string>
           <description/>
         </value>
+      <value>
+          <string>AND</string>
+          <description/>
+        </value>
       </allowedValues>
     </typeDescription>
     <typeDescription>
@@ -733,7 +738,17 @@
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>edu.cmu.lti.oaqa.type.QueryConcept</elementType>
         </featureDescription>
-        </features>
+        <featureDescription>
+          <name>wholeQueryWithOp</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>wholeQueryWithoutOp</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
     </typeDescription>
   <typeDescription>
       <name>edu.cmu.lti.oaqa.type.kb.Relation</name>

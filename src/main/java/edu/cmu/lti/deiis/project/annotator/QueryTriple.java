@@ -72,10 +72,7 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
 
     try {
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
-
-      List<AtomicQueryConcept> queryList = (ArrayList<AtomicQueryConcept>) Utils
-              .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
-      String text = queryList.get(0).getText();
+      String text = query.getWholeQueryWithOp();
 
       LinkedLifeDataServiceResponse.Result linkedLifeDataResult = service
               .findLinkedLifeDataEntitiesPaged(text, 0, mResultsPerPage);
