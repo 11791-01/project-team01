@@ -121,6 +121,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         }
         
         Passage snippet = new Passage(aJCas);
+        snippet.setDocId(pmid);
         snippet.setUri(doc.getUri());
         snippet.setBeginSection("0");
         snippet.setEndSection("0");
