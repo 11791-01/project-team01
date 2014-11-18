@@ -37,6 +37,11 @@ import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
 
+/**
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
 public class SnippetAnnotator extends JCasAnnotator_ImplBase {
   private SentenceChunker SENTENCE_CHUNKER;
 

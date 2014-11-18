@@ -90,6 +90,7 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
         document.setRank(i);
         document.setTitle(doc.getTitle());
         document.setDocId(docID);
+        document.setAbstract(doc.getDocumentAbstract());
         document.setFullTextAvailable(doc.isFulltextAvailable());
         document.addToIndexes();
       }
