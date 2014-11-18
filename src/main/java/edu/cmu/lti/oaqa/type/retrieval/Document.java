@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** A document search result.
- * Updated by JCasGen Sat Nov 08 23:55:43 EST 2014
- * XML source: /home/jeremy/git/project-team01/src/main/resources/descriptors/ae/AAE.xml
+ * Updated by JCasGen Mon Nov 17 20:45:03 EST 2014
+ * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Document extends SearchResult {
   /** @generated
@@ -105,6 +105,28 @@ public class Document extends SearchResult {
     if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_docId == null)
       jcasType.jcas.throwFeatMissing("docId", "edu.cmu.lti.oaqa.type.retrieval.Document");
     jcasType.ll_cas.ll_setStringValue(addr, ((Document_Type)jcasType).casFeatCode_docId, v);}    
+   
+    
+  //*--------------*
+  //* Feature: fullTextAvailable
+
+  /** getter for fullTextAvailable - gets whether the full text is available
+   * @generated
+   * @return value of the feature 
+   */
+  public boolean getFullTextAvailable() {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_fullTextAvailable == null)
+      jcasType.jcas.throwFeatMissing("fullTextAvailable", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    return jcasType.ll_cas.ll_getBooleanValue(addr, ((Document_Type)jcasType).casFeatCode_fullTextAvailable);}
+    
+  /** setter for fullTextAvailable - sets whether the full text is available 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setFullTextAvailable(boolean v) {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_fullTextAvailable == null)
+      jcasType.jcas.throwFeatMissing("fullTextAvailable", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    jcasType.ll_cas.ll_setBooleanValue(addr, ((Document_Type)jcasType).casFeatCode_fullTextAvailable, v);}    
   }
 
     
