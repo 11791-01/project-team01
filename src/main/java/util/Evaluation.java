@@ -1,11 +1,15 @@
 package util;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import json.gson.OutputQuestion;
 import json.gson.Question;
+import json.gson.TestSet;
 import json.gson.Triple;
 
 /**
@@ -15,128 +19,138 @@ import json.gson.Triple;
  *
  */
 public class Evaluation {
-  List<Question> goldout; // gold standard
+  List<Question> goldStandard; // gold standard
+  List<Question> testOutput; // output to be evaluated against gold standard
 
-  List<Double[]> precisions; // storing precision for all questions
-
-  List<Double[]> recalls; // storing recall for all questions
-
-  List<Double[]> fmeasures; // storing f-measure for all questions
-
-  List<Double[]> AvgPrecisions; // storing AP for all questions
-
-  public Evaluation(List<Question> gold) {
-    goldout = gold;
-    precisions = new ArrayList<Double[]>();
-    recalls = new ArrayList<Double[]>();
-    fmeasures = new ArrayList<Double[]>();
-    AvgPrecisions = new ArrayList<Double[]>();
+  public Evaluation(String goldDataPath) {
+    
+    try {
+      // Get gold standard
+      if (goldDataPath != null && goldDataPath.trim().length() != 0) {
+        goldStandard = TestSet.load(getClass().getResourceAsStream(goldDataPath)).stream()
+                .collect(toList());
+        // trim question texts
+        goldStandard.stream().filter(input -> input.getBody() != null)
+                .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
-
-  /**
-   * 
-   * @param qid
-   *          question id
-   * @param retDocs
-   *          retrieved documents
-   * @param retConcepts
-   *          retrieved concepts
-   * @param retTriples
-   *          retrieved concepts
-   */
-  public void evalOneQuestion(String qid, List<String> retDocs, List<String> retConcepts,
-          List<Triple> retTriples) {
-    // Getting Ground Truth for each Retrieval types by matching qid
-    //
-    List<String> gtconcepts = new ArrayList<String>();
-    List<String> gtdocs = new ArrayList<String>();
-    List<Triple> gttrpls = new ArrayList<Triple>();
-
-    for (Question cqst : goldout) {
-
-      if (qid.equals(cqst.getId())) {
-        gtconcepts = cqst.getConcepts();
-        gtdocs = cqst.getDocuments();
-        List<Triple> tempTrips = cqst.getTriples();
-        if (tempTrips != null) {
-          for (Triple t : tempTrips) {
-            gttrpls.add(new Triple(t.getS(), t.getP(), t.getO()));
-          }
-        }
+  
+  public void doEvaluation(List<OutputQuestion> testOutput) {
+    
+    // Get test output
+//    try {
+//      if (testDataPath != null && testDataPath.trim().length() != 0) {
+//        testOutput = TestSet.load(Evaluation.class.getClassLoader().getResourceAsStream(testDataPath)).stream()
+//                .collect(toList());
+//        // trim question texts
+//        testOutput.stream().filter(input -> input.getBody() != null)
+//                .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
+//      }
+//    } catch (Exception ex) {
+//      ex.printStackTrace();
+//    }
+  
+    List<EvaluationResult> conceptsEval = new ArrayList<EvaluationResult>();
+    List<EvaluationResult> documentsEval = new ArrayList<EvaluationResult>();
+    List<EvaluationResult> triplesEval = new ArrayList<EvaluationResult>();
+    
+    try {
+    // evaluate each question one at a time
+    for (Question testQ : testOutput) {
+      String qid = testQ.getId();
+      Question goldQ = findGoldQuestion(qid);
+      if (goldQ != null) {
+        List<String> goldConcepts = goldQ.getConcepts();
+        if (goldConcepts == null) 
+          goldConcepts = new ArrayList<String>();
+        conceptsEval.add(doConceptsEval(goldQ.getConcepts(), testQ.getConcepts()));
+        documentsEval.add(doDocumentsEval(goldQ.getDocuments(), testQ.getDocuments()));
+        triplesEval.add(doTriplesEval(goldQ.getTriples(), testQ.getTriples()));
       }
     }
-
-    // Compute All Values Precision, Recall, AP, F-Score for Each retrieval type
-    //
-    Double[] qprec = new Double[3];
-    qprec[0] = precision(gtconcepts, retConcepts);
-    qprec[1] = precision(gtdocs, retDocs);
-    qprec[2] = precision(gttrpls, retTriples);
-
-    precisions.add(qprec);
-
-    Double[] qrec = new Double[3];
-    qrec[0] = recall(gtconcepts, retConcepts);
-    qrec[1] = recall(gtdocs, retDocs);
-    qrec[2] = recall(gttrpls, retTriples);
-
-    recalls.add(qrec);
-
-    Double[] qfms = new Double[3];
-    qfms[0] = fmeasure(qprec[0], qrec[0]);
-    qfms[1] = fmeasure(qprec[1], qrec[1]);
-    qfms[2] = fmeasure(qprec[2], qrec[2]);
-
-    fmeasures.add(qfms);
-
-    Double[] qap = new Double[3];
-    qap[0] = AP(gtconcepts, retConcepts);
-    qap[1] = AP(gtdocs, retDocs);
-    qap[2] = AP(gttrpls, retTriples);
-
-    AvgPrecisions.add(qap);
-  }
-
-  /**
-   * Evaluate Just One Question
-   */
-  public void evalAllQuestion() {
-    double[] MAPs = new double[3];
-    double[] GMAPs = { 1, 1, 1 };
-    double[] meanprecs = new double[3];
-    double[] meanfmss = new double[3];
-    double[] meanrecs = new double[3];
-    int numQues = precisions.size();
-    // Final Measures Computed
-    for (int i = 0; i < precisions.size(); i++) {
-      for (int j = 0; j < 3; j++) {
-        GMAPs[j] *= (AvgPrecisions.get(i)[j] + 0.001);
-        MAPs[j] += AvgPrecisions.get(i)[j];
-        meanprecs[j] += precisions.get(i)[j];
-        meanrecs[j] += recalls.get(i)[j];
-        meanfmss[j] += fmeasures.get(i)[j];
-
-      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
-
+    
     StringBuilder sb = new StringBuilder();
     sb.append(String.format("%12s%12s%12s%12s%12s%12s\n", "Ret. Item", "Prec","Recall","F-measure","MAP","GMAP"));
     sb.append("----------------------------------------------------------------------------\n");
-    String[] retItems = {"Concepts", "Documents", "Triples"};
-    for (int i = 0; i < 3; i++) {
-      MAPs[i] /= numQues;
-      meanfmss[i] /= numQues;
-      meanrecs[i] /= numQues;
-      meanprecs[i] /= numQues;
-      GMAPs[i] = Math.pow(GMAPs[i], 1.0 / numQues);
-      sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", retItems[i], meanprecs[i], meanrecs[i], meanfmss[i],
-              MAPs[i], GMAPs[i]));
-    }
-    
+
+    double[] conceptsMeans = calcMeanMetrics(conceptsEval);
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", conceptsMeans[0], conceptsMeans[1], 
+            conceptsMeans[2], conceptsMeans[3], conceptsMeans[4]));
+    double[] docMeans = calcMeanMetrics(documentsEval);
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", docMeans[0], docMeans[1], 
+            docMeans[2], docMeans[3], docMeans[4]));
+    double[] tripMeans = calcMeanMetrics(triplesEval);
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", tripMeans[0], tripMeans[1], 
+            tripMeans[2], tripMeans[3], tripMeans[4]));
+
     String evalOutputFile = "project-team01.eval";
     FileOp.writeToFile(evalOutputFile, sb.toString());
+    
+  }
+  
+  public Question findGoldQuestion(String qid) {
+    for (Question q : goldStandard) {
+      if (qid.equals(q.getId())) {
+        return q;
+      }
+    }
+    return null;
+  }
+  
+  public EvaluationResult doConceptsEval(String qid, List<String> test) {
+    Question gold = findGoldQuestion(qid);
+    if (gold != null)
+      return doConceptsEval(gold.getConcepts(), test);
+    return null;
+  }
+  private EvaluationResult doConceptsEval(List<String> gold, List<String> test) {
+    double precision = calcPrecision(gold, test);
+    double recall = calcRecall(gold, test);
+    double fmeasure = calcFMeasure(precision, recall);
+    double ap = calcAP(gold, test);
+    return new EvaluationResult(precision, recall, fmeasure, ap);
+  }
+  
+  public EvaluationResult doDocumentsEval(String qid, List<String> test) {
+    Question gold = findGoldQuestion(qid);
+    if (gold != null)
+      return doDocumentsEval(gold.getDocuments(), test);
+    return null;
+  }
+  private EvaluationResult doDocumentsEval(List<String> gold, List<String> test) {
+    double precision = calcPrecision(gold, test);
+    double recall = calcRecall(gold, test);
+    double fmeasure = calcFMeasure(precision, recall);
+    double ap = calcAP(gold, test);
+    return new EvaluationResult(precision, recall, fmeasure, ap);
+  }
+  
+  public EvaluationResult doTriplesEval(String qid, List<Triple> test) {
+    Question gold = findGoldQuestion(qid);
+    if (gold != null)
+      return doTriplesEval(gold.getTriples(), test);
+    return null;
+  }
+  private EvaluationResult doTriplesEval(List<Triple> gold, List<Triple> test) {
+    double precision = calcPrecision(gold, test);
+    double recall = calcRecall(gold, test);
+    double fmeasure = calcFMeasure(precision, recall);
+    double ap = calcAP(gold, test);
+    return new EvaluationResult(precision, recall, fmeasure, ap);
   }
 
+  private <T> List<T> emptyListIfNull(List<T> list) {
+    if (list == null)
+      return new ArrayList<T>();
+    return list;
+  }
+  
   /**
    * Precision Takes retrieved and true values as list and computes the precision. Generic can
    * handle all types
@@ -147,8 +161,10 @@ public class Evaluation {
    *          retrieved list
    * @return precision
    */
-  private <T> double precision(List<T> trueval, List<T> retval) {
+  private <T> double calcPrecision(List<T> trueval, List<T> retval) {
 
+    trueval = emptyListIfNull(trueval);
+    retval = emptyListIfNull(retval);
     Set<T> trueset = new HashSet<T>(trueval);
     Set<T> retset = new HashSet<T>(retval);
 
@@ -173,8 +189,10 @@ public class Evaluation {
    *          retrieved list
    * @return recall
    */
-  private <T> double recall(List<T> trueval, List<T> retval) {
+  private <T> double calcRecall(List<T> trueval, List<T> retval) {
 
+    trueval = emptyListIfNull(trueval);
+    retval = emptyListIfNull(retval);
     Set<T> trueset = new HashSet<T>(trueval);
     Set<T> retset = new HashSet<T>(retval);
 
@@ -198,7 +216,7 @@ public class Evaluation {
    *          recall
    * @return F-Measure
    */
-  private double fmeasure(Double prec, Double rec) {
+  private double calcFMeasure(Double prec, Double rec) {
 
     if (prec + rec == 0) {
       return 0;
@@ -217,8 +235,10 @@ public class Evaluation {
    *          retrieved list
    * @return Average Precision
    */
-  private <T> Double AP(List<T> trueval, List<T> retval) {
+  private <T> Double calcAP(List<T> trueval, List<T> retval) {
 
+    trueval = emptyListIfNull(trueval);
+    retval = emptyListIfNull(retval);
     int poscount = 0;
     Double ap = 0.0;
     int c = 0;
@@ -233,5 +253,26 @@ public class Evaluation {
 
     return ap / (poscount + Math.pow(10, -15));
 
+  }
+  
+
+  private double[] calcMeanMetrics(List<EvaluationResult> evals) {
+    double epsilon = 0.001;
+    double meanPrec = 0;
+    double meanRec = 0;
+    double meanFmeas = 0;
+    double MAP = 0;
+    double GMAP = 1;
+    int numQues = evals.size();
+    
+    for (EvaluationResult eval : evals) {
+      meanPrec += eval.getPrecision();
+      meanRec += eval.getRecall();
+      meanFmeas += eval.getfMeasure();
+      MAP += eval.getAvgPrec();
+      GMAP *= (eval.getAvgPrec() + epsilon);
+    }
+    return new double[] { meanPrec / numQues, meanRec / numQues, meanFmeas / numQues, 
+            MAP / numQues, Math.pow(GMAP, 1.0 / numQues) };
   }
 }

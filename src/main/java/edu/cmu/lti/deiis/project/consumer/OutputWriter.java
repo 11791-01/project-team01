@@ -110,14 +110,8 @@ public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProce
     try {
       ifeval = false;
       if (evalDataPath != null && evalDataPath.trim().length() != 0) {
-        List<Question> goldout = TestSet.load(getClass().getResourceAsStream(evalDataPath)).stream()
-                .collect(toList());
-        // trim question texts
-        goldout.stream().filter(input -> input.getBody() != null)
-                .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
         ifeval = true;
-
-        eval = new Evaluation(goldout);
+        eval = new Evaluation(evalDataPath);
       }
     } catch (Exception ex) {
       ifeval = false;
@@ -195,7 +189,7 @@ public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProce
     // Evaluating the current question in CAS
     // Do only if gold standard exists
     if (ifeval) {
-      eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
+      //eval.evalOneQuestion(question.getId(), retDocs, retConcepts, retTriples);
     }
   }
 
@@ -239,7 +233,7 @@ public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProce
     // if evaluation path exists, do the evaluation
     // Evaluating Final Performance for all Questions
     if (ifeval) {
-      eval.evalAllQuestion();
+      eval.doEvaluation(retrievedOutput);
     }
   }
 
