@@ -66,18 +66,7 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
         AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
         atomicQuery.setText(queString.substring(entry.getKey(), entry.getValue()));
         atomicQuery.addToIndexes();
-        System.out.println(atomicQuery.getText());
       }
-      
-      
-      
-      //List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
-      //terms.add(atomicQuery);
-
-      // Create the query for the following Annotators.
-      //ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
-      //query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-      //query.addToIndexes();
     }
 
   }
