@@ -10,8 +10,8 @@
   <delegateAnalysisEngine key="QueryConcept">
       <import name="descriptors.ae.QueryConcept"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="LPNBestNERAnnotator">
-      <import name="descriptors.ae.LPNBestNERAnnotator"/>
+    <delegateAnalysisEngine key="PosQueryAnnotator">
+      <import name="descriptors.ae.PosQueryAnnotator"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -23,7 +23,7 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>LPNBestNERAnnotator</node>
+        <node>PosQueryAnnotator</node>
       <node>QueryConcept</node>
         <node>QueryDoc</node>
       </fixedFlow>
