@@ -77,26 +77,71 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       // Use Mesh service
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,
               mResultsPerPage);
-
-      // Rank the returned concepts and add them to CAS
-      int currRank = 0;
-      for (Finding finding : meshResult.getFindings()) {
-        Concept concept = new Concept(aJCas);
-        concept.setName(finding.getConcept().getLabel());
-        concept.addToIndexes();
-
-        ConceptSearchResult result = new ConceptSearchResult(aJCas);
-        result.setConcept(concept);
-        result.setUri(finding.getConcept().getUri());
-        result.setScore(finding.getScore());
-        result.setText(finding.getConcept().getLabel());
-        result.setRank(currRank++);
-        result.setQueryString(text);
-        result.addToIndexes();
-      }
+            
+      //Add multiple sources here
+      //Combine them in some way
+      
+      //GoPubMedService service = new GoPubMedService("project.properties");
+      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0);
+      
+      //System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
+      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
+      //          + finding.getConcept().getUri());
+      //}
+      
+      
+      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, 10);
+      //System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
+      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
+       //         + finding.getConcept().getUri());
+      //}
+      
+      OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0);
+      //System.out.println("Jochem: " + jochemResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
+      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
+      //          + finding.getConcept().getUri());
+      //}
+      
+      
+      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0);
+      //System.out.println("UniProt: " + uniprotResult.getFindings().size());
+      //for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
+      //  System.out.println(" > " + finding.getConcept().getLabel() + " "
+      //          + finding.getConcept().getUri());
+      //}
+      
+      //Add selective sources here
+      
+      aJCas=addSelectedService(meshResult,text,aJCas);
+      
+     
     } catch (Exception ex) {
       System.err.println("Ontology Service Exception!");
       ex.printStackTrace();
     }
+  }
+  
+  public JCas addSelectedService(OntologyServiceResponse.Result Result, String text, JCas aJCas){
+    
+    // Rank the returned concepts and add them to CAS
+    int currRank = 0;
+    for (Finding finding : Result.getFindings()) {
+      Concept concept = new Concept(aJCas);
+      concept.setName(finding.getConcept().getLabel());
+      concept.addToIndexes();
+
+      ConceptSearchResult result = new ConceptSearchResult(aJCas);
+      result.setConcept(concept);
+      result.setUri(finding.getConcept().getUri());
+      result.setScore(finding.getScore());
+      result.setText(finding.getConcept().getLabel());
+      result.setRank(currRank++);
+      result.setQueryString(text);
+      result.addToIndexes();
+    }
+    return aJCas;
   }
 }
