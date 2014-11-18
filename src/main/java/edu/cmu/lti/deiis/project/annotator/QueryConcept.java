@@ -3,9 +3,6 @@ package edu.cmu.lti.deiis.project.annotator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -14,12 +11,10 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import util.Utils;
 import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse.Finding;
 import edu.cmu.lti.oaqa.type.kb.Concept;
-import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 
@@ -72,15 +67,15 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       // TODO: add other services and combine them to get an overall ranking
 
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
-
-      List<AtomicQueryConcept> queryList = (ArrayList<AtomicQueryConcept>) Utils
-              .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
+      
       // Get the query text
-      String text = queryList.get(0).getText();
+      String text = query.getWholeQueryWithOp();
+
       // Use Mesh service
+
       mResultsPerPage = 10;
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,mResultsPerPage);
-            
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
+
       //Add multiple sources here
       //Combine them in some way
       

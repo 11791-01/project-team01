@@ -34,24 +34,37 @@ public class QueryCombiner extends JCasAnnotator_ImplBase {
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<TOP> it = aJCas.getJFSIndexRepository().getAllIndexedFS(AtomicQueryConcept.type);
 
+    // Put the atomic queries in a list.
+    List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
+
+    // Generate a query operator.
+    QueryOperator op = new QueryOperator(aJCas);
+    op.setName("AND");
+
+    // Create the whole query strings
+    String wholeWithOp = "";
+    String wholeWithoutOp = "";
+
     while (it.hasNext()) {
       AtomicQueryConcept term = (AtomicQueryConcept) it.next();
 
-      // Put the atomic queries in a list.
-      List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
       terms.add(term);
 
-      // Generate a query operator.
-      QueryOperator op = new QueryOperator(aJCas);
-      op.setName("AND");
-
-      // Create the complex query.
-      ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
-      query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-      query.setOperator(op);
-      query.addToIndexes();
+      wholeWithOp += term.getText();
+      wholeWithoutOp += term.getText();
+      if (it.hasNext()) {
+        wholeWithOp += (" " + op.getName() + " ");
+        wholeWithoutOp += " ";
+      }
     }
 
+    // Create the complex query.
+    ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
+    query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
+    query.setOperator(op);
+    query.setWholeQueryWithOp(wholeWithOp);
+    query.setWholeQueryWithoutOp(wholeWithoutOp);
+    query.addToIndexes();
   }
 
 }
