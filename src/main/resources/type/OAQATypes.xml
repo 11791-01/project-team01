@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <name>OAQATypes</name>
   <description>Type system descriptor for the OAQA data model.</description>
@@ -477,6 +478,10 @@
         </value>
         <value>
           <string>QUOTEDPHRASE</string>
+          <description/>
+        </value>
+      <value>
+          <string>AND</string>
           <description/>
         </value>
       </allowedValues>

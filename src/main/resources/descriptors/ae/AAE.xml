@@ -10,8 +10,8 @@
   <delegateAnalysisEngine key="QueryConcept">
       <import name="descriptors.ae.QueryConcept"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="LPQueryAnnotator">
-      <import name="descriptors.ae.LPQueryAnnotator"/>
+    <delegateAnalysisEngine key="PosQueryAnnotator">
+      <import name="descriptors.ae.PosQueryAnnotator"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -19,11 +19,11 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
+    <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>LPQueryAnnotator</node>
+        <node>PosQueryAnnotator</node>
       <node>QueryConcept</node>
         <node>QueryDoc</node>
       </fixedFlow>

@@ -3,7 +3,6 @@
  */
 package edu.cmu.lti.deiis.project.annotator;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,9 +15,10 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import com.aliasi.chunk.Chunk;
-import com.aliasi.chunk.ConfidenceChunker;
+import com.aliasi.chunk.Chunking;
+import com.aliasi.chunk.NBestChunker;
 import com.aliasi.util.AbstractExternalizable;
+import com.aliasi.util.ScoredObject;
 
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
@@ -31,25 +31,15 @@ import util.Utils;
  * @author Zexi Mao <zexim@cs.cmu.edu>
  *
  */
-public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
+public class LPNBestNERAnnotator extends JCasAnnotator_ImplBase {
 
   /**
    * Name of configuration parameter that must be set to the path of the model file.
    */
   public static final String PARAM_MODEL_FILE = "ModelFile";
 
-  /**
-   * Name of configuration parameter that must be set to the max chunk number.
-   */
-  public static final String PARAM_MAX_N_BEST_CHUNKS = "MaxNBestChunks";
-
-  /**
-   * Name of configuration parameter that must be set to the threshold.
-   */
-  public static final String PARAM_THRESHOLD = "Threshold";
-
   // LingPipe chunker
-  private ConfidenceChunker mChunker;
+  private NBestChunker mChunker;
 
   private String mModelPath;
 
@@ -66,14 +56,11 @@ public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
 
-    mMAX_N_BEST_CHUNKS = (Integer) aContext.getConfigParameterValue(PARAM_MAX_N_BEST_CHUNKS);
-    mThreashold = (Float) aContext.getConfigParameterValue(PARAM_THRESHOLD);
-
     // Load the LingPipe pre-trained model
     try {
-      File modelFile = new File(
-              ((String) aContext.getConfigParameterValue(PARAM_MODEL_FILE)).trim());
-      mChunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
+      mChunker = (NBestChunker) AbstractExternalizable.readResourceObject(
+              LPNBestNERAnnotator.class,
+              (String) aContext.getConfigParameterValue(PARAM_MODEL_FILE));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -94,16 +81,15 @@ public class LPConfNERAnnotator extends JCasAnnotator_ImplBase {
 
       String queString = question.getText();
       char[] cs = queString.toCharArray();
-      Iterator<Chunk> it = mChunker.nBestChunks(cs, 0, cs.length, mMAX_N_BEST_CHUNKS);
+      Iterator<ScoredObject<Chunking>> it = mChunker.nBest(cs, 0, cs.length, 3);
       String queryString = "";
 
       while (it.hasNext()) {
-        Chunk chunk = (Chunk) it.next();
-        queryString += queString.substring(chunk.start(), chunk.end()); queryString += " ";
-        System.out.println(queString.substring(chunk.start(), chunk.end()));
-        System.out.println(chunk.score());
+        ScoredObject<Chunking> so = it.next();
+        System.out.println(so.score() + " " + so.getObject());
       }
-      System.out.println(queString); System.out.println(queryString);
+      System.out.println(queString);
+      //System.out.println(queryString);
 
       // Create an atomic query first
       AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);

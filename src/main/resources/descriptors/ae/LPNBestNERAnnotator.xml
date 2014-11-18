@@ -2,7 +2,7 @@
 
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.project.annotator.LPConfNERAnnotator</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.deiis.project.annotator.LPNBestNERAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>QueryAnnotator</name>
     <description/>
@@ -15,36 +15,12 @@
         <multiValued>false</multiValued>
         <mandatory>true</mandatory>
       </configurationParameter>
-    <configurationParameter>
-        <name>MaxNBestChunks</name>
-        <type>Integer</type>
-        <multiValued>false</multiValued>
-        <mandatory>true</mandatory>
-      </configurationParameter>
-      <configurationParameter>
-        <name>Threshold</name>
-        <type>Float</type>
-        <multiValued>false</multiValued>
-        <mandatory>true</mandatory>
-      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
         <name>ModelFile</name>
         <value>
-          <string>src/main/resources/models/ne-en-bio-genetag.HmmChunker</string>
-        </value>
-      </nameValuePair>
-    <nameValuePair>
-        <name>MaxNBestChunks</name>
-        <value>
-          <integer>10</integer>
-        </value>
-      </nameValuePair>
-      <nameValuePair>
-        <name>Threshold</name>
-        <value>
-          <float>0.65</float>
+          <string>/models/ne-en-bio-genetag.HmmChunker</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

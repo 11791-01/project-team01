@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.TOP;
 
 
 /** A superclass for EntityConcept and RelationConcept.
- * Updated by JCasGen Mon Nov 17 20:45:02 EST 2014
- * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
+ * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Concept extends TOP {
   /** @generated
