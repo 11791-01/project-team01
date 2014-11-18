@@ -81,7 +81,8 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
       JsonObject jsonObj = WebServiceHelper.getJsonFromPMID(doc.getDocId());
 
       if (jsonObj != null) {
-        String queryWOOp = queryIter.next().get()
+        ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
+        String queryWOOp = query.getWholeQueryWithoutOp();
         
         JsonArray secArr = jsonObj.getAsJsonArray("sections");
         String pmid = doc.getDocId();
@@ -92,7 +93,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
 
         TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
-        //tfIdf.handle();
+        tfIdf.handle(queryWOOp);
 
         for (int i = 0; i < sentences.size(); ++i) {
           Chunk sentence = sentences.get(i);
@@ -103,11 +104,11 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         }
         
         double maxScore = Double.MIN_VALUE;
-        int maxIdx;
+        int maxIdx = 0;
         for (int i = 0; i < sentences.size(); ++i) {
           int start = sentences.get(i).start();
           int end = sentences.get(i).end();
-          double sim = tfIdf.proximity(, sec0.substring(start, end));
+          double sim = tfIdf.proximity(queryWOOp, sec0.substring(start, end));
           if (sim > maxScore) {
             maxScore = sim;
             maxIdx = i;
