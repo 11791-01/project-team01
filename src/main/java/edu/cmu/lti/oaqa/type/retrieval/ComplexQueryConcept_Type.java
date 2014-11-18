@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
- * Updated by JCasGen Mon Nov 17 20:45:03 EST 2014
+ * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
  * @generated */
 public class ComplexQueryConcept_Type extends QueryConcept_Type {
   /** @generated 
