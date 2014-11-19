@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import json.gson.OutputQuestion;
 import json.gson.Question;
+import json.gson.Snippet;
 import json.gson.TestSet;
 import json.gson.Triple;
 
@@ -35,6 +36,7 @@ import com.google.gson.GsonBuilder;
 
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
+import edu.cmu.lti.oaqa.type.retrieval.Passage;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
 /**
@@ -178,13 +180,25 @@ public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProce
               new Triple(temp.getSubject(), temp.getPredicate(), temp.getObject()));
 
     }
+    
+    FSIterator<TOP> snippetIter = jcas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
+    Map<Integer, Snippet> snippetMap = new TreeMap<Integer, Snippet>();
+    while (snippetIter.hasNext()) {
+
+      Passage snip = (Passage) snippetIter.next();
+      snippetMap.put(snip.getRank(), new Snippet(snip.getUri(), snip.getText(), snip.getOffsetInBeginSection(),
+              snip.getOffsetInEndSection(), snip.getBeginSection(), snip.getEndSection()));
+
+    }
+    
     // Storing Results in List
     List<String> retDocs = new ArrayList<String>(docMap.values());
     List<String> retConcepts = new ArrayList<String>(conceptMap.values());
     List<Triple> retTriples = new ArrayList<Triple>(tripleMap.values());
+    List<Snippet> retSnippets = new ArrayList<Snippet>(snippetMap.values());
 
     retrievedOutput.add(new OutputQuestion(question.getId(), question.getText(), retDocs,
-            retConcepts, retTriples));
+            retConcepts, retTriples, retSnippets));
 
     // Evaluating the current question in CAS
     // Do only if gold standard exists
