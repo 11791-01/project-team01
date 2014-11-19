@@ -13,6 +13,9 @@
     <delegateAnalysisEngine key="PosQueryAnnotator">
       <import name="descriptors.ae.PosQueryAnnotator"/>
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="QueryCombiner">
+      <import name="descriptors.ae.QueryCombiner"/>
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>AAE</name>
@@ -24,8 +27,9 @@
     <flowConstraints>
       <fixedFlow>
         <node>PosQueryAnnotator</node>
-      <node>QueryConcept</node>
-        <node>QueryDoc</node>
+      <node>QueryCombiner</node>
+        <node>QueryConcept</node>
+      <node>QueryDoc</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>

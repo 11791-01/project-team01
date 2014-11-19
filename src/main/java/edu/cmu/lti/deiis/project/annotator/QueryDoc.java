@@ -75,9 +75,7 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
 
     try {
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
-      List<AtomicQueryConcept> queryList = (ArrayList<AtomicQueryConcept>) Utils
-              .fromFSListToCollection(query.getOperatorArgs(), AtomicQueryConcept.class);
-      String text = queryList.get(0).getText();
+      String text = query.getWholeQueryWithOp();
 
       PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0, mResultsPerPage);
 
@@ -92,6 +90,7 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
         document.setRank(i);
         document.setTitle(doc.getTitle());
         document.setDocId(docID);
+        document.setAbstract(doc.getDocumentAbstract());
         document.setFullTextAvailable(doc.isFulltextAvailable());
         document.addToIndexes();
       }

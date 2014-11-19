@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** A document search result.
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
- * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
+ * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Document extends SearchResult {
   /** @generated
@@ -127,6 +127,28 @@ public class Document extends SearchResult {
     if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_fullTextAvailable == null)
       jcasType.jcas.throwFeatMissing("fullTextAvailable", "edu.cmu.lti.oaqa.type.retrieval.Document");
     jcasType.ll_cas.ll_setBooleanValue(addr, ((Document_Type)jcasType).casFeatCode_fullTextAvailable, v);}    
+   
+    
+  //*--------------*
+  //* Feature: abstract
+
+  /** getter for abstract - gets The abstract of the document.
+   * @generated
+   * @return value of the feature 
+   */
+  public String getAbstract() {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_abstract == null)
+      jcasType.jcas.throwFeatMissing("abstract", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Document_Type)jcasType).casFeatCode_abstract);}
+    
+  /** setter for abstract - sets The abstract of the document. 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setAbstract(String v) {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_abstract == null)
+      jcasType.jcas.throwFeatMissing("abstract", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Document_Type)jcasType).casFeatCode_abstract, v);}    
   }
 
     

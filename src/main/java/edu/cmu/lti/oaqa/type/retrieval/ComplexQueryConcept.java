@@ -11,8 +11,8 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
- * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
+ * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class ComplexQueryConcept extends QueryConcept {
   /** @generated
@@ -106,6 +106,50 @@ public class ComplexQueryConcept extends QueryConcept {
     if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_operatorArgs == null)
       jcasType.jcas.throwFeatMissing("operatorArgs", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
     jcasType.ll_cas.ll_setRefValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_operatorArgs, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: wholeQueryWithOp
+
+  /** getter for wholeQueryWithOp - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getWholeQueryWithOp() {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_wholeQueryWithOp == null)
+      jcasType.jcas.throwFeatMissing("wholeQueryWithOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_wholeQueryWithOp);}
+    
+  /** setter for wholeQueryWithOp - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setWholeQueryWithOp(String v) {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_wholeQueryWithOp == null)
+      jcasType.jcas.throwFeatMissing("wholeQueryWithOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    jcasType.ll_cas.ll_setStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_wholeQueryWithOp, v);}    
+   
+    
+  //*--------------*
+  //* Feature: wholeQueryWithoutOp
+
+  /** getter for wholeQueryWithoutOp - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getWholeQueryWithoutOp() {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_wholeQueryWithoutOp == null)
+      jcasType.jcas.throwFeatMissing("wholeQueryWithoutOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_wholeQueryWithoutOp);}
+    
+  /** setter for wholeQueryWithoutOp - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setWholeQueryWithoutOp(String v) {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_wholeQueryWithoutOp == null)
+      jcasType.jcas.throwFeatMissing("wholeQueryWithoutOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    jcasType.ll_cas.ll_setStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_wholeQueryWithoutOp, v);}    
   }
 
     

@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
- * Updated by JCasGen Mon Nov 17 22:47:14 EST 2014
+ * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
  * @generated */
 public class ComplexQueryConcept_Type extends QueryConcept_Type {
   /** @generated 
@@ -92,6 +92,54 @@ public class ComplexQueryConcept_Type extends QueryConcept_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_operatorArgs, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_wholeQueryWithOp;
+  /** @generated */
+  final int     casFeatCode_wholeQueryWithOp;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getWholeQueryWithOp(int addr) {
+        if (featOkTst && casFeat_wholeQueryWithOp == null)
+      jcas.throwFeatMissing("wholeQueryWithOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_wholeQueryWithOp);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setWholeQueryWithOp(int addr, String v) {
+        if (featOkTst && casFeat_wholeQueryWithOp == null)
+      jcas.throwFeatMissing("wholeQueryWithOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    ll_cas.ll_setStringValue(addr, casFeatCode_wholeQueryWithOp, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_wholeQueryWithoutOp;
+  /** @generated */
+  final int     casFeatCode_wholeQueryWithoutOp;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getWholeQueryWithoutOp(int addr) {
+        if (featOkTst && casFeat_wholeQueryWithoutOp == null)
+      jcas.throwFeatMissing("wholeQueryWithoutOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_wholeQueryWithoutOp);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setWholeQueryWithoutOp(int addr, String v) {
+        if (featOkTst && casFeat_wholeQueryWithoutOp == null)
+      jcas.throwFeatMissing("wholeQueryWithoutOp", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    ll_cas.ll_setStringValue(addr, casFeatCode_wholeQueryWithoutOp, v);}
+    
+  
 
 
 
@@ -111,6 +159,14 @@ public class ComplexQueryConcept_Type extends QueryConcept_Type {
  
     casFeat_operatorArgs = jcas.getRequiredFeatureDE(casType, "operatorArgs", "uima.cas.FSList", featOkTst);
     casFeatCode_operatorArgs  = (null == casFeat_operatorArgs) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_operatorArgs).getCode();
+
+ 
+    casFeat_wholeQueryWithOp = jcas.getRequiredFeatureDE(casType, "wholeQueryWithOp", "uima.cas.String", featOkTst);
+    casFeatCode_wholeQueryWithOp  = (null == casFeat_wholeQueryWithOp) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_wholeQueryWithOp).getCode();
+
+ 
+    casFeat_wholeQueryWithoutOp = jcas.getRequiredFeatureDE(casType, "wholeQueryWithoutOp", "uima.cas.String", featOkTst);
+    casFeatCode_wholeQueryWithoutOp  = (null == casFeat_wholeQueryWithoutOp) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_wholeQueryWithoutOp).getCode();
 
   }
 }

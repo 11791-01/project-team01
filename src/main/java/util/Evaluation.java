@@ -9,6 +9,7 @@ import java.util.Set;
 
 import json.gson.OutputQuestion;
 import json.gson.Question;
+import json.gson.Snippet;
 import json.gson.TestSet;
 import json.gson.Triple;
 
@@ -56,6 +57,7 @@ public class Evaluation {
     List<EvaluationResult> conceptsEval = new ArrayList<EvaluationResult>();
     List<EvaluationResult> documentsEval = new ArrayList<EvaluationResult>();
     List<EvaluationResult> triplesEval = new ArrayList<EvaluationResult>();
+    List<EvaluationResult> snippetsEval = new ArrayList<EvaluationResult>();
     
     try {
     // evaluate each question one at a time
@@ -69,6 +71,7 @@ public class Evaluation {
         conceptsEval.add(doConceptsEval(goldQ.getConcepts(), testQ.getConcepts()));
         documentsEval.add(doDocumentsEval(goldQ.getDocuments(), testQ.getDocuments()));
         triplesEval.add(doTriplesEval(goldQ.getTriples(), testQ.getTriples()));
+        snippetsEval.add(doSnippetsEval(goldQ.getSnippets(), testQ.getSnippets()));
       }
     }
     } catch (Exception ex) {
@@ -83,12 +86,15 @@ public class Evaluation {
     sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", conceptsMeans[0], conceptsMeans[1], 
             conceptsMeans[2], conceptsMeans[3], conceptsMeans[4]));
     double[] docMeans = calcMeanMetrics(documentsEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", docMeans[0], docMeans[1], 
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Documents", docMeans[0], docMeans[1], 
             docMeans[2], docMeans[3], docMeans[4]));
     double[] tripMeans = calcMeanMetrics(triplesEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", tripMeans[0], tripMeans[1], 
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Triples", tripMeans[0], tripMeans[1], 
             tripMeans[2], tripMeans[3], tripMeans[4]));
-
+    double[] snipMeans = calcMeanMetrics(snippetsEval);
+    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Snippets", snipMeans[0], snipMeans[1], 
+            snipMeans[2], snipMeans[3], snipMeans[4]));
+    
     String evalOutputFile = "project-team01.eval";
     FileOp.writeToFile(evalOutputFile, sb.toString());
     
@@ -145,6 +151,20 @@ public class Evaluation {
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
 
+  public EvaluationResult doSnippetsEval(String qid, List<Snippet> test) {
+    Question gold = findGoldQuestion(qid);
+    if (gold != null)
+      return doSnippetsEval(gold.getSnippets(), test);
+    return null;
+  }
+  private EvaluationResult doSnippetsEval(List<Snippet> gold, List<Snippet> test) {
+    double precision = calcSnippetPrecision(gold, test);
+    double recall = calcSnippetRecall(gold, test);
+    double fmeasure = calcFMeasure(precision, recall);
+    double ap = 0;
+    return new EvaluationResult(precision, recall, fmeasure, ap);
+  }
+  
   private <T> List<T> emptyListIfNull(List<T> list) {
     if (list == null)
       return new ArrayList<T>();
@@ -177,6 +197,57 @@ public class Evaluation {
     }
     return ((double) TP) / ((double) retval.size());
 
+  }
+  
+  private double calcSnippetPrecision(List<Snippet> gold, List<Snippet> test) {
+    
+    gold = emptyListIfNull(gold);
+    test = emptyListIfNull(test);
+    
+    if (test.size() == 0)
+      return 0;
+    
+    int overlap = calcSnippetOverlapAmount(gold, test);
+    
+    int testSize = 0;
+    for (Snippet snip : test)
+      testSize += ( snip.getOffsetInEndSection() - snip.getOffsetInBeginSection() );
+ 
+    return ((double) overlap) / testSize;
+  }
+  
+  private double calcSnippetRecall(List<Snippet> gold, List<Snippet> test) {
+    
+    gold = emptyListIfNull(gold);
+    test = emptyListIfNull(test);
+    
+    if (gold.size() == 0)
+      return 0;
+    
+    int overlap = calcSnippetOverlapAmount(gold, test);
+    
+    int goldSize = 0;
+    for (Snippet snip : gold)
+      goldSize += ( snip.getOffsetInEndSection() - snip.getOffsetInBeginSection() );
+ 
+    return ((double) overlap) / goldSize;
+  }
+  
+  private int calcSnippetOverlapAmount(List<Snippet> gold, List<Snippet> test) {
+    
+    int overlapAmt = 0;
+    for (Snippet testSnip : test) {
+      //find gold snips matching sect/doc
+      List<Snippet> goldcands = gold;
+      for (Snippet goldSnip : goldcands) {
+        int overlapBegin = Math.max(testSnip.getOffsetInBeginSection(), goldSnip.getOffsetInBeginSection());
+        int overlapEnd = Math.min(testSnip.getOffsetInEndSection(), goldSnip.getOffsetInEndSection());
+        if (overlapBegin < overlapEnd) {
+          overlapAmt += (overlapEnd - overlapBegin);
+        }
+      }
+    }
+    return overlapAmt;
   }
 
   /**
