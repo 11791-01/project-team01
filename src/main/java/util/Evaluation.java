@@ -22,6 +22,12 @@ import json.gson.Triple;
 public class Evaluation {
   List<Question> goldStandard; // gold standard
   List<Question> testOutput; // output to be evaluated against gold standard
+  
+  String evalOutputFile = "project-team01.eval";
+  String evalDetailOutputFile = "project-team01.eval-details";
+  
+  StringBuilder eval_sb;
+  StringBuilder details_sb;
 
   public Evaluation(String goldDataPath) {
     
@@ -37,9 +43,13 @@ public class Evaluation {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+    
   }
   
   public void doEvaluation(List<OutputQuestion> testOutput) {
+
+    details_sb = new StringBuilder();
+    eval_sb = new StringBuilder();
     
     // Get test output
 //    try {
@@ -62,41 +72,39 @@ public class Evaluation {
     try {
     // evaluate each question one at a time
     for (Question testQ : testOutput) {
+      details_sb.append(String.format("Question: %s%n", testQ.getBody()));
       String qid = testQ.getId();
       Question goldQ = findGoldQuestion(qid);
       if (goldQ != null) {
-        List<String> goldConcepts = goldQ.getConcepts();
-        if (goldConcepts == null) 
-          goldConcepts = new ArrayList<String>();
         conceptsEval.add(doConceptsEval(goldQ.getConcepts(), testQ.getConcepts()));
         documentsEval.add(doDocumentsEval(goldQ.getDocuments(), testQ.getDocuments()));
         triplesEval.add(doTriplesEval(goldQ.getTriples(), testQ.getTriples()));
         snippetsEval.add(doSnippetsEval(goldQ.getSnippets(), testQ.getSnippets()));
       }
+      details_sb.append("===================================================================\n");
     }
     } catch (Exception ex) {
       ex.printStackTrace();
     }
     
-    StringBuilder sb = new StringBuilder();
-    sb.append(String.format("%12s%12s%12s%12s%12s%12s\n", "Ret. Item", "Prec","Recall","F-measure","MAP","GMAP"));
-    sb.append("----------------------------------------------------------------------------\n");
+    eval_sb.append(String.format("%12s%12s%12s%12s%12s%12s\n", "Ret. Item", "Prec","Recall","F-measure","MAP","GMAP"));
+    eval_sb.append("----------------------------------------------------------------------------\n");
 
     double[] conceptsMeans = calcMeanMetrics(conceptsEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", conceptsMeans[0], conceptsMeans[1], 
+    eval_sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Concepts", conceptsMeans[0], conceptsMeans[1], 
             conceptsMeans[2], conceptsMeans[3], conceptsMeans[4]));
     double[] docMeans = calcMeanMetrics(documentsEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Documents", docMeans[0], docMeans[1], 
+    eval_sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Documents", docMeans[0], docMeans[1], 
             docMeans[2], docMeans[3], docMeans[4]));
     double[] tripMeans = calcMeanMetrics(triplesEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Triples", tripMeans[0], tripMeans[1], 
+    eval_sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Triples", tripMeans[0], tripMeans[1], 
             tripMeans[2], tripMeans[3], tripMeans[4]));
     double[] snipMeans = calcMeanMetrics(snippetsEval);
-    sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Snippets", snipMeans[0], snipMeans[1], 
+    eval_sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Snippets", snipMeans[0], snipMeans[1], 
             snipMeans[2], snipMeans[3], snipMeans[4]));
     
-    String evalOutputFile = "project-team01.eval";
-    FileOp.writeToFile(evalOutputFile, sb.toString());
+    FileOp.writeToFile(evalOutputFile, eval_sb.toString());
+    FileOp.writeToFile(evalDetailOutputFile, details_sb.toString());
     
   }
   
@@ -116,6 +124,8 @@ public class Evaluation {
     return null;
   }
   private EvaluationResult doConceptsEval(List<String> gold, List<String> test) {
+    details_sb.append("Concepts:\n");
+    printEvalDetails(gold, test);
     double precision = calcPrecision(gold, test);
     double recall = calcRecall(gold, test);
     double fmeasure = calcFMeasure(precision, recall);
@@ -130,6 +140,8 @@ public class Evaluation {
     return null;
   }
   private EvaluationResult doDocumentsEval(List<String> gold, List<String> test) {
+    details_sb.append("Documents:\n");
+    printEvalDetails(gold, test);
     double precision = calcPrecision(gold, test);
     double recall = calcRecall(gold, test);
     double fmeasure = calcFMeasure(precision, recall);
@@ -144,6 +156,8 @@ public class Evaluation {
     return null;
   }
   private EvaluationResult doTriplesEval(List<Triple> gold, List<Triple> test) {
+    details_sb.append("Triples:\n");
+    printEvalDetails(gold, test);
     double precision = calcPrecision(gold, test);
     double recall = calcRecall(gold, test);
     double fmeasure = calcFMeasure(precision, recall);
@@ -158,6 +172,8 @@ public class Evaluation {
     return null;
   }
   private EvaluationResult doSnippetsEval(List<Snippet> gold, List<Snippet> test) {
+    details_sb.append("Snippets:\n");
+    printSnippetEvalDetails(gold, test);
     double precision = calcSnippetPrecision(gold, test);
     double recall = calcSnippetRecall(gold, test);
     double fmeasure = calcFMeasure(precision, recall);
@@ -350,5 +366,70 @@ public class Evaluation {
     }
     return new double[] { meanPrec / numQues, meanRec / numQues, meanFmeas / numQues, 
             MAP / numQues, Math.pow(GMAP, 1.0 / numQues) };
+  }
+  
+  private <T> void printEvalDetails(List<T> gold, List<T> test) {
+    
+    gold = emptyListIfNull(gold);
+    test = emptyListIfNull(test);
+    
+    Set<T> matches = new HashSet<T>();
+    matches.addAll(gold);
+    matches.retainAll(test);
+    details_sb.append("\tTrue Pos:\n");
+    matches.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.toString())));
+    
+    Set<T> testOnly = new HashSet<T>(test);
+    testOnly.removeAll(gold);
+    details_sb.append("\tFalse Pos:\n");
+    testOnly.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.toString())));
+    
+    Set<T> goldOnly = new HashSet<T>(gold);
+    goldOnly.removeAll(test);
+    details_sb.append("\tFalse Neg:\n");
+    goldOnly.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.toString())));
+  }
+  
+  private void printSnippetEvalDetails(List<Snippet> gold, List<Snippet> test) {
+    
+    gold = emptyListIfNull(gold);
+    test = emptyListIfNull(test);
+    
+    int overlapAmt = 0;
+    for (Snippet testSnip : test) {
+      //find gold snips matching sect/doc
+      List<Snippet> goldSameDocSection = new ArrayList<Snippet>();
+      for (Snippet s : gold) {
+        if (s.getDocument().equals(testSnip.getDocument()) && s.getBeginSection().equals(testSnip.getBeginSection()))
+          goldSameDocSection.add(s);
+      }
+      //find snips that overlap
+      List<Snippet[]> matches = new ArrayList<Snippet[]>();
+      List<Snippet> testMatches = new ArrayList<Snippet>();
+      List<Snippet> goldMatches = new ArrayList<Snippet>();
+      for (Snippet goldSnip : goldSameDocSection) {
+        int overlapBegin = Math.max(testSnip.getOffsetInBeginSection(), goldSnip.getOffsetInBeginSection());
+        int overlapEnd = Math.min(testSnip.getOffsetInEndSection(), goldSnip.getOffsetInEndSection());
+        if (overlapBegin < overlapEnd) {
+          overlapAmt += (overlapEnd - overlapBegin);
+          matches.add(new Snippet[] {testSnip, goldSnip});
+          testMatches.add(testSnip);
+          goldMatches.add(goldSnip);
+        }
+      }
+
+      details_sb.append("\tTrue Pos:\n");
+      matches.forEach(m -> details_sb.append(String.format("\t\tTest: %s%n\t\tGold: %s%n-%n", m[0].getText(), m[1].getText())));
+      
+      Set<Snippet> testOnly = new HashSet<Snippet>(test);
+      testOnly.removeAll(testMatches);
+      details_sb.append("\tFalse Pos:\n");
+      testOnly.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.getText())));
+      
+      Set<Snippet> goldOnly = new HashSet<Snippet>(gold);
+      goldOnly.removeAll(goldMatches);
+      details_sb.append("\tFalse Neg:\n");
+      goldOnly.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.getText())));
+    }    
   }
 }
