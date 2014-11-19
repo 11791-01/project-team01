@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** A named relation mention that identify or define the named relation concept.
- * Updated by JCasGen Tue Nov 18 23:51:11 EST 2014
- * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Wed Nov 19 01:11:54 EST 2014
+ * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class RelationMention extends ConceptMention {
   /** @generated
