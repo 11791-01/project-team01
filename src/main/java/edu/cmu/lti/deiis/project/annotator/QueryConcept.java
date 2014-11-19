@@ -73,7 +73,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       // Use Mesh service
             
-      mResultsPerPage = 10;
+      mResultsPerPage = 6;
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
 
 
@@ -93,11 +93,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       int JOretsize = 20;
       int UOretsize = 20;
       
-      Double mthres = 0.1;
-      Double DOthres = 0.1;
-      Double GOthres = 0.09;
-      Double JOthres = 0.06;
-      Double UOthres = 0.06;
+      Double mthres = 0.0;
+      Double DOthres = 0.0;
+      Double GOthres = 0.0;
+      Double JOthres = 0.0;
+      Double UOthres = 0.0;
       
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());

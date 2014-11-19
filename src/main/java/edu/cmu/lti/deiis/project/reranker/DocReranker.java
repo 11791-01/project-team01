@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -73,22 +74,28 @@ public class DocReranker extends JCasAnnotator_ImplBase {
     TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
     tfIdf.handle(queryWOOp);
 
-    List<Document> docList = new ArrayList<Document>(); 
+    List<Document> docList = new ArrayList<Document>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
+      if (doc.getAbstract() == null || doc.getAbstract().trim().length() == 0) {
+        continue;
+      }
+
       tfIdf.handle(doc.getAbstract());
-      
+
       docList.add(doc);
     }
-    
+
     for (int i = 0; i < docList.size(); ++i) {
       Document doc = docList.get(i);
       double sim = tfIdf.proximity(queryWOOp, docList.get(i).getAbstract());
       doc.setScore(sim);
     }
-    
-    // sort the docList desc in terms of score
-    // then assign the rank
+
+    Collections.sort(docList, new DocSimComparator());
+    for (int i = 0; i < docList.size(); ++i) {
+      docList.get(i).setRank(i);
+    }
   }
 
   /**
@@ -124,4 +131,17 @@ public class DocReranker extends JCasAnnotator_ImplBase {
     return content;
   }
 
+}
+
+class DocSimComparator implements Comparator<Document> {
+  @Override
+  public int compare(Document lhs, Document rhs) {
+    if (lhs.getScore() < rhs.getScore()) {
+      return 1;
+    } else if (lhs.getScore() > rhs.getScore()) {
+      return -1;
+    } else {
+      return lhs.getRank() - rhs.getRank();
+    }
+  }
 }

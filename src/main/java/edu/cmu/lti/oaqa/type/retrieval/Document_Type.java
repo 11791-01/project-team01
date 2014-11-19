@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A document search result.
- * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
+ * Updated by JCasGen Tue Nov 18 23:51:11 EST 2014
  * @generated */
 public class Document_Type extends SearchResult_Type {
   /** @generated 
@@ -140,6 +140,30 @@ public class Document_Type extends SearchResult_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_abstract, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_sentenceList;
+  /** @generated */
+  final int     casFeatCode_sentenceList;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getSentenceList(int addr) {
+        if (featOkTst && casFeat_sentenceList == null)
+      jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_sentenceList);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setSentenceList(int addr, int v) {
+        if (featOkTst && casFeat_sentenceList == null)
+      jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    ll_cas.ll_setRefValue(addr, casFeatCode_sentenceList, v);}
+    
+  
 
 
 
@@ -167,6 +191,10 @@ public class Document_Type extends SearchResult_Type {
  
     casFeat_abstract = jcas.getRequiredFeatureDE(casType, "abstract", "uima.cas.String", featOkTst);
     casFeatCode_abstract  = (null == casFeat_abstract) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_abstract).getCode();
+
+ 
+    casFeat_sentenceList = jcas.getRequiredFeatureDE(casType, "sentenceList", "uima.cas.FSList", featOkTst);
+    casFeatCode_sentenceList  = (null == casFeat_sentenceList) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentenceList).getCode();
 
   }
 }
