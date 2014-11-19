@@ -79,20 +79,20 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<TOP> DocIter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
-    FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(ComplexQueryConcept.type);
+    FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(
+            ComplexQueryConcept.type);
+    ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
 
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
       JsonObject jsonObj = WebServiceHelper.getJsonFromPMID(doc.getDocId());
 
       if (jsonObj != null) {
-        ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
         String queryWOOp = query.getWholeQueryWithoutOp();
-        
+
         JsonArray secArr = jsonObj.getAsJsonArray("sections");
         String pmid = doc.getDocId();
         String sec0 = secArr.get(0).getAsString();
-        System.out.println(sec0);
 
         Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
         List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
@@ -105,9 +105,8 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
           int start = sentence.start();
           int end = sentence.end();
           tfIdf.handle(sec0.substring(start, end));
-          System.out.println(sec0.substring(start, end));
         }
-        
+
         double maxScore = Double.MIN_VALUE;
         int maxIdx = 0;
         for (int i = 0; i < sentences.size(); ++i) {
@@ -119,7 +118,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
             maxIdx = i;
           }
         }
-        
+
         Passage snippet = new Passage(aJCas);
         snippet.setDocId(pmid);
         snippet.setUri(doc.getUri());
