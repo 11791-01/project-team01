@@ -9,8 +9,11 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 
+import org.apache.uima.jcas.cas.FSList;
+
+
 /** A document search result.
- * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
+ * Updated by JCasGen Tue Nov 18 23:51:11 EST 2014
  * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class Document extends SearchResult {
@@ -149,6 +152,28 @@ public class Document extends SearchResult {
     if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_abstract == null)
       jcasType.jcas.throwFeatMissing("abstract", "edu.cmu.lti.oaqa.type.retrieval.Document");
     jcasType.ll_cas.ll_setStringValue(addr, ((Document_Type)jcasType).casFeatCode_abstract, v);}    
+   
+    
+  //*--------------*
+  //* Feature: sentenceList
+
+  /** getter for sentenceList - gets If full text available, this is the list of sentences of the full text.
+   * @generated
+   * @return value of the feature 
+   */
+  public FSList getSentenceList() {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_sentenceList == null)
+      jcasType.jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Document_Type)jcasType).casFeatCode_sentenceList)));}
+    
+  /** setter for sentenceList - sets If full text available, this is the list of sentences of the full text. 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setSentenceList(FSList v) {
+    if (Document_Type.featOkTst && ((Document_Type)jcasType).casFeat_sentenceList == null)
+      jcasType.jcas.throwFeatMissing("sentenceList", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Document_Type)jcasType).casFeatCode_sentenceList, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

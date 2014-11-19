@@ -16,6 +16,12 @@
   <delegateAnalysisEngine key="QueryCombiner">
       <import name="descriptors.ae.QueryCombiner"/>
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="SnippetAnnotator">
+      <import name="descriptors.ae.SnippetAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DocReranker">
+      <import name="descriptors.ae.DocReranker"/>
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>AAE</name>
@@ -30,6 +36,8 @@
       <node>QueryCombiner</node>
         <node>QueryConcept</node>
       <node>QueryDoc</node>
+      <node>DocReranker</node>
+        <node>SnippetAnnotator</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>

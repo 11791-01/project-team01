@@ -3,8 +3,10 @@ package edu.cmu.lti.deiis.project.annotator;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +35,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import util.WebServiceHelper;
+import edu.cmu.lti.oaqa.type.nlp.Sentence;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
@@ -107,29 +110,36 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
           tfIdf.handle(sec0.substring(start, end));
         }
 
-        double maxScore = Double.MIN_VALUE;
-        int maxIdx = 0;
+        List<RawSentence> rawSentences = new ArrayList<RawSentence>();
+
         for (int i = 0; i < sentences.size(); ++i) {
           int start = sentences.get(i).start();
           int end = sentences.get(i).end();
+
+          RawSentence rawSent = new RawSentence();
+          rawSent.startIdx = start;
+          rawSent.endIdx = end;
           double sim = tfIdf.proximity(queryWOOp, sec0.substring(start, end));
-          if (sim > maxScore) {
-            maxScore = sim;
-            maxIdx = i;
-          }
+          rawSent.score = sim;
+          rawSentences.add(rawSent);
         }
 
-        Passage snippet = new Passage(aJCas);
-        int startIdx = sentences.get(maxIdx).start();
-        int endIdx = sentences.get(maxIdx).end();
-        snippet.setDocId(pmid);
-        snippet.setUri(doc.getUri());
-        snippet.setText(sec0.substring(startIdx, endIdx));
-        snippet.setBeginSection("sections.0");
-        snippet.setEndSection("sections.0");
-        snippet.setOffsetInBeginSection(startIdx);
-        snippet.setOffsetInEndSection(endIdx);
-        snippet.addToIndexes();
+        Collections.sort(rawSentences, new SenSimComparator());
+
+        int threshold = Math.min(5, sentences.size());
+        for (int i = 0; i < threshold; ++i) {
+          Passage snippet = new Passage(aJCas);
+          int startIdx = rawSentences.get(i).startIdx;
+          int endIdx = rawSentences.get(i).endIdx;
+          snippet.setDocId(pmid);
+          snippet.setUri(doc.getUri());
+          snippet.setText(sec0.substring(startIdx, endIdx));
+          snippet.setBeginSection("sections.0");
+          snippet.setEndSection("sections.0");
+          snippet.setOffsetInBeginSection(startIdx);
+          snippet.setOffsetInEndSection(endIdx);
+          snippet.addToIndexes();
+        }
       }
     }
 
@@ -168,4 +178,25 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     return content;
   }
 
+}
+
+class RawSentence {
+  int startIdx;
+
+  int endIdx;
+
+  double score;
+}
+
+class SenSimComparator implements Comparator<RawSentence> {
+  @Override
+  public int compare(RawSentence lhs, RawSentence rhs) {
+    if (lhs.score < rhs.score) {
+      return 1;
+    } else if (lhs.score > rhs.score) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
 }

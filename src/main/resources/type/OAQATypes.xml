@@ -510,6 +510,12 @@
           <description>The abstract of the document.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>sentenceList</name>
+          <description>If full text available, this is the list of sentences of the full text.</description>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+          <elementType>edu.cmu.lti.oaqa.type.nlp.Sentence</elementType>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
@@ -758,6 +764,38 @@
       <name>edu.cmu.lti.oaqa.type.kb.Relation</name>
       <description/>
       <supertypeName>edu.cmu.lti.oaqa.type.kb.Concept</supertypeName>
+    </typeDescription>
+  <typeDescription>
+      <name>edu.cmu.lti.oaqa.type.nlp.Sentence</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>beginSection</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>endSection</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>offsetInBeginSection</name>
+          <description/>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>offsetInEndSection</name>
+          <description/>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>score</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      </features>
     </typeDescription>
   </types>
 </typeSystemDescription>

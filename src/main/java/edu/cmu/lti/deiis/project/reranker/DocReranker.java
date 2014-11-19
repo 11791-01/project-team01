@@ -74,20 +74,24 @@ public class DocReranker extends JCasAnnotator_ImplBase {
     TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
     tfIdf.handle(queryWOOp);
 
-    List<Document> docList = new ArrayList<Document>(); 
+    List<Document> docList = new ArrayList<Document>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
+      if (doc.getAbstract() == null || doc.getAbstract().trim().length() == 0) {
+        continue;
+      }
+
       tfIdf.handle(doc.getAbstract());
-      
+
       docList.add(doc);
     }
-    
+
     for (int i = 0; i < docList.size(); ++i) {
       Document doc = docList.get(i);
       double sim = tfIdf.proximity(queryWOOp, docList.get(i).getAbstract());
       doc.setScore(sim);
     }
-    
+
     Collections.sort(docList, new DocSimComparator());
     for (int i = 0; i < docList.size(); ++i) {
       docList.get(i).setRank(i);
@@ -141,4 +145,3 @@ class DocSimComparator implements Comparator<Document> {
     }
   }
 }
-

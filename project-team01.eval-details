@@ -1,0 +1,1881 @@
+Question: Is Rheumatoid Arthritis more common in men or women?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018813
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018814
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014930
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001168
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018761
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008571
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013167
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015535
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012217
+		http://www.disease-ontology.org/api/metadata/DOID:7148
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001171
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24293580
+		http://www.ncbi.nlm.nih.gov/pubmed/24251942
+		http://www.ncbi.nlm.nih.gov/pubmed/24196989
+		http://www.ncbi.nlm.nih.gov/pubmed/24196988
+		http://www.ncbi.nlm.nih.gov/pubmed/24217093
+		http://www.ncbi.nlm.nih.gov/pubmed/24262860
+		http://www.ncbi.nlm.nih.gov/pubmed/24265412
+		http://www.ncbi.nlm.nih.gov/pubmed/24206795
+		http://www.ncbi.nlm.nih.gov/pubmed/24210266
+		http://www.ncbi.nlm.nih.gov/pubmed/24292809
+		http://www.ncbi.nlm.nih.gov/pubmed/24322454
+		http://www.ncbi.nlm.nih.gov/pubmed/24232459
+		http://www.ncbi.nlm.nih.gov/pubmed/24252046
+		http://www.ncbi.nlm.nih.gov/pubmed/24276454
+		http://www.ncbi.nlm.nih.gov/pubmed/24252044
+		http://www.ncbi.nlm.nih.gov/pubmed/24239445
+		http://www.ncbi.nlm.nih.gov/pubmed/24326032
+		http://www.ncbi.nlm.nih.gov/pubmed/24276858
+		http://www.ncbi.nlm.nih.gov/pubmed/24301244
+		http://www.ncbi.nlm.nih.gov/pubmed/24291351
+		http://www.ncbi.nlm.nih.gov/pubmed/24249032
+		http://www.ncbi.nlm.nih.gov/pubmed/24285628
+		http://www.ncbi.nlm.nih.gov/pubmed/24289728
+		http://www.ncbi.nlm.nih.gov/pubmed/24285406
+		http://www.ncbi.nlm.nih.gov/pubmed/24212533
+		http://www.ncbi.nlm.nih.gov/pubmed/24261775
+		http://www.ncbi.nlm.nih.gov/pubmed/24317378
+		http://www.ncbi.nlm.nih.gov/pubmed/24300313
+		http://www.ncbi.nlm.nih.gov/pubmed/24200439
+		http://www.ncbi.nlm.nih.gov/pubmed/24219123
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/20810033
+		http://www.ncbi.nlm.nih.gov/pubmed/21340496
+		http://www.ncbi.nlm.nih.gov/pubmed/12723987
+		http://www.ncbi.nlm.nih.gov/pubmed/18759162
+		http://www.ncbi.nlm.nih.gov/pubmed/15083883
+		http://www.ncbi.nlm.nih.gov/pubmed/22853635
+		http://www.ncbi.nlm.nih.gov/pubmed/17965425
+		http://www.ncbi.nlm.nih.gov/pubmed/23217568
+		http://www.ncbi.nlm.nih.gov/pubmed/19158113
+		http://www.ncbi.nlm.nih.gov/pubmed/16418123
+		http://www.ncbi.nlm.nih.gov/pubmed/20889597
+		http://www.ncbi.nlm.nih.gov/pubmed/1563036
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Non-pharmacological therapy is considered to be the foundation for the successful management of OA and consists of individualised patient specific programmes incorporating elements of dietary advice, physiotherapy, exercise and patient education.
+	False Neg:
+		Intense anti-CCP2 reaction was 19.8-fold higher in females vs. males,
+		In women the DAS28 was significantly higher than in men due to higher scores for general health and tender joints. Likewise, HAQ and VAS pain were rated significantly higher in women.
+		The mean age of the patients was 62 years (range 19–96 years) and 71% were female;
+		in 244 female and 91 male patients with rheumatoid arthritis.
+		RA in LAC women is not only more common but presents with some clinical characteristics that differ from RA presentation in men. Some of those characteristics could explain the high rates of disability and worse prognosis observed in women with RA in LAC
+		The female to male ratio was 2.5:1 and the mean age at diagnosis was 49.4 +/- 14.9 years for women and 55.3 +/-15.6 years for men (P < 0.0003)
+		 Responses to treatment over time were better among men in this prebiologic era; women had worse progression despite similar treatment.
+		432 females, 125 males
+		Disease patterns in RA vary between the sexes; the condition is more commonly seen in women, who exhibit a more aggressive disease and a poorer long-term outcome.
+		 men (n = 67) and women (n = 225)
+		ESR significantly increased with age, independent of other variables of disease activity. This increase was more pronounced in male than in female patients
+		The expression and clinical course of RA are influenced by gender. In developed countries the prevalence of RA is 0,5 to 1.0%, with a male:female ratio of 1:3.
+		Our results show a high prevalence of RA in LAC women with a ratio of 5.2 women per man
+		BMI appears to be associated with RA disease activity in women, but not in men.
+		A total of 5,161 RA patients (4,082 women and 1,079 men)
+		women were found to have higher disease activity scores, more pain and greater loss of function, both in early and established disease
+===================================================================
+Question: Are there any DNMT3 proteins present in plants?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014674
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D053830
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D055315
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010940
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010944
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010935
+	False Neg:
+		http://www.uniprot.org/uniprot/CMT1_ARATH
+		http://www.uniprot.org/uniprot/CMT2_ARATH
+		http://www.uniprot.org/uniprot/CMT3_ARATH
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/10781108
+		http://www.ncbi.nlm.nih.gov/pubmed/21150311
+		http://www.ncbi.nlm.nih.gov/pubmed/21060858
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/10999404
+		http://www.ncbi.nlm.nih.gov/pubmed/12665573
+		http://www.ncbi.nlm.nih.gov/pubmed/23852726
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/11459824
+		http://www.ncbi.nlm.nih.gov/pubmed/20505370
+		http://www.ncbi.nlm.nih.gov/pubmed/12121623
+		http://www.ncbi.nlm.nih.gov/pubmed/18488247
+		http://www.ncbi.nlm.nih.gov/pubmed/17660570
+		http://www.ncbi.nlm.nih.gov/pubmed/15282033
+		http://www.ncbi.nlm.nih.gov/pubmed/22058406
+		http://www.ncbi.nlm.nih.gov/pubmed/11487702
+		http://www.ncbi.nlm.nih.gov/pubmed/23021223
+		http://www.ncbi.nlm.nih.gov/pubmed/12151602
+		http://www.ncbi.nlm.nih.gov/pubmed/9584105
+		http://www.ncbi.nlm.nih.gov/pubmed/15946751
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		In plant genomes repetitive sequences are associated with DNA cytosine methylation [3]–[8], which is required for transcriptional silencing and suppression of transposon activity [9]–[12].
+	False Neg:
+		De novo DNA methylation in Arabidopsis thaliana is catalyzed by the methyltransferase DRM2, a homolog of the mammalian de novo methyltransferase DNMT3.
+		BLASTX searches and phylogenetic analysis suggested that five cDNAs belonged to four classes (Dnmt1, Dnmt2, CMT and Dnmt3) of DNA methyltransferase genes.
+		Three functional classes of DNA methyltransferase exist in A.thaliana; METHYLTRANSFERASE1 (MET1) (orthologous to mammalian Dnmt1) which maintains CG methylation, CHROMOMETHYLASE3 (CMT3) (plant specific) which maintains methylation in non-CG sequence contexts and DOMAINS REARRANGED METHYLTRANSFERASE2 (DRM2) (orthologous to Dnmt3a/Dnmt3b) which both de novo methylates DNA and maintains non-CG methylation redundantly with CMT3 [2]. The drm2 mutation blocks all de novo DNA methylation driven by repeat containing transgenes [15]–[17].
+		The mammalian DRM2 orthologs, Dnmt3a and Dnmt3b, are required to de novo methylate integrated retroviral sequences and imprinted genes [38], [39].
+		Here we describe DNA methyltransferase genes from both Arabidopsis and maize that show a high level of sequence similarity to Dnmt3, suggesting that they encode plant de novo methyltransferases. Relative to all known eukaryotic methyltransferases, these plant proteins contain a novel arrangement of the motifs required for DNA methyltransferase catalytic activity. The N termini of these methyltransferases contain a series of ubiquitin-associated (UBA) domains. 
+===================================================================
+Question: What is the most prominent sequence consensus for the polyadenylation site?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D026723
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016384
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D039221
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011061
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D032921
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016324
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D039104
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012313
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0043631
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011063
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=1900363
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/16836751
+		http://www.ncbi.nlm.nih.gov/pubmed/16337094
+		http://www.ncbi.nlm.nih.gov/pubmed/22467744
+		http://www.ncbi.nlm.nih.gov/pubmed/21490097
+		http://www.ncbi.nlm.nih.gov/pubmed/15676283
+		http://www.ncbi.nlm.nih.gov/pubmed/23077630
+		http://www.ncbi.nlm.nih.gov/pubmed/17942399
+		http://www.ncbi.nlm.nih.gov/pubmed/17020919
+		http://www.ncbi.nlm.nih.gov/pubmed/19587781
+		http://www.ncbi.nlm.nih.gov/pubmed/15727844
+		http://www.ncbi.nlm.nih.gov/pubmed/16147863
+		http://www.ncbi.nlm.nih.gov/pubmed/18514032
+		http://www.ncbi.nlm.nih.gov/pubmed/18201905
+		http://www.ncbi.nlm.nih.gov/pubmed/20423522
+		http://www.ncbi.nlm.nih.gov/pubmed/15965016
+		http://www.ncbi.nlm.nih.gov/pubmed/17615362
+		http://www.ncbi.nlm.nih.gov/pubmed/23151878
+		http://www.ncbi.nlm.nih.gov/pubmed/16308319
+		http://www.ncbi.nlm.nih.gov/pubmed/18400782
+		http://www.ncbi.nlm.nih.gov/pubmed/23817991
+		http://www.ncbi.nlm.nih.gov/pubmed/16414183
+		http://www.ncbi.nlm.nih.gov/pubmed/16809309
+		http://www.ncbi.nlm.nih.gov/pubmed/17381045
+		http://www.ncbi.nlm.nih.gov/pubmed/15681073
+		http://www.ncbi.nlm.nih.gov/pubmed/20827276
+		http://www.ncbi.nlm.nih.gov/pubmed/17044995
+		http://www.ncbi.nlm.nih.gov/pubmed/17656373
+		http://www.ncbi.nlm.nih.gov/pubmed/23954224
+		http://www.ncbi.nlm.nih.gov/pubmed/18366710
+		http://www.ncbi.nlm.nih.gov/pubmed/20553951
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/2513486
+		http://www.ncbi.nlm.nih.gov/pubmed/1915889
+		http://www.ncbi.nlm.nih.gov/pubmed/7901430
+		http://www.ncbi.nlm.nih.gov/pubmed/1993703
+		http://www.ncbi.nlm.nih.gov/pubmed/6194440
+		http://www.ncbi.nlm.nih.gov/pubmed/1712333
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Protein complexes involved in cleavage and polyadenylation have been identified: the PAS is bound by the cleavage and polyadenylation specificity factor (CSPF), while the DSE recruits the cleavage stimulation factor (CstF) (reviewed in [3]).
+	False Neg:
+		the appropriate spacing of the AAUAAA and G/U box signals is critical for poly(A) site function
+		 Two AATAAA hexanucleotide sequences are present in the 2092 nucleotide interval. The first one functions as the major polyA signal
+		the early poly(A) consensus signal was mutated from AAUAAA to UGUAAA
+		the cannonical polyadenylation signal sequence AATAAA
+		Functional polyadenylation [poly(A)] sites consist of two sequence elements, the AAUAAA and G/U box signals, that closely flank the site of mRNA 3'-end formation
+		Two AATAAA motifs are coded in the last exon of this gene
+		The results demonstrate that the intact AAUAAA is not required for RNA polyadenylation but is required for the cleavage step preceding polyadenylation to occur efficiently
+===================================================================
+Question: What is the function of the mammalian gene Irg1?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005796
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000202
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012677
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016341
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016276
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D055951
+	False Neg:
+		http://www.uniprot.org/uniprot/IRG1_MOUSE
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/21865384
+		http://www.ncbi.nlm.nih.gov/pubmed/14500577
+		http://www.ncbi.nlm.nih.gov/pubmed/21424586
+		http://www.ncbi.nlm.nih.gov/pubmed/12893884
+		http://www.ncbi.nlm.nih.gov/pubmed/11356686
+		http://www.ncbi.nlm.nih.gov/pubmed/16415166
+		http://www.ncbi.nlm.nih.gov/pubmed/21947773
+		http://www.ncbi.nlm.nih.gov/pubmed/23455712
+		http://www.ncbi.nlm.nih.gov/pubmed/15937114
+		http://www.ncbi.nlm.nih.gov/pubmed/19014335
+		http://www.ncbi.nlm.nih.gov/pubmed/7721348
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/10707257
+		http://www.ncbi.nlm.nih.gov/pubmed/23931757
+		http://www.ncbi.nlm.nih.gov/pubmed/10489423
+		http://www.ncbi.nlm.nih.gov/pubmed/11180809
+		http://www.ncbi.nlm.nih.gov/pubmed/18522745
+		http://www.ncbi.nlm.nih.gov/pubmed/23094107
+		http://www.ncbi.nlm.nih.gov/pubmed/12356687
+		http://www.ncbi.nlm.nih.gov/pubmed/15178747
+		http://www.ncbi.nlm.nih.gov/pubmed/22698585
+		http://www.ncbi.nlm.nih.gov/pubmed/23610393
+		http://www.ncbi.nlm.nih.gov/pubmed/21836375
+		http://www.ncbi.nlm.nih.gov/pubmed/16116224
+		http://www.ncbi.nlm.nih.gov/pubmed/20536725
+		http://www.ncbi.nlm.nih.gov/pubmed/23687968
+		http://www.ncbi.nlm.nih.gov/pubmed/16951324
+		http://www.ncbi.nlm.nih.gov/pubmed/22294617
+		http://www.ncbi.nlm.nih.gov/pubmed/23609450
+		http://www.ncbi.nlm.nih.gov/pubmed/24184888
+	False Neg:
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Within several days of injecting a small volume of air (2 to 3 ml), a membrane of several layers of cells, which consist mostly of fibroblasts, mononuclear cells and small blood vessels, grows around this air-filled space [1].
+	False Neg:
+		IRG1 is highly upregulated in murine ANA-1 macrophages by several proinflammatory cytokines and Toll-like receptor (TLR) agonists, as well as in spleen and lung of Listeria monocytogenes or Toxoplasma gondii infected mice, respectively
+		Immune-responsive gene 1 is a novel target of progesterone receptor and plays a critical role during implantation in the mouse.
+		Here we report the isolation of a complementary DNA representing a novel gene, interferon-regulated gene 1 (IRG1). This gene exhibits significant homology to interferon (IFN)-alpha/beta-inducible human genes p27 and 6-16, indicating that these genes may belong to the same family
+		Hence, the induction of IRG1 by LPS is mediated by tyrosine kinase and protein kinase C pathway.
+		The proinflammatory cytokine-induced IRG1 protein associates with mitochondria
+		our studies identified Irg1 as a novel target of PR in the pregnant uterus and also revealed that it is a critical regulator of the early events leading to implantation
+		The inhibitor also blocked induction by LIF of several LIF-regulated genes in the LE including Irg1, which has been shown previously to be essential for implantation.
+		Here we report the isolation of a complementary DNA representing a novel gene, interferon-regulated gene 1 (IRG1). T
+		multiple genes induced by Borrelia burgdorferi in macrophages to regulate Lyme disease inflammation
+		we identified three interferon-stimulated genes (ISGs; Ifi27, Irg1 and Rsad2 (also known as Viperin)) that mediated the antiviral effects against different neurotropic viruses
+		the IRG1 gene is differentially expressed in human fetal PBMCs and LPS-stimulated adult PBMCs.
+		we identified the immune-responsive gene 1 (IRG1), which was expressed substantially higher in lipopolysaccharide (LPS)-stimulated than in MAP-infected murine macrophage cell lines.
+		Although the functional roles of IRG1 and p27 remain unclear, we describe for the first time, identification of a gene family regulated by IFNalpha in both rodent and human uteri
+		Murine immune-responsive gene 1 (IRG1) plays significant roles in embryonic implantation and neurodegeneration
+		One of these genes, IRG1, was confirmed by single nucleotide polymorphism analysis to be involved in susceptibility. Its precise mechanism remains to be elucidated, although the analysis of gene expression data suggests it has a role in apoptosis.
+		the mammalian ortholog of methylcitrate dehydratase (immune response gene 1)
+		 This resulted in the identification of one novel P4-regulated gene that had been previously found in lipopolysaccharide-stimulated macrophages and called immune response gene-1 (Irg1) and which is the mammalian ortholog of the bacterial gene encoding methylcitrate dehydratase
+		The level of IRG1 mRNA again rose transiently on day 4 immediately preceding implantation.
+===================================================================
+Question: Is thrombophilia related to increased risk of miscarriage?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019851
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000022
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000026
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D058958
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012306
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012307
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018566
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011255
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011256
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0007565
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011248
+		http://www.disease-ontology.org/api/metadata/DOID:10591
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24082554
+		http://www.ncbi.nlm.nih.gov/pubmed/24265194
+		http://www.ncbi.nlm.nih.gov/pubmed/22315276
+		http://www.ncbi.nlm.nih.gov/pubmed/23912476
+		http://www.ncbi.nlm.nih.gov/pubmed/22708328
+		http://www.ncbi.nlm.nih.gov/pubmed/23921093
+		http://www.ncbi.nlm.nih.gov/pubmed/23981755
+		http://www.ncbi.nlm.nih.gov/pubmed/22439075
+		http://www.ncbi.nlm.nih.gov/pubmed/24268724
+		http://www.ncbi.nlm.nih.gov/pubmed/23989998
+		http://www.ncbi.nlm.nih.gov/pubmed/23999648
+		http://www.ncbi.nlm.nih.gov/pubmed/24152411
+		http://www.ncbi.nlm.nih.gov/pubmed/22379924
+		http://www.ncbi.nlm.nih.gov/pubmed/24273903
+		http://www.ncbi.nlm.nih.gov/pubmed/22690883
+		http://www.ncbi.nlm.nih.gov/pubmed/22729089
+		http://www.ncbi.nlm.nih.gov/pubmed/24200686
+		http://www.ncbi.nlm.nih.gov/pubmed/23400304
+		http://www.ncbi.nlm.nih.gov/pubmed/22960791
+		http://www.ncbi.nlm.nih.gov/pubmed/23256575
+		http://www.ncbi.nlm.nih.gov/pubmed/22835448
+		http://www.ncbi.nlm.nih.gov/pubmed/23942472
+		http://www.ncbi.nlm.nih.gov/pubmed/23809122
+		http://www.ncbi.nlm.nih.gov/pubmed/23970335
+		http://www.ncbi.nlm.nih.gov/pubmed/23112017
+		http://www.ncbi.nlm.nih.gov/pubmed/23587581
+		http://www.ncbi.nlm.nih.gov/pubmed/23954867
+		http://www.ncbi.nlm.nih.gov/pubmed/23498654
+		http://www.ncbi.nlm.nih.gov/pubmed/23715104
+		http://www.ncbi.nlm.nih.gov/pubmed/23157044
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/15027582
+		http://www.ncbi.nlm.nih.gov/pubmed/19031171
+		http://www.ncbi.nlm.nih.gov/pubmed/15713144
+		http://www.ncbi.nlm.nih.gov/pubmed/19135285
+		http://www.ncbi.nlm.nih.gov/pubmed/16962918
+		http://www.ncbi.nlm.nih.gov/pubmed/11583310
+		http://www.ncbi.nlm.nih.gov/pubmed/21380983
+		http://www.ncbi.nlm.nih.gov/pubmed/22164918
+		http://www.ncbi.nlm.nih.gov/pubmed/18845284
+		http://www.ncbi.nlm.nih.gov/pubmed/19165673
+		http://www.ncbi.nlm.nih.gov/pubmed/20860491
+		http://www.ncbi.nlm.nih.gov/pubmed/22543699
+		http://www.ncbi.nlm.nih.gov/pubmed/7986734
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+===================================================================
+Question: Which extra thyroid tissues have thyrotropin (TSH) receptors?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011989
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013972
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013961
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011988
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013966
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018025
+	False Neg:
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0004996
+		http://www.biosemantics.org/jochem#4250044
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22496347
+		http://www.ncbi.nlm.nih.gov/pubmed/22289392
+		http://www.ncbi.nlm.nih.gov/pubmed/22517745
+		http://www.ncbi.nlm.nih.gov/pubmed/22399514
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22259067
+		http://www.ncbi.nlm.nih.gov/pubmed/24135138
+		http://www.ncbi.nlm.nih.gov/pubmed/23019348
+		http://www.ncbi.nlm.nih.gov/pubmed/23663263
+		http://www.ncbi.nlm.nih.gov/pubmed/23482611
+		http://www.ncbi.nlm.nih.gov/pubmed/22334716
+		http://www.ncbi.nlm.nih.gov/pubmed/22815044
+		http://www.ncbi.nlm.nih.gov/pubmed/22930759
+		http://www.ncbi.nlm.nih.gov/pubmed/22419707
+		http://www.ncbi.nlm.nih.gov/pubmed/22001338
+		http://www.ncbi.nlm.nih.gov/pubmed/23453614
+		http://www.ncbi.nlm.nih.gov/pubmed/22878044
+		http://www.ncbi.nlm.nih.gov/pubmed/22061427
+		http://www.ncbi.nlm.nih.gov/pubmed/22938935
+		http://www.ncbi.nlm.nih.gov/pubmed/23083069
+		http://www.ncbi.nlm.nih.gov/pubmed/22196093
+		http://www.ncbi.nlm.nih.gov/pubmed/22621289
+		http://www.ncbi.nlm.nih.gov/pubmed/22017306
+		http://www.ncbi.nlm.nih.gov/pubmed/23754356
+		http://www.ncbi.nlm.nih.gov/pubmed/23592747
+		http://www.ncbi.nlm.nih.gov/pubmed/22842620
+		http://www.ncbi.nlm.nih.gov/pubmed/23886630
+		http://www.ncbi.nlm.nih.gov/pubmed/23974778
+		http://www.ncbi.nlm.nih.gov/pubmed/23519897
+		http://www.ncbi.nlm.nih.gov/pubmed/22745141
+		http://www.ncbi.nlm.nih.gov/pubmed/23104419
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/21956421
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Adipose tissues are the major depots for energy storage.
+	False Neg:
+		Previously, we found that CD34(+) progenitor cells, known as fibrocytes, express functional TSHR, infiltrate the orbit, and comprise a large subset of orbital fibroblasts in TAO. 
+		These fibrocytes infiltrate orbital connective tissues in thyroid-associated ophthalmopathy and express functional TSH receptor (TSHR). 
+		GD orbital fibroblasts, which comprise a mixture of CD34(+) and CD34(-) cells, express much lower levels of Tg and TSHR
+		TSHR levels are higher than those in orbital fibroblasts.
+		TSH worked as a lipolytic factor in white adipose tissues,
+		TSH induced lipolysis in adipose tissues.
+===================================================================
+Question: What is the methyl donor of DNA (cytosine-5)-methyltransferases?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004248
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019175
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015257
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019853
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003596
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D057265
+	False Neg:
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0003886
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/8065896
+		http://www.ncbi.nlm.nih.gov/pubmed/1584813
+		http://www.ncbi.nlm.nih.gov/pubmed/8441638
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/3609310
+		http://www.ncbi.nlm.nih.gov/pubmed/21735817
+		http://www.ncbi.nlm.nih.gov/pubmed/12538347
+		http://www.ncbi.nlm.nih.gov/pubmed/23724145
+		http://www.ncbi.nlm.nih.gov/pubmed/8441637
+		http://www.ncbi.nlm.nih.gov/pubmed/23576011
+		http://www.ncbi.nlm.nih.gov/pubmed/17259861
+		http://www.ncbi.nlm.nih.gov/pubmed/3622512
+		http://www.ncbi.nlm.nih.gov/pubmed/23183753
+		http://www.ncbi.nlm.nih.gov/pubmed/16829525
+		http://www.ncbi.nlm.nih.gov/pubmed/21949694
+		http://www.ncbi.nlm.nih.gov/pubmed/16855792
+		http://www.ncbi.nlm.nih.gov/pubmed/6513830
+		http://www.ncbi.nlm.nih.gov/pubmed/6208029
+		http://www.ncbi.nlm.nih.gov/pubmed/24205358
+		http://www.ncbi.nlm.nih.gov/pubmed/1989510
+		http://www.ncbi.nlm.nih.gov/pubmed/17440941
+		http://www.ncbi.nlm.nih.gov/pubmed/17107663
+		http://www.ncbi.nlm.nih.gov/pubmed/22945834
+		http://www.ncbi.nlm.nih.gov/pubmed/8645558
+		http://www.ncbi.nlm.nih.gov/pubmed/8625314
+		http://www.ncbi.nlm.nih.gov/pubmed/11087417
+		http://www.ncbi.nlm.nih.gov/pubmed/1868079
+		http://www.ncbi.nlm.nih.gov/pubmed/22438930
+		http://www.ncbi.nlm.nih.gov/pubmed/19451595
+		http://www.ncbi.nlm.nih.gov/pubmed/1473145
+		http://www.ncbi.nlm.nih.gov/pubmed/22558281
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/11208790
+		http://www.ncbi.nlm.nih.gov/pubmed/7607467
+		http://www.ncbi.nlm.nih.gov/pubmed/7578083
+		http://www.ncbi.nlm.nih.gov/pubmed/15273274
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Repetitive elements complete DNA methylation acquisition prior to birth [1], [7].
+	False Neg:
+		The DNA (cytosine-5)-methyltransferase (m5C-MTase) M.BspRI is able to accept the methyl group from the methyl donor S-adenosyl-L-methionine (AdoMet) in the absence of DNA. Transfer of the methyl group to the enzyme is a slow reaction relative to DNA methylation. S
+		The reaction is fairly insensitive to the methyl donor in the reaction, S-adenosylmethionine.
+		Formation of the complex was dependent upon the presence of the methyl donor S-adenosylmethionine, suggesting that it comprises an enzyme-linked 5-substituted dihydrocytosine moiety in DNA. 
+		Here, we report the structure of HhaI methyltransferase in complex with DNA containing a south-constrained abasic carbocyclic sugar at the target site in the presence of the methyl donor byproduct AdoHcy.
+		In the absence of DNA substrate, the DNA methyltransferase (MTase) M.BspRI can methylate itself using the methyl donor S-adenosyl-L-methionine (AdoMet). The methyl group is transferred to two Cys residues of the MTase.
+		Deoxycytosine methylase (Dcm) enzyme activity causes mutagenesis in vitro either directly by enzyme-induced deamination of cytosine to uracil in the absence of the methyl donor, S-adenosylmethionine (SAM), or indirectly through spontaneous deamination of [5-methyl]cytosine to thymine
+		The product of the dcm gene is the only DNA cytosine-C5 methyltransferase of Escherichia coli K-12; it catalyses transfer of a methyl group from S-adenosyl methionine (SAM) to the C-5 position of the inner cytosine residue of the cognate sequence CCA/TGG. 
+===================================================================
+Question: Super-SILAC is a method used in quantitative proteomics. What is the super-SILAC mix? (SILAC: Stable Isotopic labelling by aminoacids in cell culture)
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020543
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D040901
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D002478
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014407
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018929
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007959
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007553
+Documents:
+	True Pos:
+	False Pos:
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/22623409
+		http://www.ncbi.nlm.nih.gov/pubmed/20364148
+		http://www.ncbi.nlm.nih.gov/pubmed/21293456
+		http://www.ncbi.nlm.nih.gov/pubmed/22442255
+		http://www.ncbi.nlm.nih.gov/pubmed/23090970
+		http://www.ncbi.nlm.nih.gov/pubmed/22278370
+		http://www.ncbi.nlm.nih.gov/pubmed/20431548
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+===================================================================
+Question: Tumors of which three organs are classically associated with the multiple endocrine neoplasia type 1 syndrome?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018761
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009369
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009938
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018813
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=organisms_category
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009377
+	False Neg:
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22686234
+		http://www.ncbi.nlm.nih.gov/pubmed/22207168
+		http://www.ncbi.nlm.nih.gov/pubmed/23467775
+		http://www.ncbi.nlm.nih.gov/pubmed/23163158
+		http://www.ncbi.nlm.nih.gov/pubmed/24299284
+		http://www.ncbi.nlm.nih.gov/pubmed/23076685
+		http://www.ncbi.nlm.nih.gov/pubmed/23850066
+		http://www.ncbi.nlm.nih.gov/pubmed/21997695
+		http://www.ncbi.nlm.nih.gov/pubmed/23555276
+		http://www.ncbi.nlm.nih.gov/pubmed/23890756
+		http://www.ncbi.nlm.nih.gov/pubmed/21249756
+		http://www.ncbi.nlm.nih.gov/pubmed/22672595
+		http://www.ncbi.nlm.nih.gov/pubmed/21868085
+		http://www.ncbi.nlm.nih.gov/pubmed/21628851
+		http://www.ncbi.nlm.nih.gov/pubmed/23652674
+		http://www.ncbi.nlm.nih.gov/pubmed/23009008
+		http://www.ncbi.nlm.nih.gov/pubmed/21281415
+		http://www.ncbi.nlm.nih.gov/pubmed/21127195
+		http://www.ncbi.nlm.nih.gov/pubmed/24012779
+		http://www.ncbi.nlm.nih.gov/pubmed/22037578
+		http://www.ncbi.nlm.nih.gov/pubmed/23427520
+		http://www.ncbi.nlm.nih.gov/pubmed/23071067
+		http://www.ncbi.nlm.nih.gov/pubmed/22928647
+		http://www.ncbi.nlm.nih.gov/pubmed/23155323
+		http://www.ncbi.nlm.nih.gov/pubmed/22248822
+		http://www.ncbi.nlm.nih.gov/pubmed/23113424
+		http://www.ncbi.nlm.nih.gov/pubmed/23443490
+		http://www.ncbi.nlm.nih.gov/pubmed/23063086
+		http://www.ncbi.nlm.nih.gov/pubmed/23496674
+		http://www.ncbi.nlm.nih.gov/pubmed/23272612
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/9735087
+		http://www.ncbi.nlm.nih.gov/pubmed/21613051
+		http://www.ncbi.nlm.nih.gov/pubmed/21302639
+		http://www.ncbi.nlm.nih.gov/pubmed/18172277
+		http://www.ncbi.nlm.nih.gov/pubmed/17455252
+		http://www.ncbi.nlm.nih.gov/pubmed/23279763
+		http://www.ncbi.nlm.nih.gov/pubmed/20175448
+		http://www.ncbi.nlm.nih.gov/pubmed/10496602
+		http://www.ncbi.nlm.nih.gov/pubmed/11914929
+		http://www.ncbi.nlm.nih.gov/pubmed/10614532
+		http://www.ncbi.nlm.nih.gov/pubmed/10502325
+		http://www.ncbi.nlm.nih.gov/pubmed/9236523
+		http://www.ncbi.nlm.nih.gov/pubmed/9820618
+		http://www.ncbi.nlm.nih.gov/pubmed/23435440
+		http://www.ncbi.nlm.nih.gov/pubmed/7962349
+		http://www.ncbi.nlm.nih.gov/pubmed/23024266
+		http://www.ncbi.nlm.nih.gov/pubmed/10664520
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Although an augmented proteolysis was initially suggested as the major cause of p27KIP1 loss in human tumors [6], recent findings propose that reduced translation and/or transcription of CDKN1B also contributes to p27KIP1 deficiency [7]–[9].
+	False Neg:
+		Multiple endocrine neoplasia type 1 (MEN1) is an autosomal dominant inherited disorder characterized by nodular proliferation of the parathyroid glands and tumors of the anterior pituitary gland, the endocrine pancreas, and the neuroendocrine cell system of the gut.
+		Multiple endocrine neoplasia Type 1 (MEN1) is a rare hereditary tumor syndrome predisposing to tumor development in several endocrine organs.
+		Multiple endocrine neoplasia type 1 (MEN1) is inherited in an autosomal dominant fashion and predisposes to the development of hyperplastic or neoplastic changes in the parathyroid and pituitary glands and the endocrine pancreas, along with numerous other characteristic tumors and features. 
+		In support of previous findings in islet tumors, we found down-regulation of the cell-cycle regulator, p18, in both the pancreatic islet and pituitary adenomas, suggesting that reduced p18 levels may be important for Men1-related tumorigenesis in multiple tissues. Surprisingly, we identified increased p16 transcript in pancreatic islet and pituitary tumors. 
+		 Hyperparathyroidism is the most common feature of MEN1 (95% of patients), pancreatic islet tumors or pancreatic NET (neuroendocrine tumor) occur in 40-70% and pituitary tumors in 30-40% of MEN 1 patients
+		We address the potential role of miRNAs in the endocrine pancreas, the pituitary gland, and the parathyroid glands-areas where MEN 1 shows high penetrance. 
+		An increased incidence of thyroid neoplasms, leiomyomas, adrenal cortical hyperplasia, hepatic focal nodular hyperplasia, and renal angiomyolipoma has been noted in the MEN1 population. 
+		Multiple endocrine neoplasia type 1 (MEN1) is an autosomal dominant inherited tumor syndrome characterized by the development of multiple endocrine tumors
+		We report here a genetic study of a female MEN1 patient with the association of nodular hyperplasia of two parathyroid glands, an insulinoma, multiple duodenal gastrinomas, a prolactinoma, and a gastric carcinoid.
+		We have analyzed 22 nonfamilial and 16 MEN 1-associated pancreatic endocrine tumors for loss of heterozygosity (LOH) at 3p, 11q13, and 18q. LOH at 3p was revealed in 45% and 36% of tumors from 31 patients with nonfamilial and MEN 1-associated disease, respectively.
+		 In contrast, follicular thyroid adenoma, papillary thyroid carcinoma, hepatic focal nodular hyperplasia, and adrenal cortical hyperplasia consistently showed retained heterozygosity of the MEN1 gene with flanking markers and an intragenic marker. Therefore, these tumors appear to develop along pathogenetic pathways that are different from classical MEN1-associated tumors.
+		Multiple endocrine neoplasia type 1 (MEN1) is a classic hereditary tumor syndrome characterized by a genetic predisposition to develop a variety of neuroendocrine neoplasias and hormone excess syndromes.
+		eside these three, several other endocrine (adrenocortical, foregut carcinoid) and nonendocrine (lipoma, angiofibroma, collagenoma, ependymoma, meningioma) tumors have been described to be associated with this syndrome
+		Multiple endocrine neoplasia type 1 (MEN1) is an autosomal dominant disorder characterized by the combined occurrence of parathyroid and adrenocortical tumors, and neuroendocrine tumors (NETs) of the pancreas and pituitary. 
+		Multiple endocrine neoplasia type 1 (MEN1) is characterized by the development of endocrine tumors of the parathyroid and pituitary glands, pancreas, and duodenum. Less frequently occurring tumors associated with MEN1 include non-endocrine tumors such as lipomas and angiofibromas. 
+		the most important causes malignant pancreatic neuroendocrine tumors (NET) and thymic carcinoids. 
+		Multiple endocrine neoplasia type 1 (MEN1) is defined clinically by the combined occurrence of multiple tumors, typically of the parathyroid glands, pancreatic islet cells, and anterior pituitary gland.
+		Both benign (parathyroid, anterior pituitary) and malignant (gastrinoma, glucagonoma) lesions may develop in MEN1 patients
+		MEN I patients can benefit from the examination with this agent which can potentially localize not only parathyroid endocrine pathology but also unknown associated tumors.
+		 In addition, other tumors, such as adrenal cortical tumors, carcinoid tumors, lipomas, angiofibromas, colagenomas and meningiomas may be present. 
+		MEN1 and MEN2 are rare inherited cancer syndromes which express a variety of endocrine and nonendocrine tumors.
+		Multiple facial angiofibromas were observed in 28 (88%) of the patients with MEN1, with 16 patients (50%) having 5 or more. Angiofibromas were clinically and histologically identical to those in individuals with tuberous sclerosis. Collagenomas were observed in 23 patients (72%). Also observed were cafe au lait macules in 12 patients (38%), lipomas in 11 patients (34%), confetti-like hypopigmented macules in 2 patients (6%), and multiple gingival papules in 2 patients (6%)
+		Both familial and sporadic forms of the disease are known. The diagnosis of MEN1 can be established if two of the three major manifestations are found in the same patient, whereas the diagnosis of familial MEN1 requires one MEN1 patient and a first degree relative with at least one MEN1 manifestation. 
+		Multiple angiofibromas, collagenomas, lipomas, confetti-like hypopigmented macules and multiple gingival papules are cutaneous manifestations of MEN1 and should be looked for in both family members of patients with MEN1 and individuals with hyperparathyroidism of other MEN1-associated tumors. 
+		 Its major manifestations include hyperparathyroidism, tumors of endocrine pancreas and pituitary. 
+		The tumor was removed and histologically confirmed as a carcinoid within a thymus in a MEN type I syndrome. 
+		Two hits of the MEN1 gene were also detected in esophageal leiomyoma tissue, suggesting that tumorigenesis was directly related to the patient's underlying MEN1.
+		Moreover, studies have provided evidence that dysregulation of miRNAs was responsible for endocrine carcinogenesis, including pancreatic, pituitary, and parathyroid tumors.
+		Twelve unrelated (German MEN1 families and their associated tumors (5 parathyroid tumors, 1 vipoma, 1 gastrinoma, 1 insulinoma) were characterized for MEN1 gene mutations by single-strand conformational variant (SSCV) analysis and DNA sequence analysis as well as for loss of heterozygosity on chromosome 11q13. 
+		The data indicate involvement of tumor suppressor genes on 3p and 18q, in addition to the MEN1 gene at 11q13, in the tumorigenesis of both nonfamilial and MEN 1-associated pancreatic endocrine tumors.
+		Multiple endocrine neoplasia type 1 (MEN1; formerly known as Wermer syndrome) is a rare disorder characterized by the combined occurrence of two or more tumors involving parathyroid, pancreatic islets and anterior pituitary glands; some other tumors have also been described.
+		Multiple endocrine neoplasia type 1 (MEN 1) is a familial syndrome characterized by parathyroid, enteropancreatic and pituitary tumors. 
+		 The patient was studied and diagnosed with a multiple endocrine neoplasia type I (MEN I), familiar (mother with MEN I). A scintigraphic study with 99mTc-MIBI was performed in order to localize hyperfunctioning parathyroid glands because of biochemical diagnosis of primary hyperparathyroidism. 
+		A germline mutation of the MEN1 gene was detected, and deletions of the MEN1 gene were consistently detected in multiple neuroendocrine tumors involving the parathyroid glands and the pancreas and a hepatic neuroendocrine tumor metastasis, as predicted by Knudson's "two hit" hypothesis.
+		Pancreatic endocrine tumors occur sporadically and as part of the multiple endocrine neoplasia type 1 (MEN 1) and von Hippel-Lindau (VHL) syndromes. 
+		Multiple endocrine neoplasia type 1 (MEN1) consists of benign, and sometimes malignant, tumors (often multiple in a tissue) of the parathyroids, enteropancreatic neuroendocrine system, anterior pituitary, and other tissues. Skin angiofibromas and skin collagenomas are common. 
+		The pancreatic NETs are predominantly gastrinomas and insulinomas, and the pituitary NETs are mostly prolactinomas and somatotrophinomas. 
+===================================================================
+Question: What is the mechanism of action of anticoagulant medication Dabigatran?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D045504
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020228
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003256
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006302
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019563
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D062528
+	False Neg:
+		http://www.biosemantics.org/jochem#4242811
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22302737
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/22388002
+		http://www.ncbi.nlm.nih.gov/pubmed/20589316
+		http://www.ncbi.nlm.nih.gov/pubmed/18425569
+		http://www.ncbi.nlm.nih.gov/pubmed/23031622
+		http://www.ncbi.nlm.nih.gov/pubmed/21526168
+		http://www.ncbi.nlm.nih.gov/pubmed/23466964
+		http://www.ncbi.nlm.nih.gov/pubmed/22480286
+		http://www.ncbi.nlm.nih.gov/pubmed/19888525
+		http://www.ncbi.nlm.nih.gov/pubmed/21988948
+		http://www.ncbi.nlm.nih.gov/pubmed/21666370
+		http://www.ncbi.nlm.nih.gov/pubmed/20888031
+		http://www.ncbi.nlm.nih.gov/pubmed/16637459
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+===================================================================
+Question: Is Mammaprint approved by the United States Food and Drug Administration?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014486
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014489
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017277
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014493
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014482
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014481
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017327
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017326
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017321
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017322
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/19546609
+		http://www.ncbi.nlm.nih.gov/pubmed/18515733
+	False Pos:
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/19879448
+		http://www.ncbi.nlm.nih.gov/pubmed/21479927
+		http://www.ncbi.nlm.nih.gov/pubmed/17462970
+		http://www.ncbi.nlm.nih.gov/pubmed/19506735
+		http://www.ncbi.nlm.nih.gov/pubmed/18786252
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@c882d862
+		json.gson.Triple@a4f9f9fc
+		json.gson.Triple@5478ba64
+		json.gson.Triple@ea6254bf
+		json.gson.Triple@955e4660
+Snippets:
+===================================================================
+Question: Which acetylcholinesterase inhibitors are used for treatment of myasthenia gravis?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000110
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009157
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D002800
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020941
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020720
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020294
+	False Neg:
+		http://www.disease-ontology.org/api/metadata/DOID:437
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004791
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24095170
+		http://www.ncbi.nlm.nih.gov/pubmed/23768983
+		http://www.ncbi.nlm.nih.gov/pubmed/24164490
+		http://www.ncbi.nlm.nih.gov/pubmed/23279780
+		http://www.ncbi.nlm.nih.gov/pubmed/24112993
+		http://www.ncbi.nlm.nih.gov/pubmed/23278573
+		http://www.ncbi.nlm.nih.gov/pubmed/23909021
+		http://www.ncbi.nlm.nih.gov/pubmed/23559196
+		http://www.ncbi.nlm.nih.gov/pubmed/23670841
+		http://www.ncbi.nlm.nih.gov/pubmed/24088269
+		http://www.ncbi.nlm.nih.gov/pubmed/23678983
+		http://www.ncbi.nlm.nih.gov/pubmed/24145588
+		http://www.ncbi.nlm.nih.gov/pubmed/23823963
+		http://www.ncbi.nlm.nih.gov/pubmed/24220173
+		http://www.ncbi.nlm.nih.gov/pubmed/23381166
+		http://www.ncbi.nlm.nih.gov/pubmed/24141560
+		http://www.ncbi.nlm.nih.gov/pubmed/23337001
+		http://www.ncbi.nlm.nih.gov/pubmed/23460475
+		http://www.ncbi.nlm.nih.gov/pubmed/23278581
+		http://www.ncbi.nlm.nih.gov/pubmed/23423465
+		http://www.ncbi.nlm.nih.gov/pubmed/23893883
+		http://www.ncbi.nlm.nih.gov/pubmed/23535158
+		http://www.ncbi.nlm.nih.gov/pubmed/23440963
+		http://www.ncbi.nlm.nih.gov/pubmed/23794683
+		http://www.ncbi.nlm.nih.gov/pubmed/23376659
+		http://www.ncbi.nlm.nih.gov/pubmed/24291968
+		http://www.ncbi.nlm.nih.gov/pubmed/23537506
+		http://www.ncbi.nlm.nih.gov/pubmed/23452772
+		http://www.ncbi.nlm.nih.gov/pubmed/23938353
+		http://www.ncbi.nlm.nih.gov/pubmed/23341732
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/21815707
+		http://www.ncbi.nlm.nih.gov/pubmed/21845054
+		http://www.ncbi.nlm.nih.gov/pubmed/20663605
+		http://www.ncbi.nlm.nih.gov/pubmed/21328290
+		http://www.ncbi.nlm.nih.gov/pubmed/21133188
+		http://www.ncbi.nlm.nih.gov/pubmed/15610702
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		In this review, we present a summary of current treatment progresses in managing MG, regarding the symptomatic therapy.
+	False Neg:
+		In MG, the first-line option is symptomatic treatment with acetylcholinesterase inhibitors. Pyridostigmine bromide is the most commonly used drug. Other acetylcholinesterase inhibitors such as neostigmine are rarely used because of their poorer pharmacodynamic profiles and tolerability. 
+		This review focuses on treatment of MG, mainly on the use of the AChE inhibitor pyridostigmine.
+		 Current guidelines and recommendations for MG treatment are based largely on clinical experience, retrospective analyses and expert consensus. Available therapies include oral acetylcholinesterase (AChE) inhibitors for symptomatic treatment, and short- and long-term disease-modifying treatments.
+		 In an observational study of 14 MG patients comparing pyridostigmine with neostigmine, it was concluded that over 1 year, pyridostigmine was more effective with less adverse events.5 Similar conclusions were reached in another observational study of 69 patients which compared the use of pyridostigmine with neostigmine
+		Except for one small and inconclusive trial of intranasal neostigmine, no randomised controlled trial has been conducted on the use of acetylcholinesterase inhibitors in myasthenia gravis. Response to acetylcholinesterase inhibitors in observational studies is so clear that a randomised controlled trial depriving participants in the placebo arm of treatment would be difficult to justify.
+		Our results support the usefulness of SR-Pyr in an individualized therapeutic regimen to improve quality of life regardless of the patient's age in myasthenia gravis.
+		For more than 50 years the acetylcholinesterase inhibitor pyridostigmine bromide has been the drug of choice in the symptomatic therapy for myasthenia gravis. 
+		Pyridostigmine has been used as a treatment for MG for over 50 years and is generally considered safe. It is suitable as a long-term treatment in patients with generalized non-progressive milder disease, and as an adjunctive therapy in patients with severe disease who are also receiving immunotherapy. 
+		Novel AChE inhibitors with oral antisense oligonucleotides have been developed and preliminary results appear to be promising.
+		Despite a lack of data from well controlled clinical trials to support their use, AChE inhibitors, of which pyridostigmine is the most commonly used, are recommended as first-line therapy for MG. 
+		The switch to SR-Pyr ameliorated the total quantified myasthenia gravis (QMG) score from 0.9 ± 0.5 to 0.6 ± 0.4 (p<0.001) in all patients and in the younger subgroup. This was accompanied by a significant improvement in the quality of life parameters. The health status valued by EuroQoL questionnaire improved from 0.626 ± 0.286 to 0.782 ± 0.186 (p<0.001). 
+		Pyridostigmine is the most widely used acetylcholinesterase inhibitor.
+		Acetylcholinesterase inhibitors provide temporary, symptomatic treatment for all forms of myasthenia gravis. 
+===================================================================
+Question: Which medication should be administered when managing patients with suspected acute opioid overdose?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D062787
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010361
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019727
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016347
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D062528
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D063046
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009292
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000701
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/23956374
+		http://www.ncbi.nlm.nih.gov/pubmed/24190044
+		http://www.ncbi.nlm.nih.gov/pubmed/23964855
+		http://www.ncbi.nlm.nih.gov/pubmed/24133175
+		http://www.ncbi.nlm.nih.gov/pubmed/24189172
+		http://www.ncbi.nlm.nih.gov/pubmed/24074332
+		http://www.ncbi.nlm.nih.gov/pubmed/24269857
+		http://www.ncbi.nlm.nih.gov/pubmed/24079682
+		http://www.ncbi.nlm.nih.gov/pubmed/24107767
+		http://www.ncbi.nlm.nih.gov/pubmed/24196095
+		http://www.ncbi.nlm.nih.gov/pubmed/24206593
+		http://www.ncbi.nlm.nih.gov/pubmed/24199644
+		http://www.ncbi.nlm.nih.gov/pubmed/24215056
+		http://www.ncbi.nlm.nih.gov/pubmed/23880443
+		http://www.ncbi.nlm.nih.gov/pubmed/24219431
+		http://www.ncbi.nlm.nih.gov/pubmed/23972442
+		http://www.ncbi.nlm.nih.gov/pubmed/24007368
+		http://www.ncbi.nlm.nih.gov/pubmed/23933900
+		http://www.ncbi.nlm.nih.gov/pubmed/23795312
+		http://www.ncbi.nlm.nih.gov/pubmed/23903675
+		http://www.ncbi.nlm.nih.gov/pubmed/24082505
+		http://www.ncbi.nlm.nih.gov/pubmed/24111553
+		http://www.ncbi.nlm.nih.gov/pubmed/23925669
+		http://www.ncbi.nlm.nih.gov/pubmed/24072635
+		http://www.ncbi.nlm.nih.gov/pubmed/23820967
+		http://www.ncbi.nlm.nih.gov/pubmed/23881883
+		http://www.ncbi.nlm.nih.gov/pubmed/23809983
+		http://www.ncbi.nlm.nih.gov/pubmed/23846454
+		http://www.ncbi.nlm.nih.gov/pubmed/24063131
+		http://www.ncbi.nlm.nih.gov/pubmed/23916320
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/9562190
+		http://www.ncbi.nlm.nih.gov/pubmed/21044832
+		http://www.ncbi.nlm.nih.gov/pubmed/11130352
+		http://www.ncbi.nlm.nih.gov/pubmed/8907145
+		http://www.ncbi.nlm.nih.gov/pubmed/17849242
+		http://www.ncbi.nlm.nih.gov/pubmed/1470965
+		http://www.ncbi.nlm.nih.gov/pubmed/11015242
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Its clinical course is wide-ranged from very mild to fatal.[11]
+This syndrome has three main clinical features: (a) neuromuscular hyperactivity, such as tremor, myoclonus, and hyperreflexia; (b) autonomic hyperactivity including diaphoresis, fever, and tachycardia; (c) altered mental status that could present with agitation and confusion.[11112] Activation of the central 5-hydroxytryptamine1A receptors (5-HT1A) in the nervous system can explain the clinical features of SS.[111314]
+Management of SS is mainly supportive.
+	False Neg:
+		Training clinicians how to manage an opioid overdose and administer naloxone was effective.
+		Opioid overdose has a high mortality, but is often reversible with appropriate overdose management and naloxone (opioid antagonist). 
+		Patients with presumed opioid overdose can be safely discharged one hour after naloxone administration
+		Experts have suggested that, as part of a comprehensive overdose prevention strategy, naloxone should be provided to heroin users for peer administration after an overdose. 
+		Patients who received naloxone for known or presumed opioid overdose were formally evaluated one hour later for multiple potential predictor variables. 
+		Subjects received either naloxone 0.4 mg i.v. (n = 74) or naloxone 0.8 mg s.q. (n = 122), for respiratory depression of <10 breaths/min. 
+		For patients who have ingested dextromethorphan and are sedated or comatose, naloxone, in the usual doses for treatment of opioid overdose, can be considered for prehospital administration, particularly if the patient has respiratory depression
+		 The proportion of clinicians willing to use naloxone in an opioid overdose rose from 77% to 99% after training. Barriers to implementing training were clinician time and confidence, service resources, client willingness and naloxone formulation.
+		To determine whether naloxone administered i.v. to out-of-hospital patients with suspected opioid overdose would have a more rapid therapeutic onset than naloxone given subcutaneously (s.q.).
+		Management of opioid overdose, whether illicit or iatrogenic, requires the prompt and skillful use of opioid overdose, whether illicit or iatrogenic, requires the prompt and skillful use of opioid antagonists. 
+		Opioid overdose is rarely the primary cause of altered mental status in cancer patients receiving opioid therapy. The inappropriate administration of naloxone to reverse an abnormal mental status can cause severe withdrawal symptoms and pain. 
+		Naloxone hydrochloride, an injectable opioid antagonist which reverses the respiratory depression, sedation and hypotension associated with opioids, has long been used to treat opioid overdose. 
+		There was no clinical difference in the time interval to respiratory rate > or =10 breaths/min between naloxone 0.8 mg s.q. and naloxone 0.4 mg i.v. for the out-of-hospital management of patients with suspected opioid overdose. 
+		To illustrate this problem, we report the case of a patient inappropriately treated with naloxone and the results of a retrospective review of the medical records of 15 consecutive patients with cancer treated with naloxone in the emergency department over a 5-month period. 
+===================================================================
+Question: Does the Oncotype DX test work with paraffin embedded tissues?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014024
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010232
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008899
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013737
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010577
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014937
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016612
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/21370017
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/23074401
+		http://www.ncbi.nlm.nih.gov/pubmed/17463177
+		http://www.ncbi.nlm.nih.gov/pubmed/17140367
+		http://www.ncbi.nlm.nih.gov/pubmed/16361546
+		http://www.ncbi.nlm.nih.gov/pubmed/17039265
+		http://www.ncbi.nlm.nih.gov/pubmed/18922117
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@fc8c38b8
+		json.gson.Triple@59278bf2
+		json.gson.Triple@f6556e03
+		json.gson.Triple@bb0ea36
+		json.gson.Triple@d59fede2
+Snippets:
+===================================================================
+Question: Is depression associated with poor prognosis of brain tumor patients?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003863
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011379
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001932
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010361
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D002551
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020295
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016019
+		http://www.disease-ontology.org/api/metadata/DOID:1319
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017063
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/23444258
+		http://www.ncbi.nlm.nih.gov/pubmed/22910186
+		http://www.ncbi.nlm.nih.gov/pubmed/23925452
+		http://www.ncbi.nlm.nih.gov/pubmed/23502428
+		http://www.ncbi.nlm.nih.gov/pubmed/22872746
+		http://www.ncbi.nlm.nih.gov/pubmed/23646258
+		http://www.ncbi.nlm.nih.gov/pubmed/22372414
+		http://www.ncbi.nlm.nih.gov/pubmed/24236354
+		http://www.ncbi.nlm.nih.gov/pubmed/22854592
+		http://www.ncbi.nlm.nih.gov/pubmed/23735702
+		http://www.ncbi.nlm.nih.gov/pubmed/22337462
+		http://www.ncbi.nlm.nih.gov/pubmed/23229997
+		http://www.ncbi.nlm.nih.gov/pubmed/22990943
+		http://www.ncbi.nlm.nih.gov/pubmed/22911682
+		http://www.ncbi.nlm.nih.gov/pubmed/23904143
+		http://www.ncbi.nlm.nih.gov/pubmed/22884416
+		http://www.ncbi.nlm.nih.gov/pubmed/23193977
+		http://www.ncbi.nlm.nih.gov/pubmed/23694758
+		http://www.ncbi.nlm.nih.gov/pubmed/23624296
+		http://www.ncbi.nlm.nih.gov/pubmed/24152975
+		http://www.ncbi.nlm.nih.gov/pubmed/23242968
+		http://www.ncbi.nlm.nih.gov/pubmed/23167103
+		http://www.ncbi.nlm.nih.gov/pubmed/23480214
+		http://www.ncbi.nlm.nih.gov/pubmed/23015331
+		http://www.ncbi.nlm.nih.gov/pubmed/22350433
+		http://www.ncbi.nlm.nih.gov/pubmed/23394028
+		http://www.ncbi.nlm.nih.gov/pubmed/23415700
+		http://www.ncbi.nlm.nih.gov/pubmed/24010529
+		http://www.ncbi.nlm.nih.gov/pubmed/23624716
+		http://www.ncbi.nlm.nih.gov/pubmed/23639781
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/16304988
+		http://www.ncbi.nlm.nih.gov/pubmed/16960653
+		http://www.ncbi.nlm.nih.gov/pubmed/15072475
+		http://www.ncbi.nlm.nih.gov/pubmed/15918939
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		But, patient outcome may be modified by other factors, such as emotional health and quality of life.
+	False Neg:
+		Before surgery 27 patients (35%) had BDI scores indicating the presence of depression. These scores were significantly higher in patients with a history of depression (p = 0.017) and in those with a lower functional outcome (p = 0.015). 
+		The results suggest that depression and decreased QOL among low-grade glioma patients is related to shorter survival at long-term follow-up. 
+		Major depressive disorder was marginally associated with outcomes, while surgical interventions and radiotherapy did not show strong associations with test performances. 
+		A lower functional status (KPS score < or = 70) in patients was significantly associated with high depression scores at the 3-month (p = 0.000) and 1-year (p = 0.005) assessments. 
+		 In the subgroup of patients with low-grade gliomas, depressive patients had a significantly shorter survival time compared with nondepressive subjects (P = 0.031, Kaplan-Meier survival analysis).
+		Preoperative depression seemed to be a significant prognostic factor for worse survival in low-grade glioma patients.
+		At all follow-ups, depressed low-grade glioma patients had a significantly shorter survival time, 3.3-5.8 years, compared to non-depressed low-grade glioma patients, 10.0-11.7 years. 
+		The adverse impact of depression in relation to survival among cancer patients is currently a subject of great interest in research. 
+===================================================================
+Question: What is known about the reimbursement of Viagra
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007349
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012052
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012051
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011445
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018588
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020444
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008329
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017281
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007348
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003365
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007357
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009313
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006278
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007356
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007345
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007342
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012943
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009310
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007341
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007350
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D059033
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D059034
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016527
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D019458
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D017048
+		http://www.biosemantics.org/jochem#4266960
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/10858175
+		http://www.ncbi.nlm.nih.gov/pubmed/21073206
+		http://www.ncbi.nlm.nih.gov/pubmed/14769012
+		http://www.ncbi.nlm.nih.gov/pubmed/12442853
+		http://www.ncbi.nlm.nih.gov/pubmed/14769010
+		http://www.ncbi.nlm.nih.gov/pubmed/10718038
+		http://www.ncbi.nlm.nih.gov/pubmed/12119585
+		http://www.ncbi.nlm.nih.gov/pubmed/19715380
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/16422968
+		http://www.ncbi.nlm.nih.gov/pubmed/12295743
+		http://www.ncbi.nlm.nih.gov/pubmed/9767783
+		http://www.ncbi.nlm.nih.gov/pubmed/16039351
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/10345973
+		http://www.ncbi.nlm.nih.gov/pubmed/23231890
+		http://www.ncbi.nlm.nih.gov/pubmed/16194131
+		http://www.ncbi.nlm.nih.gov/pubmed/20608882
+		http://www.ncbi.nlm.nih.gov/pubmed/22554140
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+===================================================================
+Question: Does HER2 under-expression lead to favorable response to trastuzumab?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018734
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015870
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007856
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007854
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007855
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020265
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020869
+		http://www.biosemantics.org/jochem#4002084
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005786
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0038128
+		http://www.disease-ontology.org/api/metadata/DOID:0060079
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0005176
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0010467
+		http://www.disease-ontology.org/api/metadata/DOID:0060080
+Documents:
+	True Pos:
+	False Pos:
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/23082154
+		http://www.ncbi.nlm.nih.gov/pubmed/12503030
+		http://www.ncbi.nlm.nih.gov/pubmed/18534031
+		http://www.ncbi.nlm.nih.gov/pubmed/20392785
+		http://www.ncbi.nlm.nih.gov/pubmed/19624808
+		http://www.ncbi.nlm.nih.gov/pubmed/19435924
+		http://www.ncbi.nlm.nih.gov/pubmed/22658319
+		http://www.ncbi.nlm.nih.gov/pubmed/21709140
+		http://www.ncbi.nlm.nih.gov/pubmed/22711713
+		http://www.ncbi.nlm.nih.gov/pubmed/22580986
+		http://www.ncbi.nlm.nih.gov/pubmed/19920112
+		http://www.ncbi.nlm.nih.gov/pubmed/19606230
+		http://www.ncbi.nlm.nih.gov/pubmed/11148461
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@102210d3
+		json.gson.Triple@ce65dd37
+		json.gson.Triple@aa1152f3
+		json.gson.Triple@6124db2c
+		json.gson.Triple@8d55c7af
+		json.gson.Triple@b79dd9e3
+Snippets:
+===================================================================
+Question: Can Alzheimer's disease related miRNAs be detected in patients' blood?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D035683
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D023582
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000544
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010361
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006402
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001769
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001773
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016229
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001798
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=diseases_category
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/23528227
+		http://www.ncbi.nlm.nih.gov/pubmed/21709374
+		http://www.ncbi.nlm.nih.gov/pubmed/21548758
+		http://www.ncbi.nlm.nih.gov/pubmed/23435408
+		http://www.ncbi.nlm.nih.gov/pubmed/22155483
+		http://www.ncbi.nlm.nih.gov/pubmed/19936094
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24139697
+		http://www.ncbi.nlm.nih.gov/pubmed/23790110
+		http://www.ncbi.nlm.nih.gov/pubmed/23895045
+		http://www.ncbi.nlm.nih.gov/pubmed/23962497
+		http://www.ncbi.nlm.nih.gov/pubmed/24157723
+		http://www.ncbi.nlm.nih.gov/pubmed/19923886
+		http://www.ncbi.nlm.nih.gov/pubmed/19625741
+		http://www.ncbi.nlm.nih.gov/pubmed/23922807
+		http://www.ncbi.nlm.nih.gov/pubmed/24064186
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/23054683
+		http://www.ncbi.nlm.nih.gov/pubmed/23030236
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@ba678cff
+		json.gson.Triple@215da146
+		json.gson.Triple@b8b510a9
+		json.gson.Triple@e8250688
+Snippets:
+	True Pos:
+		Test: To test this hypothesis in the latter, we screened 462 human miRNA (from let-7 family to miR-663) in BMC derived from well-characterized cases of mild sporadic AD and age-matched normal elderly control subjects and, based on predicted miRNA targets, ascertained whether the accruing data may account for the patterns of mRNA downregulation in Alzheimer BMC previously reported by our laboratories (Maes et al. 2006).
+		Gold: we screened 462 human miRNA (from let-7 family to miR-663) in BMC derived from well-characterized cases of mild sporadic AD and age-matched normal elderly control subjects and, based on predicted miRNA targets, ascertained whether the accruing data may account for the patterns of mRNA downregulation in Alzheimer BMC previously reported by our laboratories (Maes et al. 2006).
+-
+	False Pos:
+	False Neg:
+		 We previously studied microRNAs (miRNAs) in AD autopsy brain samples and reported a connection between miR-137, -181c, -9, -29a/b and AD, through the regulation of ceramides. In this study, the potential role of these miRNAs as diagnostic markers for AD was investigated. We identified that these miRNAs were down-regulated in the blood serum of probable AD patients. 
+		We found that human BMC expressed a broad range of miRNAs, representing 20% of the 462 miRNA spotted on nitrocellulose membranes in the array format (Supplemental Table 2).
+		Significantly decreased relative expression levels of hsa-miR-29b, but not of hsa-miR-375, were observed in AD patients
+		miRNAs are aberrantly expressed in AD, and these have been implicated in the regulation of amyloid-β (Aβ) peptide, tau, inflammation, cell death, and other aspects which are the main pathomechanisms of AD. In addition, regulation of miRNAs varies in blood, and cerebral spinal fluid may indicate alterations in AD.
+		.Gene expression studies in AD have shown substantial downregulation of various mRNA species in brain (Pasinetti, 2001), peripheral blood mononuclear cells (BMC) (Maes et al. 2006) and lymphocytes (Scherzer et al. 2004) relative to non-demented control values. 
+		Sp1 and its regulatory hsa-miR-29b are deregulated in AD patients, possibly leading to aberrant production of downstream target genes involved in the pathogenesis. 
+		287 with Alzheimer disease (AD) as compared with 344 age- and gender-matched controls. In addition, we evaluated expression levels of hnRNP-A1 and its regulatory microRNA (miR)-590-3p in blood cells from patients and controls.
+		We previously observed that miR-137, -181c, -9, and 29a/b post-transcriptionally regulate SPT levels, and the corresponding miRNA levels in the blood sera are potential diagnostic biomarkers for AD. Here, we observe a negative correlation between cortical Aβ42 and sera Aβ42, and a positive correlation between cortical miRNA levels and sera miRNA levels suggesting their potential as noninvasive diagnostic biomarkers.
+		.We observed slightly different levels of miRNA expression between male and female BMC as illustrated by the heat map generated by GSEA 
+		miRNA microarray analysis was carried out on blood of rats at 1 week and 2 months after injection. RESULTS: Many up- and downregulated miRNAs were detected.
+		Blood miRNAs could be useful as biomarkers for exposure to nanoparticles. miR-298 regulates β-amyloid (Aβ) precursor protein-converting enzyme-1 (BACE1) in Alzheimer's disease.
+		Decreased relative expression levels of hsa-miR-590-3p was observed in patients with AD versus controls (0.685 ± 0.080 versus 0.931 ± 0.111, p = 0.079), and correlated negatively with hnRNP-A1 mRNA levels (r = -0.615, p = 0.0237).
+		expression analysis of Sp1 and its regulatory microRNAs (hsa-miR-29b and hsa-miR-375) has been performed in peripheral blood mononuclear cells (PBMCs), together with Sp1 protein analysis.
+===================================================================
+Question: Which antiepileptic drug is most strongly associated with spina bifida?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016135
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016136
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016137
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011955
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004364
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D053210
+	False Neg:
+		http://www.disease-ontology.org/api/metadata/DOID:0080016
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D000927
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/23082254
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24204996
+		http://www.ncbi.nlm.nih.gov/pubmed/22807044
+		http://www.ncbi.nlm.nih.gov/pubmed/23332206
+		http://www.ncbi.nlm.nih.gov/pubmed/23832732
+		http://www.ncbi.nlm.nih.gov/pubmed/23318894
+		http://www.ncbi.nlm.nih.gov/pubmed/23965744
+		http://www.ncbi.nlm.nih.gov/pubmed/23294087
+		http://www.ncbi.nlm.nih.gov/pubmed/23461556
+		http://www.ncbi.nlm.nih.gov/pubmed/24171700
+		http://www.ncbi.nlm.nih.gov/pubmed/23812154
+		http://www.ncbi.nlm.nih.gov/pubmed/24117964
+		http://www.ncbi.nlm.nih.gov/pubmed/23792150
+		http://www.ncbi.nlm.nih.gov/pubmed/24210202
+		http://www.ncbi.nlm.nih.gov/pubmed/23945721
+		http://www.ncbi.nlm.nih.gov/pubmed/22695976
+		http://www.ncbi.nlm.nih.gov/pubmed/22619476
+		http://www.ncbi.nlm.nih.gov/pubmed/23911754
+		http://www.ncbi.nlm.nih.gov/pubmed/23935126
+		http://www.ncbi.nlm.nih.gov/pubmed/23519371
+		http://www.ncbi.nlm.nih.gov/pubmed/23936434
+		http://www.ncbi.nlm.nih.gov/pubmed/23667832
+		http://www.ncbi.nlm.nih.gov/pubmed/22681773
+		http://www.ncbi.nlm.nih.gov/pubmed/24224030
+		http://www.ncbi.nlm.nih.gov/pubmed/23911758
+		http://www.ncbi.nlm.nih.gov/pubmed/23370689
+		http://www.ncbi.nlm.nih.gov/pubmed/23428651
+		http://www.ncbi.nlm.nih.gov/pubmed/22847955
+		http://www.ncbi.nlm.nih.gov/pubmed/23861590
+		http://www.ncbi.nlm.nih.gov/pubmed/23771435
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/17075842
+		http://www.ncbi.nlm.nih.gov/pubmed/21766433
+		http://www.ncbi.nlm.nih.gov/pubmed/3939491
+		http://www.ncbi.nlm.nih.gov/pubmed/22051200
+		http://www.ncbi.nlm.nih.gov/pubmed/19490036
+		http://www.ncbi.nlm.nih.gov/pubmed/10339792
+		http://www.ncbi.nlm.nih.gov/pubmed/8075508
+		http://www.ncbi.nlm.nih.gov/pubmed/2707392
+		http://www.ncbi.nlm.nih.gov/pubmed/11077457
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		It is important to recognize risk factors and potential complications before anesthetizing these patients.
+	False Neg:
+		Valproic acid, a drug commonly used to treat seizures and other psychiatric disorders, causes neural tube defects (NTDs) in exposed fetuses at a rate 20 times higher than in the general population. Failure of the neural tube to close during development results in exencephaly or anencephaly, as well as spina bifida.
+		Fetal exposure to valproic acid or carbamazepine increases the risk of neural tube defect (NTD)
+		A significant association was seen between maternal use of valproic acid and spina bifida, and a weaker, non-significant one between carbamazepine and spina bifida.
+		A statistically significant association between Spina Bifida and Valproic Acid (odds ratio 22.7; Fisher p value = 0.0364) was observed: no other anticonvulsant tested showed any association with any type of malformation.
+		DiscussionFetal hydantoin syndrome is a fetopathy likely to occur when a pregnant patient takes phenytoin for epileptic seizures. Phenytoin is a known teratogen and the FDA has labeled phenytoin as a category D medication because of its potential to cause significant, unreasonable harm to a fetus. Approximately, 2% of women giving birth are epileptic and phenytoin is prescribed in 5%−20% of patients. The risk that an infant exposed to hydantoin in utero will have the clinical phenotype of the full-blown fetal hydantoin syndrome is approximately 5%–10%, whereas the risk of an infant's expressing some effects of the syndrome is 33% [3, 4]. Phenytoin interferes with the body's ability to absorb folic acid.
+		The association among maternal epilepsy, anticonvulsant drugs, and an increased incidence of congenital abnormalities has been suspected for at least 25 years. Although, most anticonvulsant medications have been implicated as potential teratogens, phenytoin, valproic acid, carbamazepine, or a combination therapy with these compounds is involved most commonly 
+		The teratogenicity of antiepilepsy drug valproic acid (VPA) mostly is found in genetic and somatic levels, causing teratogenesis involving neurotubular defects (NTDs), anencephaly, lumbosacral meningomyelocele, and leg dysfunction due to spina bifida aperta.
+		Associations were found for spina bifida with valproic acid. 
+		Women with epilepsy giving birth during 1973 to 1991 were identified by record linkage of Swedish health registries. Among 3,625 identified infants, 9 had spina bifida. A nested case-control study was performed, comparing drugs used in early pregnancy in the 9 cases and in 18 controls, matched for year of delivery, maternal age, and parity. Six of the spina bifida mothers had used carbamazepine and two had used valproic acid. Among the controls, 5 women used carbamazepine and one valproic acid. There is an apparent excess risk for spina bifida after use of either of these two drugs, but it is not statistically significant when the analysis is restricted to drug-using women. T
+		The summary odds ratio estimate for the association between valproic acid and spina bifida was 11.9 (95% uncertainty interval (UI): 4.0-21.2); for valproic acid and cleft palate 5.8 (95% UI: 3.3-9.5); for carbamazepine and spina bifida 3.6 (95% UI: 1.3-7.8); and for carbamazepine and cleft palate 2.4 (95% UI: 1.1-4.5) in the United States.
+		Increased risk for MCMs could be demonstrated only for exposure to valproate (5.6%, p = 0.005) and AED polytherapy (6.1%, p = 0.02). Neonatal spina bifida was not significantly increased, but was a major indication for elective pregnancy termination among women with epilepsy. 
+===================================================================
+Question: Where in the cell do we find the protein Cep135?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D002477
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D053301
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018797
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013205
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008565
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011506
+	False Neg:
+		http://www.uniprot.org/uniprot/CP135_HUMAN
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/16240430
+		http://www.ncbi.nlm.nih.gov/pubmed/14983524
+		http://www.ncbi.nlm.nih.gov/pubmed/22261722
+		http://www.ncbi.nlm.nih.gov/pubmed/10842375
+		http://www.ncbi.nlm.nih.gov/pubmed/18851962
+		http://www.ncbi.nlm.nih.gov/pubmed/23115304
+		http://www.ncbi.nlm.nih.gov/pubmed/21766470
+		http://www.ncbi.nlm.nih.gov/pubmed/17681131
+		http://www.ncbi.nlm.nih.gov/pubmed/19293139
+		http://www.ncbi.nlm.nih.gov/pubmed/22521416
+		http://www.ncbi.nlm.nih.gov/pubmed/19454482
+		http://www.ncbi.nlm.nih.gov/pubmed/20392737
+		http://www.ncbi.nlm.nih.gov/pubmed/19321663
+		http://www.ncbi.nlm.nih.gov/pubmed/23213374
+		http://www.ncbi.nlm.nih.gov/pubmed/22976301
+		http://www.ncbi.nlm.nih.gov/pubmed/11781336
+		http://www.ncbi.nlm.nih.gov/pubmed/22898782
+		http://www.ncbi.nlm.nih.gov/pubmed/23456457
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22349705
+		http://www.ncbi.nlm.nih.gov/pubmed/23810536
+		http://www.ncbi.nlm.nih.gov/pubmed/23864714
+		http://www.ncbi.nlm.nih.gov/pubmed/20516151
+		http://www.ncbi.nlm.nih.gov/pubmed/23511974
+	False Neg:
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		In addition, the centrosome is known to act as a cell center, attracting a number of other noncentrosomal molecules into and around it.
+	False Neg:
+		Characterization of Cep135, a novel coiled-coil centrosomal protein involved in microtubule organization in mammalian cells.
+		It is thus suggested that Cep135 may play an important role in organizing the functional centrosome.
+		. Centrosome components, including γ-tubulin and Cep135, 
+		CEP family protein is the active component of centrosome 
+		Cep135 is a 135-kDa, coiled-coil centrosome protein important for microtubule organization in mammalian cells 
+		 Drosophila Bld10, the ortholog of Chlamydomonas reinhardtii Bld10p and human Cep135, is a ubiquitous centriolar protein that also localizes to the spermatid basal body. M
+		hereas Cep135 and CPAP formed a core structure within the proximal lumen of both parental and nascent centrioles
+		135&nbsp;kDa centrosomal protein (CEP135)
+		BLD10/CEP135 is a microtubule-associated protein that controls the formation of the flagellum central microtubule pair.
+		Thus, in flies, Cep135/Bld10 is not essential for cartwheel assembly or for establishing the ninefold symmetry of centrioles; rather, it appears to stabilize the connection between inner and outer centriole components.
+		suggesting that Cep135 is a structural component of the centrosome.
+		pericentriolar material proteins including pericentrin and CEP135.
+		We found an evolutionarily cohesive and ancestral module, which we term UNIMOD and is defined by three components (SAS6, SAS4/CPAP and BLD10/CEP135), that correlates with the occurrence of CBBs.
+		 Cep135 was associated mostly with mother centrioles
+		In the present study, we investigated a novel interaction between CEP135 and C-NAP1, two core centriolar proteins.
+		Cep135/Bld10 is a conserved centriolar protein required for the formation of the central cartwheel, an early intermediate in centriole assembly.
+		 Cep135 is present in a wide range of organisms, indicating that it is a universal component of the centrosome.
+===================================================================
+Question: In which isochores are Alu elements enriched?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020087
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D032085
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020218
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004602
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D035701
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004251
+	False Neg:
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/22057813
+		http://www.ncbi.nlm.nih.gov/pubmed/9931467
+		http://www.ncbi.nlm.nih.gov/pubmed/11591470
+		http://www.ncbi.nlm.nih.gov/pubmed/15871047
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/8276253
+		http://www.ncbi.nlm.nih.gov/pubmed/12654999
+		http://www.ncbi.nlm.nih.gov/pubmed/12468093
+		http://www.ncbi.nlm.nih.gov/pubmed/16551647
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/19543403
+		http://www.ncbi.nlm.nih.gov/pubmed/6572942
+		http://www.ncbi.nlm.nih.gov/pubmed/7723057
+		http://www.ncbi.nlm.nih.gov/pubmed/8828040
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+===================================================================
+Question: Which forms of cancer is the Tpl2 gene associated with?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D052138
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005796
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016147
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D020478
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009369
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D016341
+	False Neg:
+		http://www.uniprot.org/uniprot/M3K8_RAT
+		http://www.disease-ontology.org/api/metadata/DOID:162
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/21267413
+	False Pos:
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/23457529
+		http://www.ncbi.nlm.nih.gov/pubmed/23064365
+		http://www.ncbi.nlm.nih.gov/pubmed/20935675
+		http://www.ncbi.nlm.nih.gov/pubmed/15575964
+		http://www.ncbi.nlm.nih.gov/pubmed/22451924
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@c8d943e3
+Snippets:
+	True Pos:
+	False Pos:
+		In the presence of androgen, the androgen receptor (AR) undergoes phosphorylation, dimerization, and translocation into the nucleus, wherein it binds to androgen response elements (ARE) sites, resulting in the transcriptional activation of target genes [8].
+	False Neg:
+		These findings establish a mesenchyme-specific role for Tpl2 in the regulation of HGF production and suppression of epithelial tumorigenesis.
+		Alternative activation of the MEK/ERK pathway and NF-κB by TPL2 contribute to ADI prostate cancer cell growth
+		Tpl2 regulates intestinal myofibroblast HGF release to suppress colitis-associated tumorigenesis
+		TPL2/COT/MAP3K8 (TPL2) activation promotes androgen depletion-independent (ADI) prostate cancer growth
+		the suppression of TPL2 diminishes ADI prostate cancer growth and a high frequency of TPL2 overexpression in human ADI prostate cancer samples validates TPL2 as a target for the treatment of this deadly disease
+		ll the Tpl2/Cot overexpressing patients had LGL-PD, three with the phenotype of CD3+ T-LGL leukemia and one with the CD3- pattern of chronic NK-lymphocytosis. Three of these patients displayed neutropenia not attributable to BM infiltration, one in association with sarcoidosis
+		 Previously identified as an oncogene, its mutation or overexpression is reported in a variety of human cancers
+		Studies in human tumor specimens have shown that Tpl2/Cot is overexpressed in early stage breast cancer
+		Tpl2 ablation promotes intestinal inflammation and tumorigenesis
+		Loss of tumor progression locus 2 (tpl2) enhances tumorigenesis and inflammation in two-stage skin carcinogenesis
+		Expression of the Tpl2/Cot oncogene in human T-cell neoplasias
+		These experiments illustrate COX-2 induction in the absence of Tpl2 may be responsible for the increased tumorigenesis found in mice
+		These studies indicate that Tpl2 may serve more as a tumor suppressor than as an oncogene in chemically induced skin carcinogenesis, with its absence contributing to both tumorigenesis and inflammation
+		increased skin tumorigenesis in tpl2 knockout mice
+		in EBV-related Hodgkin lymphomas and nasopharyngeal carcinomas [10] and occasionally in gastric and colon adenocarcinomas
+===================================================================
+Question: What is the INSURE procedure in premature babies.
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008722
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014094
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015370
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007356
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007343
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007341
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D047928
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007234
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/20616570
+		http://www.ncbi.nlm.nih.gov/pubmed/20545934
+		http://www.ncbi.nlm.nih.gov/pubmed/21506654
+		http://www.ncbi.nlm.nih.gov/pubmed/19679893
+		http://www.ncbi.nlm.nih.gov/pubmed/20642659
+		http://www.ncbi.nlm.nih.gov/pubmed/23336160
+		http://www.ncbi.nlm.nih.gov/pubmed/23359581
+		http://www.ncbi.nlm.nih.gov/pubmed/20180736
+		http://www.ncbi.nlm.nih.gov/pubmed/22266202
+		http://www.ncbi.nlm.nih.gov/pubmed/22430447
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/20187949
+		http://www.ncbi.nlm.nih.gov/pubmed/22954263
+		http://www.ncbi.nlm.nih.gov/pubmed/19062242
+		http://www.ncbi.nlm.nih.gov/pubmed/22668345
+		http://www.ncbi.nlm.nih.gov/pubmed/22402568
+		http://www.ncbi.nlm.nih.gov/pubmed/21089712
+		http://www.ncbi.nlm.nih.gov/pubmed/20927494
+		http://www.ncbi.nlm.nih.gov/pubmed/23235135
+		http://www.ncbi.nlm.nih.gov/pubmed/23775205
+		http://www.ncbi.nlm.nih.gov/pubmed/21466463
+		http://www.ncbi.nlm.nih.gov/pubmed/23911063
+		http://www.ncbi.nlm.nih.gov/pubmed/23343507
+		http://www.ncbi.nlm.nih.gov/pubmed/20727214
+		http://www.ncbi.nlm.nih.gov/pubmed/23612264
+		http://www.ncbi.nlm.nih.gov/pubmed/23311234
+		http://www.ncbi.nlm.nih.gov/pubmed/19786332
+		http://www.ncbi.nlm.nih.gov/pubmed/19485954
+		http://www.ncbi.nlm.nih.gov/pubmed/23808250
+		http://www.ncbi.nlm.nih.gov/pubmed/24075206
+		http://www.ncbi.nlm.nih.gov/pubmed/21815280
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/17476269
+		http://www.ncbi.nlm.nih.gov/pubmed/10218338
+		http://www.ncbi.nlm.nih.gov/pubmed/557175
+		http://www.ncbi.nlm.nih.gov/pubmed/18841536
+		http://www.ncbi.nlm.nih.gov/pubmed/23320153
+		http://www.ncbi.nlm.nih.gov/pubmed/17069738
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Documenting community level understandings and interpretations of ALu's efficacy and side effects is important for several reasons.
+	False Neg:
+		In preterm infants with respiratory distress syndrome (RDS) nasal continuous positive airway pressure (nCPAP) with the "InSurE" procedure (intubation, surfactant, extubation) is increasingly used. 
+		INSURE (Intubation-SURfactant-Extubation) approach--i.e., surfactant therapy during brief intubation, immediately followed by extubation and continuous positive airway pressure (CPAP) treatment
+		 intubation-surfactant-extubation (INSURE) method in the treatment of neonatal respiratory distress syndrome (NRDS)
+		intubation, surfactant, and extubation (InSurE)
+		INSURE (intubatio-surfactant-extubation) method 
+		INSURE method can improve the oxygenation function of the lung, decrease the incidence of VAP and shorten the duration of oxygen therapy in neonates with NRDS
+		INtubation-SURfactant-Extubation (INSURE) treatment
+		(INSURE method: INtubation-SURfactant-Extubation) during treatment with nasal Continuous Positive Airway Pressure (CPAP).
+		Surfactant given during brief intubation followed by immediate extubation on nasal continuous positive airway pressure [Intubation-Surfactant-Extubation (InSurE) approach] is used to treat respiratory distress syndrome in newborns.
+		intubation-surfactant-extubation (INSURE) procedures
+		 Intubation-SURfactant-Extubation (INSURE)
+		Nasal continuous positive airway pressure (NCPAP) plus intubation, surfactant, and extubation (InSurE) with the option of back-up ventilation for those infants for whom noninvasive ventilatory support failed resulted in a significant increase in survival in extremely low birth weight (ELBW) infants.
+		INSURE method ( INtubation- SURfactant- Extubation) during nasal continuous positive airway pressure for preterm infants with respiratory distress syndrome
+		InSurE (Intubate, Surfactant, Extubate) procedure.
+		The INSURE method, which consists of an intubation-surfactant-extubation sequence, is effective in reducing the need for mechanical ventilation (MV), the duration of respiratory support, and the need for surfactant replacement in preterm infants with respiratory distress syndrome
+		 INSURE (Intubation SURfactant Extubation) procedure in preterm neonates.
+		a method for surfactant administration by transient intubation, INSURE (i.e. INtubation SURfactant Extubation) during nasal continuous positive airway pressure (nCPAP) for moderately preterm infants with respiratory distress syndrome (RDS)
+===================================================================
+Question: Which species may be used for the biotechnological production of itaconic acid?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D056727
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004526
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013045
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D004467
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D058865
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D053476
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005656
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0047613
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001426
+		http://www.biosemantics.org/jochem#4276340
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0047370
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24326071
+		http://www.ncbi.nlm.nih.gov/pubmed/24304666
+		http://www.ncbi.nlm.nih.gov/pubmed/24319442
+		http://www.ncbi.nlm.nih.gov/pubmed/24312480
+		http://www.ncbi.nlm.nih.gov/pubmed/24320749
+		http://www.ncbi.nlm.nih.gov/pubmed/24320797
+		http://www.ncbi.nlm.nih.gov/pubmed/24326517
+		http://www.ncbi.nlm.nih.gov/pubmed/24326911
+		http://www.ncbi.nlm.nih.gov/pubmed/24315322
+		http://www.ncbi.nlm.nih.gov/pubmed/24325249
+		http://www.ncbi.nlm.nih.gov/pubmed/24324255
+		http://www.ncbi.nlm.nih.gov/pubmed/24327423
+		http://www.ncbi.nlm.nih.gov/pubmed/24307669
+		http://www.ncbi.nlm.nih.gov/pubmed/24312697
+		http://www.ncbi.nlm.nih.gov/pubmed/24314897
+		http://www.ncbi.nlm.nih.gov/pubmed/24312553
+		http://www.ncbi.nlm.nih.gov/pubmed/24314036
+		http://www.ncbi.nlm.nih.gov/pubmed/24304812
+		http://www.ncbi.nlm.nih.gov/pubmed/24302859
+		http://www.ncbi.nlm.nih.gov/pubmed/24320720
+		http://www.ncbi.nlm.nih.gov/pubmed/24316243
+		http://www.ncbi.nlm.nih.gov/pubmed/24319356
+		http://www.ncbi.nlm.nih.gov/pubmed/24325217
+		http://www.ncbi.nlm.nih.gov/pubmed/24318105
+		http://www.ncbi.nlm.nih.gov/pubmed/24323733
+		http://www.ncbi.nlm.nih.gov/pubmed/24324045
+		http://www.ncbi.nlm.nih.gov/pubmed/24323135
+		http://www.ncbi.nlm.nih.gov/pubmed/24321693
+		http://www.ncbi.nlm.nih.gov/pubmed/24308551
+		http://www.ncbi.nlm.nih.gov/pubmed/24325097
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/23420787
+		http://www.ncbi.nlm.nih.gov/pubmed/20461508
+		http://www.ncbi.nlm.nih.gov/pubmed/17697977
+		http://www.ncbi.nlm.nih.gov/pubmed/1366363
+		http://www.ncbi.nlm.nih.gov/pubmed/22480369
+		http://www.ncbi.nlm.nih.gov/pubmed/23298766
+		http://www.ncbi.nlm.nih.gov/pubmed/22752264
+		http://www.ncbi.nlm.nih.gov/pubmed/22925689
+		http://www.ncbi.nlm.nih.gov/pubmed/21324422
+		http://www.ncbi.nlm.nih.gov/pubmed/12146646
+		http://www.ncbi.nlm.nih.gov/pubmed/22956279
+		http://www.ncbi.nlm.nih.gov/pubmed/17451943
+		http://www.ncbi.nlm.nih.gov/pubmed/23397482
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		1.
+	False Neg:
+		 Previously, it was shown that expression of the cis-aconitate decarboxylase gene (cadA) from Aspergillus terreus converted A. niger into an itaconic acid producer 
+		In 1955, the production of itaconic acid was firstly described for U. maydis
+		Currently, itaconic acid is produced commercially by Aspergillus terreus
+		In this current study, itaconic acid fermentation was carried out with the mould fungus Ustilago maydis (U. maydis)
+		Fermentation products of Aspergillus terreus ATCC 20542 (a parent strain for lovastatin production) were collected, and the coexistence of itaconic acid (IA) with lovastatin was confirmed in this study
+		itaconic acid is mainly supplied by biotechnological processes with the fungus Aspergillus terreus
+		Based on its high citric acid producing capability and broad applicability in industry, Aspergillus niger (A. niger) was selected as a novel itaconic acid production host strain in recent work
+		production of itaconic acid and lovastatin by Aspergillus terreus ATCC 20542
+		Enhancing itaconic acid production by Aspergillus terreus
+		Therefore, over-expression of gpdA in A. niger CAD strains might increase itaconic acid producing level via enhanced glycolytic flux.
+		 a systematic process optimization was performed with an own isolated strain of Aspergillus terreus
+		Itaconic acid production using sago starch hydrolysate by Aspergillus terreus TN484-M1.
+		current biotechnological production processes with the fungus Aspergillus terreus has to be improved
+		A potent itaconic acid producing strain, Aspergillus terreus SKR10, was isolated from horticulture waste
+		Reduced by-product formation and modified oxygen availability improve itaconic acid production in Aspergillus niger
+		Enhanced itaconic acid production in Aspergillus niger
+		Some Aspergillus species, like A. itaconicus and A. terreus, show the ability to synthesize this organic acid and A. terreus can secrete significant amounts to the media
+		continuous itaconic acid production from sucrose with Aspergillus terreus
+		Two high itaconic acid yielding mutants, N45 and UNCS1 were obtained by gradient plating
+		Aspergillus terreus is successfully used for industrial production of itaconic acid
+		From a number of different Aspergillus terreus controlled batch fermentations, those cultures with the largest difference in itaconic acid titer and productivity were selected for mRNA isolation
+		Cells of Aspergillus terreus, free and immobilized in polyurethane foam, were employed in itaconic acid fermentation processes on glycerol-based media.
+		Cloning of the cadA gene into the citric acid producing fungus A. niger showed that it is possible to produce itaconic acid also in a different host organism.
+===================================================================
+Question: What is the role of TRH in hypertension?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006973
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013973
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D018025
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005783
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D024802
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D012380
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001795
+		http://www.biosemantics.org/jochem#4254151
+		http://www.disease-ontology.org/api/metadata/DOID:10763
+		http://www.uniprot.org/uniprot/TRFR_BOVIN
+		http://www.uniprot.org/uniprot/TRFR_SHEEP
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D001794
+		http://www.uniprot.org/uniprot/TRFR_MOUSE
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0008217
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D062186
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D007022
+		http://www.uniprot.org/uniprot/TRFR_CHICK
+Documents:
+	True Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/3035513
+		http://www.ncbi.nlm.nih.gov/pubmed/7498977
+		http://www.ncbi.nlm.nih.gov/pubmed/17227965
+		http://www.ncbi.nlm.nih.gov/pubmed/11566956
+		http://www.ncbi.nlm.nih.gov/pubmed/11230301
+		http://www.ncbi.nlm.nih.gov/pubmed/2854272
+		http://www.ncbi.nlm.nih.gov/pubmed/7554113
+		http://www.ncbi.nlm.nih.gov/pubmed/1595355
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/23931276
+		http://www.ncbi.nlm.nih.gov/pubmed/21900943
+		http://www.ncbi.nlm.nih.gov/pubmed/104513
+		http://www.ncbi.nlm.nih.gov/pubmed/24288596
+		http://www.ncbi.nlm.nih.gov/pubmed/15837533
+		http://www.ncbi.nlm.nih.gov/pubmed/24295737
+		http://www.ncbi.nlm.nih.gov/pubmed/2107018
+		http://www.ncbi.nlm.nih.gov/pubmed/1802392
+		http://www.ncbi.nlm.nih.gov/pubmed/17884458
+		http://www.ncbi.nlm.nih.gov/pubmed/1667428
+		http://www.ncbi.nlm.nih.gov/pubmed/8853637
+		http://www.ncbi.nlm.nih.gov/pubmed/2856652
+		http://www.ncbi.nlm.nih.gov/pubmed/3938843
+		http://www.ncbi.nlm.nih.gov/pubmed/21718733
+		http://www.ncbi.nlm.nih.gov/pubmed/1784404
+		http://www.ncbi.nlm.nih.gov/pubmed/1681822
+		http://www.ncbi.nlm.nih.gov/pubmed/8139877
+		http://www.ncbi.nlm.nih.gov/pubmed/21135357
+		http://www.ncbi.nlm.nih.gov/pubmed/12377295
+		http://www.ncbi.nlm.nih.gov/pubmed/20256
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/11882596
+		http://www.ncbi.nlm.nih.gov/pubmed/17137217
+		http://www.ncbi.nlm.nih.gov/pubmed/8039276
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Recently, multiple studies have reported that the prevalence of TRH is 10–20% among those with HTN.
+	False Neg:
+		Five polymorphisms in five genes, CAST(calpastatin), LIPC (hepatic lipase), SLC4A1 (band 3 anion transporter), TRH (thyrotropin-releasing hormone), and VWF (von Willebrand factor), were significantly associated with both blood pressure variation and hypertension.
+		he central TRH system seems to be involved in the etiopathogenesis of hypertension in this model of essential hypertension
+		his treatment also reduces the central TRH hyperactivity in spontaneously hypertensive rats and normalizes blood pressure.
+		the encephalic renin-angiotensin system seems to be crucial in the development and/or maintenance of hypertension in SHR, we investigated the effect of antisense inhibition of TRH on that system and found that TRH antisense treatment significantly diminished the elevated diencephalic angiotensin II (Ang II) content in the SHR without any effect in control animals, suggesting that the Ang II system is involved in the TRH cardiovascular effects.
+		ong-term treatment with enalapril (5 mg/kg twice daily), which was effective in inhibiting serum angiotensin-converting enzyme activity by more than 50%, decreased arterial blood pressure and preoptic area TRH content of SHR, whereas another vasodilator, diltiazem (10 mg/kg every 8 hours), failed to produce a similar change
+		Recently, we described that the TRH precursor gene overexpression induces hypertension in the normal rat. In addition, we published that spontaneously hypertensive rats (SHR) have central extrahypothalamic TRH hyperactivity with increased TRH synthesis and release and an elevated TRH receptor number.
+		We propose that because leptin produces central TRH synthesis and release, obesity may induce hypertension through TRH system activation and that the TRH-leptin interaction may thus contribute to the strong association between hypertension and obesity.
+		Our findings support the hypothesis that the TRHR gene participates in the etiopathogenesis of essential hypertension.
+		We recently showed that diencephalic TRH may mediate the central leptin-induced pressor effect
+		the pressor effect of intravenous TRH is mediated primarily by a stimulation of alpha-adrenergic receptors. Adrenal medullectomy appears to enhance the blood pressure response to intravenous TRH. Activation of cardiac beta-adrenoceptors seems to contribute to the blood pressure increasing effect of intravenous TRH in medullectomized animals.
+		We previously reported that thyrotropin-releasing hormone (TRH) precursor gene overexpression induces hypertension in the normal rat and that spontaneously hypertensive rats have central TRH hyperactivity with increased TRH synthesis and release and an elevated TRH receptor number.
+		These results provide evidence for a role of endogenous brain thyrotropin-releasing hormone in the maintenance of hypertension in spontaneously hypertensive rats.
+		in spontaneously hypertensive (SHR) rats the development of hypertension paralleled increases in brain receptors for thyrotropin-releasing hormone (TRH)
+		The results suggest that in addition to the brain, TRH receptors in the spinal cord of SHR rats are also up-regulated and may also play an important role in the regulation of blood pressure.
+		The results provide, for the first time, evidence for a parallel increase in the density of brain TRH receptors with elevation of blood pressure, and suggest that brain TRH receptors may play an important role in the pathophysiology of hypertension.
+		that central TRH participates in the hypertension induced by body weight gain probably through its well-known action on sympathetic activity.
+		We have described that TRH overexpression induces hypertension in a normal rat, which was reversed by TRH antisense treatment. 
+		Centrally administered thyrotropin-releasing hormone exerts a well documented hypertensive effect.
+===================================================================
+Question: Which histone marks are deposited by Set7?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006657
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006656
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D051548
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D057896
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011326
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D042421
+	False Neg:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011495
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0016571
+		http://www.uniprot.org/uniprot/SETD7_HALRO
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0016570
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0042393
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/20930066
+		http://www.ncbi.nlm.nih.gov/pubmed/23413810
+		http://www.ncbi.nlm.nih.gov/pubmed/22709867
+		http://www.ncbi.nlm.nih.gov/pubmed/19208907
+		http://www.ncbi.nlm.nih.gov/pubmed/19223465
+		http://www.ncbi.nlm.nih.gov/pubmed/23302691
+		http://www.ncbi.nlm.nih.gov/pubmed/24097032
+		http://www.ncbi.nlm.nih.gov/pubmed/23880568
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/12086618
+		http://www.ncbi.nlm.nih.gov/pubmed/21963854
+		http://www.ncbi.nlm.nih.gov/pubmed/12208845
+		http://www.ncbi.nlm.nih.gov/pubmed/15200950
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		These studies suggest that the injurious effects of exposure to high glucose levels persist for many years after these episodes of altered metabolic control and this is typically referred to as either “hyperglycemic memory” (3) or the legacy effect (4).
+	False Neg:
+		SET7 performs mono-methylation on lysine-4 of H3 to exert its coactivation function
+		Localization of PR-Set7 to mitotic chromosomes and subsequent increase in H4 Lys 20 methylation
+		the H4-K20 methyltransferase PR-Set7. Indeed, upregulation of PR-Set7 expression upon loss of HCF-1 leads to improper mitotic H4-K20 methylation
+		the loss of H4 lysine 20 methylation
+		a human histone H4 lysine 20 methyltransferase and cloned the encoding gene, PR/SET07
+		Transcriptionally competent regions lack H4 lysine 20 methylation
+===================================================================
+Question: Are there any desmins present in plants?
+Concepts:
+	True Pos:
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D059828
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D003893
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010940
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010942
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010944
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D010935
+	False Neg:
+		http://www.uniprot.org/uniprot/DESM_CHICK
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0045098
+Documents:
+	True Pos:
+	False Pos:
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/2659540
+		http://www.ncbi.nlm.nih.gov/pubmed/7460905
+		http://www.ncbi.nlm.nih.gov/pubmed/12529857
+		http://www.ncbi.nlm.nih.gov/pubmed/10929203
+		http://www.ncbi.nlm.nih.gov/pubmed/8752741
+		http://www.ncbi.nlm.nih.gov/pubmed/19026658
+		http://www.ncbi.nlm.nih.gov/pubmed/18033728
+		http://www.ncbi.nlm.nih.gov/pubmed/1694790
+		http://www.ncbi.nlm.nih.gov/pubmed/20171226
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+		json.gson.Triple@83e076ca
+Snippets:
+===================================================================
+Question: Is it possible to detect survivin protein expression in normal human adult tissues?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D014024
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D009419
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D005149
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015870
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D051383
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D013925
+	False Neg:
+		http://www.uniprot.org/uniprot/BIRC5_HUMAN
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0009888
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0048729
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24086736
+		http://www.ncbi.nlm.nih.gov/pubmed/24222663
+		http://www.ncbi.nlm.nih.gov/pubmed/23936028
+		http://www.ncbi.nlm.nih.gov/pubmed/23955284
+		http://www.ncbi.nlm.nih.gov/pubmed/24297644
+		http://www.ncbi.nlm.nih.gov/pubmed/24034496
+		http://www.ncbi.nlm.nih.gov/pubmed/24265231
+		http://www.ncbi.nlm.nih.gov/pubmed/24102070
+		http://www.ncbi.nlm.nih.gov/pubmed/24077125
+		http://www.ncbi.nlm.nih.gov/pubmed/24066112
+		http://www.ncbi.nlm.nih.gov/pubmed/24116074
+		http://www.ncbi.nlm.nih.gov/pubmed/24013520
+		http://www.ncbi.nlm.nih.gov/pubmed/24233024
+		http://www.ncbi.nlm.nih.gov/pubmed/24037538
+		http://www.ncbi.nlm.nih.gov/pubmed/24223763
+		http://www.ncbi.nlm.nih.gov/pubmed/24235270
+		http://www.ncbi.nlm.nih.gov/pubmed/24076388
+		http://www.ncbi.nlm.nih.gov/pubmed/24038122
+		http://www.ncbi.nlm.nih.gov/pubmed/24204042
+		http://www.ncbi.nlm.nih.gov/pubmed/23945651
+		http://www.ncbi.nlm.nih.gov/pubmed/24325949
+		http://www.ncbi.nlm.nih.gov/pubmed/24098377
+		http://www.ncbi.nlm.nih.gov/pubmed/23969950
+		http://www.ncbi.nlm.nih.gov/pubmed/23973889
+		http://www.ncbi.nlm.nih.gov/pubmed/24197699
+		http://www.ncbi.nlm.nih.gov/pubmed/23979427
+		http://www.ncbi.nlm.nih.gov/pubmed/23967071
+		http://www.ncbi.nlm.nih.gov/pubmed/24030139
+		http://www.ncbi.nlm.nih.gov/pubmed/24047441
+		http://www.ncbi.nlm.nih.gov/pubmed/24294379
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/20514400
+		http://www.ncbi.nlm.nih.gov/pubmed/15990723
+		http://www.ncbi.nlm.nih.gov/pubmed/15195112
+		http://www.ncbi.nlm.nih.gov/pubmed/17163847
+		http://www.ncbi.nlm.nih.gov/pubmed/12671708
+		http://www.ncbi.nlm.nih.gov/pubmed/22930255
+		http://www.ncbi.nlm.nih.gov/pubmed/23132836
+		http://www.ncbi.nlm.nih.gov/pubmed/15138808
+		http://www.ncbi.nlm.nih.gov/pubmed/16619249
+		http://www.ncbi.nlm.nih.gov/pubmed/18376799
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		In this regard, it was interesting to note that in the conditional Pten deletion model of prostate cancer, protein levels of BMPs, Runx2, and survivin all increase with the tumor growth [16,20,21], implicating a potentially central role of survivin in prostate cancer.
+	False Neg:
+		Survivin mRNA was found to be diffusely expressed during foetal development, but unusually, among the IAP family, it was generally not found in normal adult tissues.
+		Its expression is developmentally regulated: present during fetal development, it is undetectable in terminally differentiated normal adult tissue. 
+		However, survivin was not detected in non-tumor tissues
+		n addition, the fact that survivin was only detected in urine samples of patients with bladder cancer, rather than in normal adult tissue (except thymus gland), suggests that survivin can be used as an ideal target in bladder carcinoma treatment.
+		Application of this antibody to determine survivin expression in human normal adult tissues revealed that most adult tissues do not express survivin and, where it is present, survivin is largely restricted to a small subset of epithelial cells and cells with proliferative potential such as thymus. 
+		Survivin, a member of the inhibitor of apoptosis proteins, is overexpressed in most cancers but is absent in most normal adult tissue.
+		Testis is the only human adult tissue highly expressing survivin, with 60-70% positivity in the nuclei of spermatogonia. 
+		Survivin and livin are two members of the inhibitor of apoptosis gene family, which have been found to be expressed in many human cancer tissues. But their expression could not be detected in normal adult tissue. 
+		Survivin, a member of the inhibitor of apoptosis protein family, is expressed in most human cancers, but undetectable in normal differentiated adult tissue in vivo. 
+		Survivin is expressed during embryonic and fetal development, selectively over-expressed in common human cancers and completely down-regulated in normal adult tissue. 
+		Survivin is a novel inhibitor of apoptosis. It is detected in fetal and neoplastic adult tissue, but not in normal tissues. 
+===================================================================
+Question: How do histone methyltransferases cause histone modification?
+Concepts:
+	True Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011495
+	False Pos:
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011484
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D011496
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D006657
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D015254
+		http://www.nlm.nih.gov/cgi/mesh/2014/MB_cgi?field=uid&exact=Find+Exact+Term&term=D008780
+	False Neg:
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0016570
+		http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=0008469
+Documents:
+	True Pos:
+	False Pos:
+		http://www.ncbi.nlm.nih.gov/pubmed/24082136
+		http://www.ncbi.nlm.nih.gov/pubmed/24078251
+		http://www.ncbi.nlm.nih.gov/pubmed/24088713
+		http://www.ncbi.nlm.nih.gov/pubmed/24189459
+		http://www.ncbi.nlm.nih.gov/pubmed/24209747
+		http://www.ncbi.nlm.nih.gov/pubmed/24141370
+		http://www.ncbi.nlm.nih.gov/pubmed/24247247
+		http://www.ncbi.nlm.nih.gov/pubmed/24316396
+		http://www.ncbi.nlm.nih.gov/pubmed/24260783
+		http://www.ncbi.nlm.nih.gov/pubmed/24205083
+		http://www.ncbi.nlm.nih.gov/pubmed/24235145
+		http://www.ncbi.nlm.nih.gov/pubmed/24129573
+		http://www.ncbi.nlm.nih.gov/pubmed/24259318
+		http://www.ncbi.nlm.nih.gov/pubmed/24234436
+		http://www.ncbi.nlm.nih.gov/pubmed/24100311
+		http://www.ncbi.nlm.nih.gov/pubmed/24108699
+		http://www.ncbi.nlm.nih.gov/pubmed/24172061
+		http://www.ncbi.nlm.nih.gov/pubmed/24279728
+		http://www.ncbi.nlm.nih.gov/pubmed/24296620
+		http://www.ncbi.nlm.nih.gov/pubmed/24189068
+		http://www.ncbi.nlm.nih.gov/pubmed/24191866
+		http://www.ncbi.nlm.nih.gov/pubmed/24169358
+		http://www.ncbi.nlm.nih.gov/pubmed/24163373
+		http://www.ncbi.nlm.nih.gov/pubmed/24297179
+		http://www.ncbi.nlm.nih.gov/pubmed/24067968
+		http://www.ncbi.nlm.nih.gov/pubmed/24163393
+		http://www.ncbi.nlm.nih.gov/pubmed/24300456
+		http://www.ncbi.nlm.nih.gov/pubmed/24242757
+		http://www.ncbi.nlm.nih.gov/pubmed/24145353
+		http://www.ncbi.nlm.nih.gov/pubmed/24286082
+	False Neg:
+		http://www.ncbi.nlm.nih.gov/pubmed/22357272
+		http://www.ncbi.nlm.nih.gov/pubmed/16409643
+		http://www.ncbi.nlm.nih.gov/pubmed/22483804
+		http://www.ncbi.nlm.nih.gov/pubmed/22476432
+		http://www.ncbi.nlm.nih.gov/pubmed/20305384
+		http://www.ncbi.nlm.nih.gov/pubmed/16581777
+		http://www.ncbi.nlm.nih.gov/pubmed/18846226
+		http://www.ncbi.nlm.nih.gov/pubmed/11316813
+		http://www.ncbi.nlm.nih.gov/pubmed/22393255
+		http://www.ncbi.nlm.nih.gov/pubmed/20026581
+		http://www.ncbi.nlm.nih.gov/pubmed/18498648
+		http://www.ncbi.nlm.nih.gov/pubmed/15775980
+		http://www.ncbi.nlm.nih.gov/pubmed/19571682
+		http://www.ncbi.nlm.nih.gov/pubmed/14690609
+		http://www.ncbi.nlm.nih.gov/pubmed/17584191
+		http://www.ncbi.nlm.nih.gov/pubmed/18058811
+		http://www.ncbi.nlm.nih.gov/pubmed/17846168
+		http://www.ncbi.nlm.nih.gov/pubmed/17548343
+		http://www.ncbi.nlm.nih.gov/pubmed/17468742
+		http://www.ncbi.nlm.nih.gov/pubmed/12893173
+		http://www.ncbi.nlm.nih.gov/pubmed/12154089
+		http://www.ncbi.nlm.nih.gov/pubmed/23195220
+		http://www.ncbi.nlm.nih.gov/pubmed/23150054
+		http://www.ncbi.nlm.nih.gov/pubmed/11850410
+		http://www.ncbi.nlm.nih.gov/pubmed/18231586
+Triples:
+	True Pos:
+	False Pos:
+	False Neg:
+Snippets:
+	True Pos:
+	False Pos:
+		Moreover, a histone chaperone, HIRA, in cooperation with Asf1, stimulates MEF2 transcriptional activity during muscle differentiation (19).
+	False Neg:
+		The trithorax proteins Trithorax (TRX) and Absent, small or homeotic 1 (ASH1) also catalyze modifications of nucleosomal histones, including the methylation of lysine 4 of histone H3 (H3K4) [18],[19],[20],[21],[22].
+		Primarily because of the recent discovery of the SET domain-depending H3-specific histone methyltransferases SUV39H1 and Suv39h1, which selectively methylate lysine 9 of the H3 N terminus, this posttranslational modification has regained scientific interest.
+		Methylation of position-specific lysine residues in histone N termini is a central modification for regulating epigenetic transitions in chromatin. Each methylatable lysine residue can exist in a mono-, di-, or trimethylated state, thereby extending the indexing potential of this particular modification. 
+		Consistent with the histone code, it has been revealed that the methylation of histone H3 lysine 9 (H3 K9), a modification associated with transcriptionally silent heterochromatin, is critical for long-range chromatin regulatory processes [26,27]. 
+		Np95 or its human homolog ICBP90/UHRF1 were reported to interact with the histone deacetylase HDAC1 and the histone methyltransferase G9a and to mediate silencing of a viral promoter, suggesting a role of Np95 in gene silencing through histone modification (13,23,24). 
+		One of these modifications, histone lysine methylation, has been shown to be highly stable and to represent an epigenetic alteration.
+		The histone H4 N-terminal tail has long been regarded as a major regulator in chromatin structure and function.
+		Histone methyltransferases catalyze site-specific deposition of methyl groups, enabling recruitment of transcriptional regulators. In mammals, trimethylation of lysine 4 in histone H3, a modification localized at the transcription start sites of active genes, is catalyzed by six enzymes (SET1a and SET1b, MLL1-MLL4) whose specific functions are largely unknown. 
+		By analyzing the distribution of histone modifications in nuclei using quantitative fluorescence microscopy, we found that H4K16 acetylation (H4K16ac) is underrepresented and H4K20 monomethylation (H4K20me1) is enriched on hermaphrodite X chromosomes in a DCC-dependent manner. 
+		Gene transcription is critically influenced by chromatin structure and the modification status of histone tails. Methylation of lysine residues in histone tails is dynamically regulated by the opposing activities of histone methyltransferases and histone demethylases.
+		 Here, we found the epigenetic modification of the BZLF1 promoter in latent Raji cells by histone H3 lysine 27 trimethylation (H3K27me3), H3K9me2/me3, and H4K20me3. 
+		Histone H3-lysine (K) 4, H3-K9 and H3-K27 modifications in all these four genes were examined by chromatin immunoprecipitation (ChIP) assay in HCC cell lines. 
+		The SAS3-dependent NuA3 histone acetyltransferase complex was originally identified on the basis of its ability to acetylate histone H3 in vitro.
+		SU(VAR)3-9 like histone methyltransferases control heterochromatic domains in eukaryotes.
+		Among the different groups of enzymes known to catalyze the covalent modification, the most recent additions are the histone methyltransferases (HMTases), whose functions are now being characterized.
+		 Histone acetyltransferases (HATs), histone deacetylases (HDACs), kinases, and histone methyltransferases (HMTs) are all responsible for the addition/removal of covalent modifications on the histone tails [35-37]. 
+		Although DNA methyltransferases have been shown to interact with histone methyltransferases such as EZH2 (which methylates histone H3 on lysine 27) and G9a (which methylates histone H3 on lysine 9), the relationship between DNA methylation and repressive histone marks has not been fully studied. 
+		Methylation of histone H4 lysine 20 (H4K20me) plays critical roles in diverse cellular processes such as gene expression, cell cycle progression and DNA damage repair, with each of the three degrees of methylation (mono-, di- and tri-methylation) making a unique contribution. 
+		Set9, a novel histone H3 methyltransferase that facilitates transcription by precluding histone tail modifications required for heterochromatin formation.
+		Histone methyltransferases (HMTs) can methylate arginine residues such as 2, 8, 17, and 26 on H3 and residue 3 on H4. HMTs can also methylate specific lysine residues such as 4, 9, 27, 36, and 79 on H3 and residue 20 on H4 which serve as markers for the recruitment of chromatin organization complexes [41-43]. 
+		This approach identified Txr1p as a histone methyltransferase in Tetrahymena thermophila and characterized the relationships of the Txr1p and Ezl2p methyltransferases to histone H3 modification.
+		 It has been reported that both ASH1 and TRX methylate H3K4 [18],[19],[20]; this covalent modification of chromatin is enriched near the promoters of many genes and is thought to recruit factors required for early events in the transcription cycle [23]. 
+		Our results suggest that the methylation of histone tails can have distinct effects on transcription, depending on its chromosomal location, the combination of posttranslational modifications, and the enzyme (or protein complex) involved in the particular modification.
+		Epigenetic regulation of gene expression by covalent modification of histones is important for germ line cell development. In mammals, histone H3 lysine 9 (H3K9)-specific histone methyltransferases (HMTases), such as G9a, SETDB1, and SUV39H, play critical roles, but the contribution of H3K9-specific HMTases in Drosophila remains to be clarified, especially in male sperm.
+		Lysine methylation of histones is associated with both transcriptionally active chromatin and with silent chromatin, depending on what residue is modified. Histone methyltransferases and demethylases ensure that histone methylations are dynamic and can vary depending on cell cycle- or developmental stage.
+		 Historically, the methylation of H3-K9 has been linked to functionally repressed chromatin [33,44,45].
+===================================================================

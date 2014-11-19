@@ -71,10 +71,9 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       // String text = query.getWholeQueryWithoutOp();
 
       // Use Mesh service
-
-      mResultsPerPage = 10;
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,
-              mResultsPerPage);
+            
+      mResultsPerPage = 6;
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
 
       // Add multiple sources here
       // Combine them in some way
@@ -87,25 +86,21 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
 
-      int DOretsize = 0;
-      int GOretsize = 0;
-      int JOretsize = 0;
-      int UOretsize = 0;
-
-      //Double mthres = 0.1;
-      //Double DOthres = 0.1;
-      //Double GOthres = 0.09;
-      //Double JOthres = 0.06;
-      //Double UOthres = 0.06;
       
-      Double mthres = 0.2;
-      Double DOthres = 0.2;
-      Double GOthres = 0.15;
-      Double JOthres = 0.15;
-      Double UOthres = 0.15;
+      
+      int DOretsize = 20;
+      int GOretsize = 20;
+      int JOretsize = 20;
+      int UOretsize = 20;
+      
+      Double mthres = 0.0;
+      Double DOthres = 0.0;
+      Double GOthres = 0.0;
+      Double JOthres = 0.0;
+      Double UOthres = 0.0;
+      /*
+      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
-      /*OntologyServiceResponse.Result diseaseOntologyResult = service
-              .findDiseaseOntologyEntitiesPaged(text, 0, DOretsize);
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
