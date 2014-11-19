@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A document search result.
- * Updated by JCasGen Tue Nov 18 01:44:16 EST 2014
+ * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
  * @generated */
 public class Document_Type extends SearchResult_Type {
   /** @generated 
@@ -116,6 +116,30 @@ public class Document_Type extends SearchResult_Type {
     ll_cas.ll_setBooleanValue(addr, casFeatCode_fullTextAvailable, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_abstract;
+  /** @generated */
+  final int     casFeatCode_abstract;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getAbstract(int addr) {
+        if (featOkTst && casFeat_abstract == null)
+      jcas.throwFeatMissing("abstract", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_abstract);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setAbstract(int addr, String v) {
+        if (featOkTst && casFeat_abstract == null)
+      jcas.throwFeatMissing("abstract", "edu.cmu.lti.oaqa.type.retrieval.Document");
+    ll_cas.ll_setStringValue(addr, casFeatCode_abstract, v);}
+    
+  
 
 
 
@@ -139,6 +163,10 @@ public class Document_Type extends SearchResult_Type {
  
     casFeat_fullTextAvailable = jcas.getRequiredFeatureDE(casType, "fullTextAvailable", "uima.cas.Boolean", featOkTst);
     casFeatCode_fullTextAvailable  = (null == casFeat_fullTextAvailable) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_fullTextAvailable).getCode();
+
+ 
+    casFeat_abstract = jcas.getRequiredFeatureDE(casType, "abstract", "uima.cas.String", featOkTst);
+    casFeatCode_abstract  = (null == casFeat_abstract) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_abstract).getCode();
 
   }
 }

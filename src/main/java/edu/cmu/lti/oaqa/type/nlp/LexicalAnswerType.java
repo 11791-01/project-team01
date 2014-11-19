@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** The lexical answer type found in the question.
- * Updated by JCasGen Tue Nov 18 01:44:16 EST 2014
+ * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
  * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class LexicalAnswerType extends Annotation {
