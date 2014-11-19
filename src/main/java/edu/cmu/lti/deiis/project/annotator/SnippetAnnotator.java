@@ -120,12 +120,15 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         }
 
         Passage snippet = new Passage(aJCas);
+        int startIdx = sentences.get(maxIdx).start();
+        int endIdx = sentences.get(maxIdx).end();
         snippet.setDocId(pmid);
         snippet.setUri(doc.getUri());
-        snippet.setBeginSection("0");
-        snippet.setEndSection("0");
-        snippet.setOffsetInBeginSection(sentences.get(maxIdx).start());
-        snippet.setOffsetInEndSection(sentences.get(maxIdx).end());
+        snippet.setText(sec0.substring(startIdx, endIdx));
+        snippet.setBeginSection("sections.0");
+        snippet.setEndSection("sections.0");
+        snippet.setOffsetInBeginSection(startIdx);
+        snippet.setOffsetInEndSection(endIdx);
         snippet.addToIndexes();
       }
     }
