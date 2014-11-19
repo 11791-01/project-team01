@@ -21,7 +21,7 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 /**
  * Query to get the concept.
  * 
- * @author Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu>
+ * @author Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu, Anurag Kumar <alnu@cs.cmu.edu>
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
@@ -72,9 +72,10 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       String text = query.getWholeQueryWithOp();
 
       // Use Mesh service
-
+            
       mResultsPerPage = 10;
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
+
 
       //Add multiple sources here
       //Combine them in some way
@@ -87,8 +88,18 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
                 + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
       
-     
-      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,10);
+      int DOretsize = 20;
+      int GOretsize = 20;
+      int JOretsize = 20;
+      int UOretsize = 20;
+      
+      Double mthres = 0.1;
+      Double DOthres = 0.1;
+      Double GOthres = 0.09;
+      Double JOthres = 0.06;
+      Double UOthres = 0.06;
+      
+      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
@@ -96,41 +107,41 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       }
       
       
-      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, 10);
-      /*System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
+      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, GOretsize);
+      System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
                 + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }*/
+      }
       
-      OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0,10);
-      /*System.out.println("Jochem: " + jochemResult.getFindings().size());
+      OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0,JOretsize);
+      System.out.println("Jochem: " + jochemResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
                 + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }*/
+      }
       
       
-      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,10);
-      /*System.out.println("UniProt: " + uniprotResult.getFindings().size());
+      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,UOretsize);
+      System.out.println("UniProt: " + uniprotResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
         System.out.println(" > " + finding.getConcept().getLabel() + " "
                 + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }*/
+      }
       
       //Add selective sources here
-      Double threshold = 0.1; //might decide to set different threshold for each service
+      //Double threshold = 0.1; //might decide to set different threshold for each service
       //List<Finding> meshPruneFinding;
       //meshPruneFinding = new ArrayList<Finding>();
-      List<Finding> meshPrunedFinding = pruneFindings(meshResult, threshold);
+      List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
       
-      List<Finding> DOPrunedFinding = pruneFindings(diseaseOntologyResult, threshold);
+      List<Finding> DOPrunedFinding = pruneFindings(diseaseOntologyResult, DOthres);
       
-      List<Finding> GOPrunedFinding = pruneFindings(geneOntologyResult, threshold);
+      List<Finding> GOPrunedFinding = pruneFindings(geneOntologyResult, GOthres);
       
-      List<Finding> JOPrunedFinding = pruneFindings(jochemResult, threshold);
+      List<Finding> JOPrunedFinding = pruneFindings(jochemResult, JOthres);
       
-      List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, threshold);
+      List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
       
       //Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>(Collections.reverseOrder());
       List<Finding> unionFinding = new ArrayList<Finding>();
