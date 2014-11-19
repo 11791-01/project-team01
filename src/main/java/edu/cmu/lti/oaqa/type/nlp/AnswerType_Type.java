@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** A Named Entity type that represents the type of the answer being sought.
- * Updated by JCasGen Tue Nov 18 02:36:40 EST 2014
+ * Updated by JCasGen Tue Nov 18 23:51:11 EST 2014
  * @generated */
 public class AnswerType_Type extends Annotation_Type {
   /** @generated 
