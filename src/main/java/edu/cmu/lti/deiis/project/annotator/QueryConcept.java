@@ -64,153 +64,175 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
             ComplexQueryConcept.type);
 
     try {
-      // TODO: add other services and combine them to get an overall ranking
-
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
-      
+
       // Get the query text
       String text = query.getWholeQueryWithOp();
+      // String text = query.getWholeQueryWithoutOp();
 
       // Use Mesh service
-            
+
       mResultsPerPage = 10;
-      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
+      OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0,
+              mResultsPerPage);
 
+      // Add multiple sources here
+      // Combine them in some way
 
-      //Add multiple sources here
-      //Combine them in some way
-      
       System.out.println(text);
-      
+
       System.out.println("Mesh Results: " + meshResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+        // System.out.println(" > " + finding.getConcept().getLabel() + " "
+        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
+
+      int DOretsize = 0;
+      int GOretsize = 0;
+      int JOretsize = 0;
+      int UOretsize = 0;
+
+      //Double mthres = 0.1;
+      //Double DOthres = 0.1;
+      //Double GOthres = 0.09;
+      //Double JOthres = 0.06;
+      //Double UOthres = 0.06;
       
-      int DOretsize = 20;
-      int GOretsize = 20;
-      int JOretsize = 20;
-      int UOretsize = 20;
-      
-      Double mthres = 0.1;
-      Double DOthres = 0.1;
-      Double GOthres = 0.09;
-      Double JOthres = 0.06;
-      Double UOthres = 0.06;
-      
-      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
+      Double mthres = 0.2;
+      Double DOthres = 0.2;
+      Double GOthres = 0.15;
+      Double JOthres = 0.15;
+      Double UOthres = 0.15;
+
+      /*OntologyServiceResponse.Result diseaseOntologyResult = service
+              .findDiseaseOntologyEntitiesPaged(text, 0, DOretsize);
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+        // System.out.println(" > " + finding.getConcept().getLabel() + " "
+        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
-      
-      
-      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(text,0, GOretsize);
+
+      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(
+              text, 0, GOretsize);
       System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+        // System.out.println(" > " + finding.getConcept().getLabel() + " "
+        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
-      
-      OntologyServiceResponse.Result jochemResult = service.findJochemEntitiesPaged(text, 0,JOretsize);
-      System.out.println("Jochem: " + jochemResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+
+      OntologyServiceResponse.Result jochemResult = null;
+      try {
+        jochemResult = service.findJochemEntitiesPaged(text, 0,
+                JOretsize);
+        System.out.println("Jochem: " + jochemResult.getFindings().size());
+        for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
+          // System.out.println(" > " + finding.getConcept().getLabel() + " "
+          // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-      
-      
-      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,UOretsize);
+
+      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,
+              UOretsize);
       System.out.println("UniProt: " + uniprotResult.getFindings().size());
       for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }
+        // System.out.println(" > " + finding.getConcept().getLabel() + " "
+        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+      }*/
+
+      // Add selective sources here
+      // Double threshold = 0.1; //might decide to set different threshold for each service
+      // List<Finding> meshPruneFinding;
+      // meshPruneFinding = new ArrayList<Finding>();
       
-      //Add selective sources here
-      //Double threshold = 0.1; //might decide to set different threshold for each service
-      //List<Finding> meshPruneFinding;
-      //meshPruneFinding = new ArrayList<Finding>();
+      OntologyServiceResponse.Result diseaseOntologyResult = null;
+      OntologyServiceResponse.Result geneOntologyResult = null;
+      OntologyServiceResponse.Result jochemResult = null;
+      OntologyServiceResponse.Result uniprotResult = null;
+      
+      
       List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
-      
+
       List<Finding> DOPrunedFinding = pruneFindings(diseaseOntologyResult, DOthres);
-      
+
       List<Finding> GOPrunedFinding = pruneFindings(geneOntologyResult, GOthres);
-      
+
       List<Finding> JOPrunedFinding = pruneFindings(jochemResult, JOthres);
-      
+
       List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
-      
-      //Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>(Collections.reverseOrder());
+
+      // Map<Double, Finding> unionFinding = new TreeMap<Double,
+      // Finding>(Collections.reverseOrder());
       List<Finding> unionFinding = new ArrayList<Finding>();
-      
+
       unionFinding = CombineSources(meshPrunedFinding, unionFinding);
       unionFinding = CombineSources(DOPrunedFinding, unionFinding);
       unionFinding = CombineSources(GOPrunedFinding, unionFinding);
       unionFinding = CombineSources(JOPrunedFinding, unionFinding);
       unionFinding = CombineSources(UOPrunedFinding, unionFinding);
-      
-      
-      //sort union finding
-      Collections.sort(unionFinding,(s1, s2)->((Double)s2.getScore()).compareTo((Double)s1.getScore()));
-      
-      //print the union
-      System.out.println("Printing the Union"+unionFinding.size());
+
+      // sort union finding
+      Collections.sort(unionFinding,
+              (s1, s2) -> ((Double) s2.getScore()).compareTo((Double) s1.getScore()));
+
+      // print the union
+      // System.out.println("Printing the Union"+unionFinding.size());
       for (Finding finding : unionFinding) {
-        
-        //Double value = entry.getKey();
-        //Finding finding = entry.getValue();
-        System.out.println(" > " + finding.getConcept().getLabel() + " "
-                + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+
+        // Double value = entry.getKey();
+        // Finding finding = entry.getValue();
+        // System.out.println(" > " + finding.getConcept().getLabel() + " "
+        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       }
-      
-      aJCas=addSelectedService(unionFinding,text,aJCas);
-      
+
+      aJCas = addSelectedService(unionFinding, text, aJCas);
+
     } catch (Exception ex) {
       System.err.println("Ontology Service Exception!");
       ex.printStackTrace();
     }
   }
-  
-  
-  private List<Finding> CombineSources(List<Finding> PrunedFinding,List<Finding> unionFinding){
-    
-    //Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>();
+
+  private List<Finding> CombineSources(List<Finding> PrunedFinding, List<Finding> unionFinding) {
+
+    // Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>();
     for (Finding finding : PrunedFinding) {
       unionFinding.add(finding);
     }
     return unionFinding;
   }
-  
-  
-  
-  private List<Finding> pruneFindings(OntologyServiceResponse.Result Result, Double threshold){
-    
+
+  private List<Finding> pruneFindings(OntologyServiceResponse.Result Result, Double threshold) {
+
     List<Finding> prunedFinding;
     prunedFinding = new ArrayList<Finding>();
-    for (Finding finding : Result.getFindings()) {
-      
-      if(finding.getScore() >= threshold){
-        prunedFinding.add(finding);
-      }
-      
+    
+    if (Result == null) {
+      return prunedFinding;
     }
     
+    for (Finding finding : Result.getFindings()) {
+
+      if (finding.getScore() >= threshold) {
+        prunedFinding.add(finding);
+      }
+
+    }
+
     return prunedFinding;
-    
+
   }
-  
-  private JCas addSelectedService(List<Finding> unionFinding, String text, JCas aJCas){
-    
+
+  private JCas addSelectedService(List<Finding> unionFinding, String text, JCas aJCas) {
+
     // Rank the returned concepts and add them to CAS
     int currRank = 0;
     for (Finding finding : unionFinding) {
-      
-      //Double value = entry.getKey();
-      //Finding finding = entry.getValue();
-      
+
+      // Double value = entry.getKey();
+      // Finding finding = entry.getValue();
+
       Concept concept = new Concept(aJCas);
       concept.setName(finding.getConcept().getLabel());
       concept.addToIndexes();

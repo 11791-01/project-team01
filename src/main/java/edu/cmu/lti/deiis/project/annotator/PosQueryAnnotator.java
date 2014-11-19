@@ -3,8 +3,6 @@
  */
 package edu.cmu.lti.deiis.project.annotator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,9 +16,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
-import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import util.PosTagNamedEntityRecognizer;
-import util.Utils;
 
 /**
  * A annotator that generates queries based on the POS tag NER results.
