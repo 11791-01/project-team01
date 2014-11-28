@@ -93,11 +93,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       int JOretsize = 20;
       int UOretsize = 20;
       
-      Double mthres = 0.0;
-      Double DOthres = 0.0;
-      Double GOthres = 0.0;
-      Double JOthres = 0.0;
-      Double UOthres = 0.0;
+      Double mthres = 0.1;
+      Double DOthres = 0.1;
+      Double GOthres = 0.1;
+      Double JOthres = 0.1;
+      Double UOthres = 0.1;
       
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
@@ -232,7 +232,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       allscores+=finding.getScore();
       count+=1;
     }
-    //need to finish this thing...finding does not have set score variable
+    //need to finish this thing...finding does not have set score variable..finish score setting by multiplying with mean inverse
     double mn = allscores/count;
     for (Finding finding : Result.getFindings()){
       weightedFinding.add(finding);
