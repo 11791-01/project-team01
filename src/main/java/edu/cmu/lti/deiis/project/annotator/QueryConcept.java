@@ -232,6 +232,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       allscores+=finding.getScore();
       count+=1;
     }
+    //need to finish this thing...finding does not have set score variable
     double mn = allscores/count;
     for (Finding finding : Result.getFindings()){
       weightedFinding.add(finding);
