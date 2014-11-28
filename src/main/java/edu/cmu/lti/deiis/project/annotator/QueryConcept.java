@@ -98,7 +98,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       Double GOthres = 0.0;
       Double JOthres = 0.0;
       Double UOthres = 0.0;
-      /*
+      
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
@@ -134,17 +134,17 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }*/
+      }
 
       // Add selective sources here
       // Double threshold = 0.1; //might decide to set different threshold for each service
       // List<Finding> meshPruneFinding;
       // meshPruneFinding = new ArrayList<Finding>();
       
-      OntologyServiceResponse.Result diseaseOntologyResult = null;
-      OntologyServiceResponse.Result geneOntologyResult = null;
-      OntologyServiceResponse.Result jochemResult = null;
-      OntologyServiceResponse.Result uniprotResult = null;
+      //OntologyServiceResponse.Result diseaseOntologyResult = null;
+      //OntologyServiceResponse.Result geneOntologyResult = null;
+      //OntologyServiceResponse.Result jochemResult = null;
+      //OntologyServiceResponse.Result uniprotResult = null;
       
       
       List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
@@ -219,6 +219,25 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   }
 
+  private List<Finding> multiplyByMean(OntologyServiceResponse.Result Result){
+    
+    List<Finding> weightedFinding;
+    weightedFinding = new ArrayList<Finding>();
+    if (Result == null) {
+      return weightedFinding;
+    }
+    double allscores = 0.0;
+    int count = 0;
+    for (Finding finding : Result.getFindings()){
+      allscores+=finding.getScore();
+      count+=1;
+    }
+    double mn = allscores/count;
+    for (Finding finding : Result.getFindings()){
+      weightedFinding.add(finding);
+    }
+    return weightedFinding;
+  }
   private JCas addSelectedService(List<Finding> unionFinding, String text, JCas aJCas) {
 
     // Rank the returned concepts and add them to CAS
