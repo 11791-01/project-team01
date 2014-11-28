@@ -17,4 +17,10 @@ public class WeightedFinding {
   public Double getnewSco(){
     return newsco;
   }
+  public void setFndg(Finding fnd){
+    this.fndg=fnd;
+  }
+  public void setNewSco(Double sco){
+    this.newsco=sco;
+  }
 }
