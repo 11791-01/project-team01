@@ -159,6 +159,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       // Map<Double, Finding> unionFinding = new TreeMap<Double,
       // Finding>(Collections.reverseOrder());
+      /*
+       * take union of new objects defined --list of type weightedfinding
+       * sort them
+       * 
+       */
       List<Finding> unionFinding = new ArrayList<Finding>();
 
       unionFinding = CombineSources(meshPrunedFinding, unionFinding);
