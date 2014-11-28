@@ -162,7 +162,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       /*
        * take union of new objects defined --list of type weightedfinding
        * sort them
-       * 
+       * discuss first
        */
       List<Finding> unionFinding = new ArrayList<Finding>();
 
