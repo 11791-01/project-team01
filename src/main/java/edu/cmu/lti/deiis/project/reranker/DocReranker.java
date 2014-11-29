@@ -16,6 +16,7 @@ import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import util.FileOp;
+import util.MyComp;
 import util.SimCalculator;
 
 import com.aliasi.spell.TfIdfDistance;
@@ -106,13 +107,15 @@ public class DocReranker extends JCasAnnotator_ImplBase {
       docList.get(i).setScore(score);
     }
 
-    Collections.sort(docList, new DocSimComparator());
+    //Collections.sort(docList, new DocSimComparator());
+    Collections.sort(docList, new MyComp.DocSimComparator());
     for (int i = 0; i < docList.size(); ++i) {
       docList.get(i).setRank(i);
     }
   }
 }
 
+/*
 class DocSimComparator implements Comparator<Document> {
   @Override
   public int compare(Document lhs, Document rhs) {
@@ -125,3 +128,4 @@ class DocSimComparator implements Comparator<Document> {
     }
   }
 }
+*/
