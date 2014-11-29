@@ -41,12 +41,6 @@ public class LPNBestNERAnnotator extends JCasAnnotator_ImplBase {
   // LingPipe chunker
   private NBestChunker mChunker;
 
-  private String mModelPath;
-
-  private Integer mMAX_N_BEST_CHUNKS;
-
-  private Float mThreashold;
-
   /**
    * Initialize the annotator, create the chunker in LinePipe.
    * 
