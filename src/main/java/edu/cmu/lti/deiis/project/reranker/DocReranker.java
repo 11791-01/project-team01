@@ -1,8 +1,5 @@
 package edu.cmu.lti.deiis.project.reranker;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,6 +14,9 @@ import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
+
+import util.FileOp;
+import util.SimCalculator;
 
 import com.aliasi.spell.TfIdfDistance;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
@@ -35,9 +35,9 @@ import edu.cmu.lti.oaqa.type.retrieval.Document;
  */
 public class DocReranker extends JCasAnnotator_ImplBase {
 
-  private String stopFilePath = "models/stopwords.txt";
+  /*public static final String PARAM_STOP_WORD_FILE = "StopWordFile";
 
-  private TokenizerFactory REFINED_TKFACTORY = null;
+  private TokenizerFactory REFINED_TKFACTORY = null;*/
 
   /**
    * Perform initialization logic. Initialize the service.
@@ -48,7 +48,8 @@ public class DocReranker extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
 
-    String content = getFileAsStream(stopFilePath);
+    /*String stopFilePath = (String) aContext.getConfigParameterValue(PARAM_STOP_WORD_FILE);
+    String content = FileOp.getFileAsStream(stopFilePath, DocReranker.class);
     String[] lines = content.split("\n");
     Set<String> tmpSet = new HashSet<String>();
     for (String line : lines) {
@@ -60,6 +61,7 @@ public class DocReranker extends JCasAnnotator_ImplBase {
     REFINED_TKFACTORY = new StopTokenizerFactory(REFINED_TKFACTORY, stopSet);
     REFINED_TKFACTORY = new LowerCaseTokenizerFactory(REFINED_TKFACTORY);
     REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);
+    */
   }
 
   @Override
@@ -70,14 +72,16 @@ public class DocReranker extends JCasAnnotator_ImplBase {
 
     ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
     String queryWOOp = query.getWholeQueryWithoutOp();
+    System.out.println("Doc Reranking...");
 
-    TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
+    /*TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
     tfIdf.handle(queryWOOp);
 
     List<Document> docList = new ArrayList<Document>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
       if (doc.getAbstract() == null || doc.getAbstract().trim().length() == 0) {
+        System.out.println("-----------------------------");
         continue;
       }
 
@@ -90,6 +94,16 @@ public class DocReranker extends JCasAnnotator_ImplBase {
       Document doc = docList.get(i);
       double sim = tfIdf.proximity(queryWOOp, docList.get(i).getAbstract());
       doc.setScore(sim);
+    }*/
+    List<Document> docList = new ArrayList<Document>();
+    while (DocIter.hasNext()) {
+      docList.add((Document)DocIter.next());
+    }
+    
+    List<Double> scoreList = SimCalculator.getInstance().tfidfScore(queryWOOp, docList);
+    for (int i = 0; i < scoreList.size(); ++i) {
+      double score = scoreList.get(i);
+      docList.get(i).setScore(score);
     }
 
     Collections.sort(docList, new DocSimComparator());
@@ -97,40 +111,6 @@ public class DocReranker extends JCasAnnotator_ImplBase {
       docList.get(i).setRank(i);
     }
   }
-
-  /**
-   * Read file through stream LPDictExactNERAnnotator
-   * 
-   * @param filePath
-   *          the file path
-   * @return the string of the file
-   * @throws ResourceInitializationException
-   */
-  private String getFileAsStream(String filePath) throws ResourceInitializationException {
-    StringBuilder sb = new StringBuilder();
-    try {
-      InputStream is = DocReranker.class.getClassLoader().getResourceAsStream(filePath);
-
-      BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
-
-      String line = br.readLine();
-      while (line != null) {
-        sb.append(line);
-        sb.append("\n");
-        line = br.readLine();
-      }
-      br.close();
-    } catch (Exception ex) {
-      System.out.println("[Error]: Look Below.");
-      ex.printStackTrace();
-      System.out.println("[Error]: Look Above.");
-      throw new ResourceInitializationException();
-    }
-
-    String content = sb.toString();
-    return content;
-  }
-
 }
 
 class DocSimComparator implements Comparator<Document> {
