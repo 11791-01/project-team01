@@ -15,6 +15,8 @@ import com.aliasi.tokenizer.PorterStemmerTokenizerFactory;
 import com.aliasi.tokenizer.StopTokenizerFactory;
 import com.aliasi.tokenizer.TokenizerFactory;
 
+import edu.cmu.lti.deiis.project.assitance.RawSentence;
+import edu.cmu.lti.deiis.project.assitance.RetrType;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 
 public class SimCalculator {
@@ -50,20 +52,36 @@ public class SimCalculator {
     REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);
   }
 
-  public List<Double> tfidfScore(String queryWOOp, List<Document> docList) {
-    TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
-
-    tfIdf.handle(queryWOOp);
-    for (Document doc : docList) {
-      tfIdf.handle(doc.getAbstract());
-    }
-    
+  @SuppressWarnings("unchecked")
+  public List<Double> tfidfScore(String queryWOOp, List<?> objList, RetrType retrType) {
     List<Double> scoreList = new ArrayList<Double>();
-    for (Document doc : docList) {
-      double score = tfIdf.proximity(queryWOOp, doc.getAbstract());
-      scoreList.add(score);
+    TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
+    tfIdf.handle(queryWOOp);
+
+    if (retrType == RetrType.DOC) {
+      for (Document doc : (List<Document>) objList) {
+        tfIdf.handle(doc.getAbstract());
+      }
+      for (Document doc : (List<Document>) objList) {
+        double score = tfIdf.proximity(queryWOOp, doc.getAbstract());
+        scoreList.add(score);
+      }
+    } else if (retrType == RetrType.RAW_SENT) {
+      for (RawSentence rawSent : (List<RawSentence>) objList) {
+        tfIdf.handle(rawSent.getText());
+      }
+      for (RawSentence rawSent : (List<RawSentence>) objList) {
+        double score = tfIdf.proximity(queryWOOp, rawSent.getText());
+        scoreList.add(score);
+      }
     }
 
     return scoreList;
   }
+
+  /*
+   * public List<Double> tfidfScore(String queryWOOp, List<RawSentence> rawSentList) {
+   * 
+   * }
+   */
 }

@@ -3,6 +3,7 @@ package edu.cmu.lti.deiis.project.annotator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -11,6 +12,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import util.WeightedFinding;
 import edu.cmu.lti.oaqa.bio.bioasq.services.GoPubMedService;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse;
 import edu.cmu.lti.oaqa.bio.bioasq.services.OntologyServiceResponse.Finding;
@@ -75,18 +77,16 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       mResultsPerPage = 6;
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
 
-      // Add multiple sources here
-      // Combine them in some way
+      // Adding multiple sources here
 
       System.out.println(text);
 
       System.out.println("Mesh Results: " + meshResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
+      //for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }
+      //}
 
-      
       
       int DOretsize = 20;
       int GOretsize = 20;
@@ -102,28 +102,28 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
+      //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }
+      //}
 
       OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(
               text, 0, GOretsize);
       System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
+      //for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }
+      //}
 
       OntologyServiceResponse.Result jochemResult = null;
       try {
         jochemResult = service.findJochemEntitiesPaged(text, 0,
                 JOretsize);
         System.out.println("Jochem: " + jochemResult.getFindings().size());
-        for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
+        //for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
           // System.out.println(" > " + finding.getConcept().getLabel() + " "
           // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-        }
+        //}
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -131,20 +131,16 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,
               UOretsize);
       System.out.println("UniProt: " + uniprotResult.getFindings().size());
-      for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
+      //for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
         // System.out.println(" > " + finding.getConcept().getLabel() + " "
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      }
+      //}
 
-      // Add selective sources here
+      // Adding selective sources here
       // Double threshold = 0.1; //might decide to set different threshold for each service
       // List<Finding> meshPruneFinding;
       // meshPruneFinding = new ArrayList<Finding>();
       
-      //OntologyServiceResponse.Result diseaseOntologyResult = null;
-      //OntologyServiceResponse.Result geneOntologyResult = null;
-      //OntologyServiceResponse.Result jochemResult = null;
-      //OntologyServiceResponse.Result uniprotResult = null;
       
       
       List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
@@ -157,36 +153,54 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
 
-      // Map<Double, Finding> unionFinding = new TreeMap<Double,
-      // Finding>(Collections.reverseOrder());
+      
       /*
        * take union of new objects defined --list of type weightedfinding
        * sort them
        * discuss first
        */
-      List<Finding> unionFinding = new ArrayList<Finding>();
+      //List<Finding> unionFinding = new ArrayList<Finding>();
 
-      unionFinding = CombineSources(meshPrunedFinding, unionFinding);
-      unionFinding = CombineSources(DOPrunedFinding, unionFinding);
-      unionFinding = CombineSources(GOPrunedFinding, unionFinding);
-      unionFinding = CombineSources(JOPrunedFinding, unionFinding);
-      unionFinding = CombineSources(UOPrunedFinding, unionFinding);
+      //unionFinding = CombineSources(meshPrunedFinding, unionFinding);
+      //unionFinding = CombineSources(DOPrunedFinding, unionFinding);
+      //unionFinding = CombineSources(GOPrunedFinding, unionFinding);
+      //unionFinding = CombineSources(JOPrunedFinding, unionFinding);
+      //unionFinding = CombineSources(UOPrunedFinding, unionFinding);
 
+      
+      //find weights to combine with
+      
+      Double wtmesh = multiplyByMeanInv(meshPrunedFinding);
+      Double wtDO  = multiplyByMeanInv(DOPrunedFinding);
+      Double wtGO  = multiplyByMeanInv(GOPrunedFinding);
+      Double wtJO = multiplyByMeanInv(JOPrunedFinding);
+      Double wtUO = multiplyByMeanInv(UOPrunedFinding);
+      
+      
+      List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
+      unionFinding = CombineSourcesWeighted(meshPrunedFinding, unionFinding,wtmesh);
+      unionFinding = CombineSourcesWeighted(DOPrunedFinding, unionFinding,wtDO);
+      unionFinding = CombineSourcesWeighted(GOPrunedFinding, unionFinding,wtGO);
+      unionFinding = CombineSourcesWeighted(JOPrunedFinding, unionFinding,wtJO);
+      unionFinding = CombineSourcesWeighted(UOPrunedFinding, unionFinding,wtUO);
+      
+      
+      
       // sort union finding
       Collections.sort(unionFinding,
-              (s1, s2) -> ((Double) s2.getScore()).compareTo((Double) s1.getScore()));
+              (s1, s2) -> ((Double) s2.getNewSco()).compareTo((Double) s1.getNewSco()));
 
       // print the union
-      // System.out.println("Printing the Union"+unionFinding.size());
-      for (Finding finding : unionFinding) {
+      System.out.println("Printing the Union"+unionFinding.size());
+      for (WeightedFinding wtfinding : unionFinding) {
 
-        // Double value = entry.getKey();
-        // Finding finding = entry.getValue();
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
+         Double score = wtfinding.getNewSco();
+         Finding finding = wtfinding.getfndg();
+         System.out.println(" > " + finding.getConcept().getLabel() + " "
+         + finding.getConcept().getUri()+"\t Score"+score);
       }
 
-      aJCas = addSelectedService(unionFinding, text, aJCas);
+      aJCas = addSelectedServiceWtd(unionFinding, text, aJCas);
 
     } catch (Exception ex) {
       System.err.println("Ontology Service Exception!");
@@ -196,13 +210,22 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   private List<Finding> CombineSources(List<Finding> PrunedFinding, List<Finding> unionFinding) {
 
-    // Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>();
     for (Finding finding : PrunedFinding) {
       unionFinding.add(finding);
     }
     return unionFinding;
   }
 
+  private List<WeightedFinding> CombineSourcesWeighted(List<Finding> PrunedFinding, List<WeightedFinding> unionFinding, Double wt) {
+
+    for (Finding finding : PrunedFinding) {
+      WeightedFinding wtfnd = new WeightedFinding(finding, finding.getScore()*wt);
+      unionFinding.add(wtfnd);
+    }
+    return unionFinding;
+  }
+  
+  
   private List<Finding> pruneFindings(OntologyServiceResponse.Result Result, Double threshold) {
 
     List<Finding> prunedFinding;
@@ -224,34 +247,51 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   }
 
-  private List<Finding> multiplyByMean(OntologyServiceResponse.Result Result){
+  private double multiplyByMeanInv(List<Finding> Result){
     
-    List<Finding> weightedFinding;
-    weightedFinding = new ArrayList<Finding>();
     if (Result == null) {
-      return weightedFinding;
+      return 0.0;
     }
     double allscores = 0.0;
     int count = 0;
-    for (Finding finding : Result.getFindings()){
+    for (Finding finding : Result){
       allscores+=finding.getScore();
       count+=1;
     }
-    //need to finish this thing...finding does not have set score variable..finish score setting by multiplying with mean inverse
-    double mn = allscores/count;
-    for (Finding finding : Result.getFindings()){
-      weightedFinding.add(finding);
-    }
-    return weightedFinding;
+    return allscores/count;
   }
+  
+  private JCas addSelectedServiceWtd(List<WeightedFinding> unionFinding, String text, JCas aJCas) {
+
+    // Rank the returned concepts and add them to CAS
+    int currRank = 0;
+    for (WeightedFinding wtfinding : unionFinding) {
+
+      Finding finding = wtfinding.getfndg();
+      Double newsco = wtfinding.getNewSco();
+
+      Concept concept = new Concept(aJCas);
+      concept.setName(finding.getConcept().getLabel());
+      concept.addToIndexes();
+
+      ConceptSearchResult result = new ConceptSearchResult(aJCas);
+      result.setConcept(concept);
+      result.setUri(finding.getConcept().getUri());
+      result.setScore(newsco);
+      result.setText(finding.getConcept().getLabel());
+      result.setRank(currRank++);
+      result.setQueryString(text);
+      result.addToIndexes();
+    }
+    return aJCas;
+  }
+  
+   
   private JCas addSelectedService(List<Finding> unionFinding, String text, JCas aJCas) {
 
     // Rank the returned concepts and add them to CAS
     int currRank = 0;
     for (Finding finding : unionFinding) {
-
-      // Double value = entry.getKey();
-      // Finding finding = entry.getValue();
 
       Concept concept = new Concept(aJCas);
       concept.setName(finding.getConcept().getLabel());
