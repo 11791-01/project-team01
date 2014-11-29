@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.net.URLConnection;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -40,7 +41,13 @@ public class WebServiceHelper {
     JsonObject jsonObj = null;
 
     try {
-      is = new URL(url).openStream();
+      URL urlURL = new URL(url);
+      URLConnection con = urlURL.openConnection();
+      con.setConnectTimeout(1000);
+      con.setReadTimeout(1000);
+      is = con.getInputStream();
+
+      //is = new URL(url).openStream();
       BufferedReader rd = new BufferedReader(new InputStreamReader(is));
       String jsonStr = readAll(rd);
       if (jsonStr.trim().length() == 0) {
@@ -50,15 +57,15 @@ public class WebServiceHelper {
       JsonElement jsonEle = new JsonParser().parse(jsonStr);
       jsonObj = jsonEle.getAsJsonObject();
     } catch (IOException e) {
-      e.printStackTrace();
-      System.exit(1);
+      System.err.println("[Error]: Error or timeout!");
     } 
-
+    //System.out.println(jsonObj);
     return jsonObj;
   }
   
   public static JsonObject getJsonFromPMID(String pmid) {
     String url = PREFIX_DocFullText + pmid;
+    //System.out.println("Getting full text from: " + url);
     return readJsonFromUrl(url);
   }
   
