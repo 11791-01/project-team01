@@ -191,8 +191,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //Double wtJO = multiplyByMean(JOPrunedFinding);
       //Double wtUO = multiplyByMean(UOPrunedFinding);
       
-      //Double[] wtsNorm = {1.0,1.0,1.0,1.0};
-      //allwts = new Double[4];
+      
       
       List<Double> normwts=normalizeMean(wts);
       
@@ -290,8 +289,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     for (Double wt : wts){
       sum+=wt;
     }
-    for (Double wt : wts){
-      normwts.add(wt/sum);
+    for (int i = 0; i < wts.size(); i++){
+      normwts.add(wts.get(i)/sum);
     }
     return normwts;
     
