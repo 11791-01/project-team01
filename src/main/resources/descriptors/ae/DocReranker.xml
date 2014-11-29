@@ -7,8 +7,10 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
-    <configurationParameterSettings/>
+    <configurationParameters>
+      </configurationParameters>
+    <configurationParameterSettings>
+      </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
         <import name="type.OAQATypes"/>

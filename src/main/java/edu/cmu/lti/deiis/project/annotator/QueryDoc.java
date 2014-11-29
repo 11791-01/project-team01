@@ -76,8 +76,10 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
     try {
       ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
       String text = query.getWholeQueryWithOp();
+      System.out.println(text);
 
-      PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0, mResultsPerPage);
+      PubMedSearchServiceResponse.Result pubmedResult = service.findPubMedCitations(text, 0,
+              mResultsPerPage);
 
       List<PubMedSearchServiceResponse.Document> docList = pubmedResult.getDocuments();
       for (int i = 0; i < docList.size(); ++i) {

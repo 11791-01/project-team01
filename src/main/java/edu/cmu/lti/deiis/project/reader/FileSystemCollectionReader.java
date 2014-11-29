@@ -37,6 +37,7 @@ import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 
 import util.FileOp;
+import util.SimCalculator;
 
 /**
  * A simple collection reader that reads documents from a directory in the filesystem. It can be
@@ -83,6 +84,10 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
     // trim question texts
     inputs.stream().filter(input -> input.getBody() != null)
             .forEach(input -> input.setBody(input.getBody().trim().replaceAll("\\s+", " ")));
+    
+    // init the sim calc instance
+    SimCalculator simCalcInstance = SimCalculator.getInstance();
+    simCalcInstance.init("models/stopwords.txt");
   }
 
   /**
