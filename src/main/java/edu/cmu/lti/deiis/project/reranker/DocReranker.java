@@ -26,6 +26,7 @@ import com.aliasi.tokenizer.PorterStemmerTokenizerFactory;
 import com.aliasi.tokenizer.StopTokenizerFactory;
 import com.aliasi.tokenizer.TokenizerFactory;
 
+import edu.cmu.lti.deiis.project.assitance.RetrType;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 
@@ -101,7 +102,8 @@ public class DocReranker extends JCasAnnotator_ImplBase {
       docList.add((Document)DocIter.next());
     }
     
-    List<Double> scoreList = SimCalculator.getInstance().tfidfScore(queryWOOp, docList);
+    SimCalculator simCalcInst = SimCalculator.getInstance();
+    List<Double> scoreList = simCalcInst.tfidfScore(queryWOOp, docList, RetrType.DOC);
     for (int i = 0; i < scoreList.size(); ++i) {
       double score = scoreList.get(i);
       docList.get(i).setScore(score);

@@ -34,7 +34,11 @@ import com.aliasi.tokenizer.TokenizerFactory;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import util.MyComp;
+import util.SimCalculator;
 import util.WebServiceHelper;
+import edu.cmu.lti.deiis.project.assitance.RawSentence;
+import edu.cmu.lti.deiis.project.assitance.RetrType;
 import edu.cmu.lti.oaqa.type.nlp.Sentence;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
@@ -65,7 +69,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     SentenceModel SENTENCE_MODEL = new MedlineSentenceModel();
     SENTENCE_CHUNKER = new SentenceChunker(BASE_TKFACTORY, SENTENCE_MODEL);
 
-    String content = getFileAsStream(stopFilePath);
+    /*String content = getFileAsStream(stopFilePath);
     String[] lines = content.split("\n");
     Set<String> tmpSet = new HashSet<String>();
     for (String line : lines) {
@@ -76,7 +80,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     REFINED_TKFACTORY = IndoEuropeanTokenizerFactory.INSTANCE;
     REFINED_TKFACTORY = new StopTokenizerFactory(REFINED_TKFACTORY, stopSet);
     REFINED_TKFACTORY = new LowerCaseTokenizerFactory(REFINED_TKFACTORY);
-    REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);
+    REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);*/
   }
 
   @Override
@@ -85,6 +89,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(
             ComplexQueryConcept.type);
     ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
+    System.out.println("Snippet Retrieval...");
 
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
@@ -100,7 +105,22 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
         List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
 
-        TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
+        List<RawSentence> rawSentences = new ArrayList<RawSentence>();
+        for (int i = 0; i < sentences.size(); ++i) {
+          Chunk sentence = sentences.get(i);
+          int start = sentence.start();
+          int end = sentence.end();
+          String text = sec0.substring(start, end);
+          rawSentences.add(new RawSentence(start, end, text));
+        }
+        
+        SimCalculator simCalcInst = SimCalculator.getInstance();
+        List<Double> scoreList = simCalcInst.tfidfScore(queryWOOp, rawSentences, RetrType.RAW_SENT);
+        for (int i = 0; i < scoreList.size(); ++i) {
+          double score = scoreList.get(i);
+          rawSentences.get(i).setScore(score);
+        }
+        /*TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
         tfIdf.handle(queryWOOp);
 
         for (int i = 0; i < sentences.size(); ++i) {
@@ -122,15 +142,15 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
           double sim = tfIdf.proximity(queryWOOp, sec0.substring(start, end));
           rawSent.score = sim;
           rawSentences.add(rawSent);
-        }
+        }*/
 
-        Collections.sort(rawSentences, new SenSimComparator());
+        Collections.sort(rawSentences, new MyComp.SenSimComparator());
 
         int threshold = Math.min(5, sentences.size());
         for (int i = 0; i < threshold; ++i) {
           Passage snippet = new Passage(aJCas);
-          int startIdx = rawSentences.get(i).startIdx;
-          int endIdx = rawSentences.get(i).endIdx;
+          int startIdx = rawSentences.get(i).getStartIdx();
+          int endIdx = rawSentences.get(i).getEndIdx();
           snippet.setDocId(pmid);
           snippet.setUri(doc.getUri());
           snippet.setText(sec0.substring(startIdx, endIdx));
@@ -143,51 +163,20 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
       }
     }
 
-  }
-
-  /**
-   * Read file through stream LPDictExactNERAnnotator
-   * 
-   * @param filePath
-   *          the file path
-   * @return the string of the file
-   * @throws ResourceInitializationException
-   */
-  private String getFileAsStream(String filePath) throws ResourceInitializationException {
-    StringBuilder sb = new StringBuilder();
-    try {
-      InputStream is = SnippetAnnotator.class.getClassLoader().getResourceAsStream(filePath);
-
-      BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
-
-      String line = br.readLine();
-      while (line != null) {
-        sb.append(line);
-        sb.append("\n");
-        line = br.readLine();
-      }
-      br.close();
-    } catch (Exception ex) {
-      System.out.println("[Error]: Look Below.");
-      ex.printStackTrace();
-      System.out.println("[Error]: Look Above.");
-      throw new ResourceInitializationException();
-    }
-
-    String content = sb.toString();
-    return content;
+    System.out.println("Snippet Retrieval Finished!");
   }
 
 }
 
+/*
 class RawSentence {
   int startIdx;
 
   int endIdx;
 
   double score;
-}
-
+}*/
+/*
 class SenSimComparator implements Comparator<RawSentence> {
   @Override
   public int compare(RawSentence lhs, RawSentence rhs) {
@@ -200,3 +189,4 @@ class SenSimComparator implements Comparator<RawSentence> {
     }
   }
 }
+*/
