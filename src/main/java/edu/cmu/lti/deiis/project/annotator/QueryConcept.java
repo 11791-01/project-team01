@@ -192,14 +192,14 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
               (s1, s2) -> ((Double) s2.getNewSco()).compareTo((Double) s1.getNewSco()));
 
       // print the union
-      // System.out.println("Printing the Union"+unionFinding.size());
-      //for (Finding finding : unionFinding) {
+      System.out.println("Printing the Union"+unionFinding.size());
+      for (WeightedFinding wtfinding : unionFinding) {
 
-        // Double value = entry.getKey();
-        // Finding finding = entry.getValue();
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      //}
+         Double score = wtfinding.getNewSco();
+         Finding finding = wtfinding.getfndg();
+         System.out.println(" > " + finding.getConcept().getLabel() + " "
+         + finding.getConcept().getUri()+"\t Score"+score);
+      }
 
       aJCas = addSelectedServiceWtd(unionFinding, text, aJCas);
 
