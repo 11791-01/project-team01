@@ -9,6 +9,7 @@ import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.StringList;
 import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
 
@@ -72,6 +73,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       String text = query.getWholeQueryWithOp();
       // String text = query.getWholeQueryWithoutOp();
 
+      StringList queryTypes = query.getNamedEntityTypes();
+      
+     
+      String querytype = queryTypes.getNthElement(0);
+      
       // Use Mesh service
             
       mResultsPerPage = 6;
@@ -96,7 +102,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       Double mthres = 0.1;
       Double DOthres = 0.1;
       Double GOthres = 0.1;
-      Double JOthres = 0.1;
+      //Double JOthres = 0.1;
       Double UOthres = 0.1;
       
       OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
@@ -115,18 +121,18 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       //}
 
-      OntologyServiceResponse.Result jochemResult = null;
-      try {
-        jochemResult = service.findJochemEntitiesPaged(text, 0,
-                JOretsize);
-        System.out.println("Jochem: " + jochemResult.getFindings().size());
+      //OntologyServiceResponse.Result jochemResult = null;
+      //try {
+       // jochemResult = service.findJochemEntitiesPaged(text, 0,
+        //        JOretsize);
+        //System.out.println("Jochem: " + jochemResult.getFindings().size());
         //for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
           // System.out.println(" > " + finding.getConcept().getLabel() + " "
           // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
         //}
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      //} catch (Exception e) {
+      //  e.printStackTrace();
+      //}
 
       OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,
               UOretsize);
@@ -149,7 +155,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       List<Finding> GOPrunedFinding = pruneFindings(geneOntologyResult, GOthres);
 
-      List<Finding> JOPrunedFinding = pruneFindings(jochemResult, JOthres);
+      //List<Finding> JOPrunedFinding = pruneFindings(jochemResult, JOthres);
 
       List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
 
@@ -170,19 +176,35 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       //find weights to combine with
       
-      Double wtmesh = multiplyByMeanInv(meshPrunedFinding);
-      Double wtDO  = multiplyByMeanInv(DOPrunedFinding);
-      Double wtGO  = multiplyByMeanInv(GOPrunedFinding);
-      Double wtJO = multiplyByMeanInv(JOPrunedFinding);
-      Double wtUO = multiplyByMeanInv(UOPrunedFinding);
+      List<Double> wts ;
+      wts = new ArrayList<Double>();
+      
+      wts.add(multiplyByMean(meshPrunedFinding));
+      wts.add(multiplyByMean(DOPrunedFinding));
+      wts.add(multiplyByMean(GOPrunedFinding));
+      //wts.add(multiplyByMean(JOPrunedFinding));
+      wts.add(multiplyByMean(UOPrunedFinding));
+      
+      //Double wtmesh = multiplyByMean(meshPrunedFinding);
+      //Double wtDO  = multiplyByMean(DOPrunedFinding);
+      //Double wtGO  = multiplyByMean(GOPrunedFinding);
+      //Double wtJO = multiplyByMean(JOPrunedFinding);
+      //Double wtUO = multiplyByMean(UOPrunedFinding);
+      
+      //Double[] wtsNorm = {1.0,1.0,1.0,1.0};
+      //allwts = new Double[4];
+      
+      List<Double> normwts=normalizeMean(wts);
       
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
-      unionFinding = CombineSourcesWeighted(meshPrunedFinding, unionFinding,wtmesh);
-      unionFinding = CombineSourcesWeighted(DOPrunedFinding, unionFinding,wtDO);
-      unionFinding = CombineSourcesWeighted(GOPrunedFinding, unionFinding,wtGO);
-      unionFinding = CombineSourcesWeighted(JOPrunedFinding, unionFinding,wtJO);
-      unionFinding = CombineSourcesWeighted(UOPrunedFinding, unionFinding,wtUO);
+      
+      
+      unionFinding = CombineSourcesWeighted(meshPrunedFinding, unionFinding,normwts.get(0));
+      unionFinding = CombineSourcesWeighted(DOPrunedFinding, unionFinding,normwts.get(1));
+      unionFinding = CombineSourcesWeighted(GOPrunedFinding, unionFinding,normwts.get(2));
+      //unionFinding = CombineSourcesWeighted(JOPrunedFinding, unionFinding,wtJO);
+      unionFinding = CombineSourcesWeighted(UOPrunedFinding, unionFinding,normwts.get(3));
       
       
       
@@ -247,7 +269,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   }
 
-  private double multiplyByMeanInv(List<Finding> Result){
+  private double multiplyByMean(List<Finding> Result){
     
     if (Result == null) {
       return 0.0;
@@ -260,7 +282,20 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
     return allscores/count;
   }
-  
+  private List<Double> normalizeMean(List <Double> wts){
+    
+    List<Double> normwts;
+    normwts = new ArrayList<Double>();
+    Double sum = 0.0;
+    for (Double wt : wts){
+      sum+=wt;
+    }
+    for (Double wt : wts){
+      normwts.add(wt/sum);
+    }
+    return normwts;
+    
+  }
   private JCas addSelectedServiceWtd(List<WeightedFinding> unionFinding, String text, JCas aJCas) {
 
     // Rank the returned concepts and add them to CAS
