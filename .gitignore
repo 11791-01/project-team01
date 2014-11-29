@@ -3,5 +3,6 @@
 project-team01.out
 project-team01.eval
 project-team01.out.json
+project-team01.*
 src/main/java/edu/cmu/lti/deiis/project/annotator/testAnnotator.java
 src/main/resources/descriptors/ae/testAnnotator.xml
