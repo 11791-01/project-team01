@@ -153,8 +153,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
 
-      // Map<Double, Finding> unionFinding = new TreeMap<Double,
-      // Finding>(Collections.reverseOrder());
+      
       /*
        * take union of new objects defined --list of type weightedfinding
        * sort them
@@ -211,7 +210,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   private List<Finding> CombineSources(List<Finding> PrunedFinding, List<Finding> unionFinding) {
 
-    // Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>();
     for (Finding finding : PrunedFinding) {
       unionFinding.add(finding);
     }
@@ -220,7 +218,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   private List<WeightedFinding> CombineSourcesWeighted(List<Finding> PrunedFinding, List<WeightedFinding> unionFinding, Double wt) {
 
-    // Map<Double, Finding> unionFinding = new TreeMap<Double, Finding>();
     for (Finding finding : PrunedFinding) {
       WeightedFinding wtfnd = new WeightedFinding(finding, finding.getScore()*wt);
       unionFinding.add(wtfnd);
@@ -261,7 +258,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       allscores+=finding.getScore();
       count+=1;
     }
-    //need to finish this thing...finding does not have set score variable..finish score setting by multiplying with mean inverse
     return allscores/count;
   }
   
@@ -271,7 +267,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     int currRank = 0;
     for (WeightedFinding wtfinding : unionFinding) {
 
-      // Double value = entry.getKey();
       Finding finding = wtfinding.getfndg();
       Double newsco = wtfinding.getNewSco();
 
@@ -297,9 +292,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     // Rank the returned concepts and add them to CAS
     int currRank = 0;
     for (Finding finding : unionFinding) {
-
-      // Double value = entry.getKey();
-      // Finding finding = entry.getValue();
 
       Concept concept = new Concept(aJCas);
       concept.setName(finding.getConcept().getLabel());
