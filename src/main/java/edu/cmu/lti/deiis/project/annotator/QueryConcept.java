@@ -101,7 +101,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       Double mthres = 0.1;
       Double DOthres = 0.15;
-      Double GOthres = 0.2;
+      Double GOthres = 0.15;
       //Double JOthres = 0.1;
       Double UOthres = 0.15;
       
