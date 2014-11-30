@@ -58,7 +58,9 @@ public class WebServiceHelper {
       jsonObj = jsonEle.getAsJsonObject();
     } catch (IOException e) {
       System.err.println("[Error]: Error or timeout!");
-    } 
+    } catch (Exception e) {
+      System.err.println("[Error]: Other errors!");
+    }
     //System.out.println(jsonObj);
     return jsonObj;
   }

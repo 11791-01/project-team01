@@ -84,6 +84,10 @@ public class QueryDoc extends JCasAnnotator_ImplBase {
       List<PubMedSearchServiceResponse.Document> docList = pubmedResult.getDocuments();
       for (int i = 0; i < docList.size(); ++i) {
         PubMedSearchServiceResponse.Document doc = docList.get(i);
+        if (doc.getDocumentAbstract() == null) {
+          continue;
+        }
+
         String docID = doc.getPmid();
         String uri = DOCURI_PREFIX + docID;
 
