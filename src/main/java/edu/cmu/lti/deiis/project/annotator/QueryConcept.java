@@ -208,14 +208,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
   }
 
-  private List<Finding> CombineSources(List<Finding> PrunedFinding, List<Finding> unionFinding) {
-
-    for (Finding finding : PrunedFinding) {
-      unionFinding.add(finding);
-    }
-    return unionFinding;
-  }
-
+ 
   private List<WeightedFinding> CombineSourcesWeighted(List<Finding> PrunedFinding, List<WeightedFinding> unionFinding, Double wt) {
 
     for (Finding finding : PrunedFinding) {
