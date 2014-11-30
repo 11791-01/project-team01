@@ -24,7 +24,7 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 /**
  * Query to get the concept.
  * 
- * @author Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu, Anurag Kumar <alnu@cs.cmu.edu>
+ * @author Anurag Kumar <alnu@cs.cmu.edu, Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu>
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
@@ -100,38 +100,26 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       int UOretsize = 6;
       
       Double mthres = 0.1;
-      Double DOthres = 0.1;
-      Double GOthres = 0.1;
+      Double DOthres = 0.15;
+      Double GOthres = 0.2;
       //Double JOthres = 0.1;
-      Double UOthres = 0.1;
+      Double UOthres = 0.15;
       
       OntologyServiceResponse.Result diseaseOntologyResult = null;
       diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
-      //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      //}
 
       OntologyServiceResponse.Result geneOntologyResult = null;
       geneOntologyResult = service.findGeneOntologyEntitiesPaged(
               text, 0, GOretsize);
       System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
-      //for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      //}
 
       //OntologyServiceResponse.Result jochemResult = null;
       //try {
        // jochemResult = service.findJochemEntitiesPaged(text, 0,
         //        JOretsize);
         //System.out.println("Jochem: " + jochemResult.getFindings().size());
-        //for (OntologyServiceResponse.Finding finding : jochemResult.getFindings()) {
-          // System.out.println(" > " + finding.getConcept().getLabel() + " "
-          // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-        //}
       //} catch (Exception e) {
       //  e.printStackTrace();
       //}
@@ -139,18 +127,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       uniprotResult = service.findUniprotEntitiesPaged(text, 0,
               UOretsize);
       System.out.println("UniProt: " + uniprotResult.getFindings().size());
-      //for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      //}
 
-      // Adding selective sources here
-      // Double threshold = 0.1; //might decide to set different threshold for each service
-      // List<Finding> meshPruneFinding;
-      // meshPruneFinding = new ArrayList<Finding>();
-      
-      
-      
+            
       List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
 
       List<Finding> DOPrunedFinding = pruneFindings(diseaseOntologyResult, DOthres);
@@ -160,20 +138,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //List<Finding> JOPrunedFinding = pruneFindings(jochemResult, JOthres);
 
       List<Finding> UOPrunedFinding = pruneFindings(uniprotResult, UOthres);
-
-      
-      /*
-       * take union of new objects defined --list of type weightedfinding
-       * sort them
-       * discuss first
-       */
-      //List<Finding> unionFinding = new ArrayList<Finding>();
-
-      //unionFinding = CombineSources(meshPrunedFinding, unionFinding);
-      //unionFinding = CombineSources(DOPrunedFinding, unionFinding);
-      //unionFinding = CombineSources(GOPrunedFinding, unionFinding);
-      //unionFinding = CombineSources(JOPrunedFinding, unionFinding);
-      //unionFinding = CombineSources(UOPrunedFinding, unionFinding);
 
       
       //find weights to combine with
@@ -194,12 +158,6 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
       wts.add(multiplyByMean(UOPrunedFinding));
-      
-      //Double wtmesh = multiplyByMean(meshPrunedFinding);
-      //Double wtDO  = multiplyByMean(DOPrunedFinding);
-      //Double wtGO  = multiplyByMean(GOPrunedFinding);
-      //Double wtJO = multiplyByMean(JOPrunedFinding);
-      //Double wtUO = multiplyByMean(UOPrunedFinding);
       
       
       System.out.println("Weights" + wts);
@@ -322,7 +280,7 @@ private List<Double> normalizeWtsSim(List <Double> wts){
       sum+=wt;
     }
     for (int i = 0; i < wts.size(); i++){
-      normwts.add(wts.get(i)/sum);
+      normwts.add((4*wts.get(i))/sum);
     }
     return normwts;
     
