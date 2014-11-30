@@ -12,13 +12,19 @@ public class RawSentence {
   private int endIdx;
   
   private String text;
+  
+  private String docID;
+  
+  private String srcURI;
 
   private double score = 0.0;
   
-  public RawSentence(int startIdx, int endIdx, String text) {
+  public RawSentence(int startIdx, int endIdx, String text, String docID, String srcURI) {
     this.startIdx = startIdx;
     this.endIdx = endIdx;
     this.text = text;
+    this.docID = docID;
+    this.srcURI = srcURI;
   }
   
   public void setScore(double score) {
@@ -39,5 +45,13 @@ public class RawSentence {
   
   public int getEndIdx() {
     return endIdx;
+  }
+  
+  public String getDocID() {
+    return docID;
+  }
+  
+  public String getSrcURI() {
+    return srcURI;
   }
 }

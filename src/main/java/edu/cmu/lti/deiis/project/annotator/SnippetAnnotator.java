@@ -18,6 +18,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.TOP;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import com.aliasi.chunk.Chunk;
@@ -39,6 +40,7 @@ import util.SimCalculator;
 import util.WebServiceHelper;
 import edu.cmu.lti.deiis.project.assitance.RawSentence;
 import edu.cmu.lti.deiis.project.assitance.RetrType;
+import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.nlp.Sentence;
 import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
@@ -52,10 +54,6 @@ import edu.cmu.lti.oaqa.type.retrieval.Passage;
 public class SnippetAnnotator extends JCasAnnotator_ImplBase {
   private SentenceChunker SENTENCE_CHUNKER;
 
-  private String stopFilePath = "models/stopwords.txt";
-
-  private TokenizerFactory REFINED_TKFACTORY = null;
-
   /**
    * Perform initialization logic. Initialize the service.
    * 
@@ -68,19 +66,6 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     TokenizerFactory BASE_TKFACTORY = IndoEuropeanTokenizerFactory.INSTANCE;
     SentenceModel SENTENCE_MODEL = new MedlineSentenceModel();
     SENTENCE_CHUNKER = new SentenceChunker(BASE_TKFACTORY, SENTENCE_MODEL);
-
-    /*String content = getFileAsStream(stopFilePath);
-    String[] lines = content.split("\n");
-    Set<String> tmpSet = new HashSet<String>();
-    for (String line : lines) {
-      tmpSet.add(line);
-    }
-    Set<String> stopSet = Collections.unmodifiableSet(tmpSet);
-
-    REFINED_TKFACTORY = IndoEuropeanTokenizerFactory.INSTANCE;
-    REFINED_TKFACTORY = new StopTokenizerFactory(REFINED_TKFACTORY, stopSet);
-    REFINED_TKFACTORY = new LowerCaseTokenizerFactory(REFINED_TKFACTORY);
-    REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);*/
   }
 
   @Override
@@ -89,104 +74,75 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     FSIterator<TOP> queryIter = aJCas.getJFSIndexRepository().getAllIndexedFS(
             ComplexQueryConcept.type);
     ComplexQueryConcept query = (ComplexQueryConcept) queryIter.next();
+    String queryWOOp = query.getWholeQueryWithoutOp();
     System.out.println("Snippet Retrieval...");
 
+    List<RawSentence> allRawSents = new ArrayList<RawSentence>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
-      JsonObject jsonObj = WebServiceHelper.getJsonFromPMID(doc.getDocId());
+      String pmid = doc.getDocId();
 
+      JsonObject jsonObj = WebServiceHelper.getJsonFromPMID(pmid);
+
+      String sec0 = null;
       if (jsonObj != null) {
-        String queryWOOp = query.getWholeQueryWithoutOp();
-
         JsonArray secArr = jsonObj.getAsJsonArray("sections");
-        String pmid = doc.getDocId();
-        String sec0 = secArr.get(0).getAsString();
-
-        Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
-        List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
-
-        List<RawSentence> rawSentences = new ArrayList<RawSentence>();
-        for (int i = 0; i < sentences.size(); ++i) {
-          Chunk sentence = sentences.get(i);
-          int start = sentence.start();
-          int end = sentence.end();
-          String text = sec0.substring(start, end);
-          rawSentences.add(new RawSentence(start, end, text));
-        }
-        
-        SimCalculator simCalcInst = SimCalculator.getInstance();
-        List<Double> scoreList = simCalcInst.tfidfScore(queryWOOp, rawSentences, RetrType.RAW_SENT);
-        for (int i = 0; i < scoreList.size(); ++i) {
-          double score = scoreList.get(i);
-          rawSentences.get(i).setScore(score);
-        }
-        /*TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
-        tfIdf.handle(queryWOOp);
-
-        for (int i = 0; i < sentences.size(); ++i) {
-          Chunk sentence = sentences.get(i);
-          int start = sentence.start();
-          int end = sentence.end();
-          tfIdf.handle(sec0.substring(start, end));
-        }
-
-        List<RawSentence> rawSentences = new ArrayList<RawSentence>();
-
-        for (int i = 0; i < sentences.size(); ++i) {
-          int start = sentences.get(i).start();
-          int end = sentences.get(i).end();
-
-          RawSentence rawSent = new RawSentence();
-          rawSent.startIdx = start;
-          rawSent.endIdx = end;
-          double sim = tfIdf.proximity(queryWOOp, sec0.substring(start, end));
-          rawSent.score = sim;
-          rawSentences.add(rawSent);
-        }*/
-
-        Collections.sort(rawSentences, new MyComp.SenSimComparator());
-
-        int threshold = Math.min(5, sentences.size());
-        for (int i = 0; i < threshold; ++i) {
-          Passage snippet = new Passage(aJCas);
-          int startIdx = rawSentences.get(i).getStartIdx();
-          int endIdx = rawSentences.get(i).getEndIdx();
-          snippet.setDocId(pmid);
-          snippet.setUri(doc.getUri());
-          snippet.setText(sec0.substring(startIdx, endIdx));
-          snippet.setBeginSection("sections.0");
-          snippet.setEndSection("sections.0");
-          snippet.setOffsetInBeginSection(startIdx);
-          snippet.setOffsetInEndSection(endIdx);
-          snippet.addToIndexes();
-        }
+        sec0 = secArr.get(0).getAsString();
+      } else {
+        sec0 = doc.getAbstract();
+        // continue;
       }
+
+      Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
+      List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
+
+      List<RawSentence> rawSentences = new ArrayList<RawSentence>();
+      for (int i = 0; i < sentences.size(); ++i) {
+        Chunk sentence = sentences.get(i);
+        int start = sentence.start();
+        int end = sentence.end();
+        String text = sec0.substring(start, end);
+        rawSentences.add(new RawSentence(start, end, text, pmid, doc.getUri()));
+      }
+
+      SimCalculator simCalcInst = SimCalculator.getInstance();
+      List<Double> scoreList = simCalcInst.tfidfScore(queryWOOp, rawSentences, RetrType.RAW_SENT);
+      for (int i = 0; i < scoreList.size(); ++i) {
+        double score = scoreList.get(i);
+        rawSentences.get(i).setScore(score);
+      }
+      
+      allRawSents.addAll(rawSentences);
+    }
+
+    Collections.sort(allRawSents, new MyComp.SenSimComparator());
+
+    int threshold = Math.min(10, allRawSents.size());
+    for (int i = 0; i < threshold; ++i) {
+      Passage snippet = new Passage(aJCas);
+      RawSentence rawSent = allRawSents.get(i);
+      int startIdx = rawSent.getStartIdx();
+      int endIdx = rawSent.getEndIdx();
+      String tmpText = rawSent.getText();
+      if (tmpText.contains("a larger gene number")) {
+        FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
+        System.out.println(((Question) iter.next()).getText());
+        System.out.println(rawSent.getSrcURI());
+        System.out.println(startIdx + " " + endIdx);
+        System.out.println(tmpText);
+      }
+      snippet.setDocId(rawSent.getDocID());
+      snippet.setUri(rawSent.getSrcURI());
+      snippet.setRank(i);
+      snippet.setText(rawSent.getText());
+      snippet.setBeginSection("sections.0");
+      snippet.setEndSection("sections.0");
+      snippet.setOffsetInBeginSection(startIdx);
+      snippet.setOffsetInEndSection(endIdx);
+      snippet.addToIndexes();
     }
 
     System.out.println("Snippet Retrieval Finished!");
   }
 
 }
-
-/*
-class RawSentence {
-  int startIdx;
-
-  int endIdx;
-
-  double score;
-}*/
-/*
-class SenSimComparator implements Comparator<RawSentence> {
-  @Override
-  public int compare(RawSentence lhs, RawSentence rhs) {
-    if (lhs.score < rhs.score) {
-      return 1;
-    } else if (lhs.score > rhs.score) {
-      return -1;
-    } else {
-      return 0;
-    }
-  }
-}
-*/
