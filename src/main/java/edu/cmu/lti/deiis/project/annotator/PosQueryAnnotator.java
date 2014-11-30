@@ -67,7 +67,11 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
         atomicQuery.addToIndexes();
       }
       
-      mParser.getRoot(queString);
+      //System.out.println(queString);
+      String root = mParser.getRoot(queString);
+      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+      atomicQuery.setText(root);
+      atomicQuery.addToIndexes();
     }
   }
 

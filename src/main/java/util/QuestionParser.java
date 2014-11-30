@@ -43,18 +43,15 @@ public class QuestionParser {
    * 
    * @param text The question string.
    */
-  public void getRoot(String text) {
+  public String getRoot(String text) {
     Annotation document = new Annotation(text);
     pipeline.annotate(document);
     List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-    for (CoreMap sentence : sentences) {
-      SemanticGraph dependencies = sentence.get(CollapsedCCProcessedDependenciesAnnotation.class);
-      IndexedWord root = dependencies.getFirstRoot();
-      System.out.println(text);
-      System.out.println(root.word());
-      System.out.println(root.beginPosition());
-      System.out.println(root.endPosition());
-    }
+    CoreMap sentence = sentences.get(0);
+    SemanticGraph dependencies = sentence.get(CollapsedCCProcessedDependenciesAnnotation.class);
+    IndexedWord root = dependencies.getFirstRoot();
+    
+    return root.word();
   }
-
+  
 }
