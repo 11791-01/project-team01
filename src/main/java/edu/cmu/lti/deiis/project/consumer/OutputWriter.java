@@ -34,6 +34,7 @@ import util.FileOp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import edu.cmu.lti.oaqa.type.answer.Answer;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
@@ -191,14 +192,28 @@ public class OutputWriter extends CasConsumer_ImplBase implements CasObjectProce
 
     }
     
+    FSIterator<TOP> answerIter = jcas.getJFSIndexRepository().getAllIndexedFS(Answer.type);
+    Map<Integer, String> answerMap = new TreeMap<Integer, String>();
+    while (answerIter.hasNext()) {
+
+      Answer ans = (Answer) answerIter.next();
+      answerMap.put(ans.getRank(), ans.getText());
+
+    }
+    
     // Storing Results in List
     List<String> retDocs = new ArrayList<String>(docMap.values());
     List<String> retConcepts = new ArrayList<String>(conceptMap.values());
     List<Triple> retTriples = new ArrayList<Triple>(tripleMap.values());
     List<Snippet> retSnippets = new ArrayList<Snippet>(snippetMap.values());
+    List<String> retAnswers = new ArrayList<String>(answerMap.values());
 
-    retrievedOutput.add(new OutputQuestion(question.getId(), question.getText(), retDocs,
-            retConcepts, retTriples, retSnippets));
+    if (!retAnswers.isEmpty())
+      retrievedOutput.add(new OutputQuestion(question.getId(), question.getText(), retDocs,
+            retConcepts, retTriples, retSnippets, retAnswers.get(0)));
+    else
+      retrievedOutput.add(new OutputQuestion(question.getId(), question.getText(), retDocs,
+              retConcepts, retTriples, retSnippets));
 
     // Evaluating the current question in CAS
     // Do only if gold standard exists
