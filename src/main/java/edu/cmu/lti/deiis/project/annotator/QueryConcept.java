@@ -154,6 +154,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       
       wts.add(multiplyByMean(meshPrunedFinding));
+
       wts.add(multiplyByMean(DOPrunedFinding));
       wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
@@ -162,11 +163,17 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       System.out.println("Weights" + wts);
       List<Double> normwts=normalizeWtsSim(wts);
+
       System.out.println("Normal Weights" + normwts);
       Double alpha = 0.2;
+
+
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
+
       //normwts=normalizeWtsQuery(querytype,normwts,alpha);
       System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
+
+      normwts=normalizeWtsQuery(querytype,wts,alpha);
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
       

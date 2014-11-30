@@ -17,6 +17,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.AtomicQueryConcept;
 import util.PosTagNamedEntityRecognizer;
+import util.QuestionParser;
 
 /**
  * A annotator that generates queries based on the POS tag NER results.
@@ -27,6 +28,7 @@ import util.PosTagNamedEntityRecognizer;
 public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
   
   private PosTagNamedEntityRecognizer mRecognizer;
+  private QuestionParser mParser;
   
   /**
    * Initialize a POS tag named entity recognizer.
@@ -37,6 +39,7 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     try {
       mRecognizer = new PosTagNamedEntityRecognizer();
+//      mParser = new QuestionParser();
     } catch (ResourceInitializationException e) {
       e.printStackTrace();
     }
@@ -63,6 +66,11 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
         atomicQuery.setText(queString.substring(entry.getKey(), entry.getValue()));
         atomicQuery.addToIndexes();
       }
+      
+//      String root = mParser.getRoot(queString);
+//      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+//      atomicQuery.setText(root);
+//      atomicQuery.addToIndexes();
     }
   }
 

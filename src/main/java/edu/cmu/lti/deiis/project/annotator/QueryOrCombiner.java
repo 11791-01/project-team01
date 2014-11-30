@@ -18,12 +18,13 @@ import edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept;
 import edu.cmu.lti.oaqa.type.retrieval.QueryOperator;
 
 /**
- * An annotator used to combine the atomic queries into a complex query.
+ * An annotator used to combine the atomic queries into a complex query with the use of AND and OR
+ * operator.
  * 
  * @author Zexi Mao <zexim@cs.cmu.edu>
  *
  */
-public class QueryCombiner extends JCasAnnotator_ImplBase {
+public class QueryOrCombiner extends JCasAnnotator_ImplBase {
 
   /**
    * Reads all atomic queries and put them into one complext query.
@@ -37,34 +38,45 @@ public class QueryCombiner extends JCasAnnotator_ImplBase {
 
     // Put the atomic queries in a list.
     List<AtomicQueryConcept> terms = new ArrayList<AtomicQueryConcept>();
+    List<String> words = new ArrayList<String>();
 
-    // Generate a query operator.
-    QueryOperator op = new QueryOperator(aJCas);
-    op.setName("AND");
+    // Generate AND query operator.
+    QueryOperator opAnd = new QueryOperator(aJCas);
+    opAnd.setName("AND");
 
+    // Generate OR query operator.
+    QueryOperator opOr = new QueryOperator(aJCas);
+    opOr.setName("OR");
+    
     // Create the whole query strings
-    String wholeWithOp = "";
-    String wholeWithoutOp = "";
-
+    StringBuilder wholeWithOp = new StringBuilder();
+    StringBuilder wholeWithoutOp = new StringBuilder();
+    
     while (it.hasNext()) {
       AtomicQueryConcept term = (AtomicQueryConcept) it.next();
-
       terms.add(term);
-
-      wholeWithOp += term.getText();
-      wholeWithoutOp += term.getText();
-      if (it.hasNext()) {
-        wholeWithOp += (" " + op.getName() + " ");
-        wholeWithoutOp += " ";
+      words.add(term.getText());
+    }
+    
+    for (int i = 0; i < words.size(); i++) {
+      if (i != 0) {
+        wholeWithoutOp.append(" ");
+      }
+      wholeWithoutOp.append(words.get(i));
+      for (int j = i+1; j < words.size(); j++) {
+        if (j != 1) {
+          wholeWithOp.append(" " + opOr.getName() + " ");
+        }
+        wholeWithOp.append("(" + words.get(i) + " " + opAnd.getName() + " " + words.get(j) + ")");
       }
     }
-
+    
     // Create the complex query.
     ComplexQueryConcept query = new ComplexQueryConcept(aJCas);
     query.setOperatorArgs(Utils.fromCollectionToFSList(aJCas, terms));
-    query.setOperator(op);
-    query.setWholeQueryWithOp(wholeWithOp);
-    query.setWholeQueryWithoutOp(wholeWithoutOp);
+    query.setOperator(opOr);
+    query.setWholeQueryWithOp(wholeWithOp.toString());
+    query.setWholeQueryWithoutOp(wholeWithoutOp.toString());
     query.addToIndexes();
   }
 

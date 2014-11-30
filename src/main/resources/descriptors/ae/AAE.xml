@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="QueryDoc">
-      <import name="descriptors.ae.QueryDoc"/>
-    </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="QueryConcept">
+    <delegateAnalysisEngine key="QueryConcept">
       <import name="descriptors.ae.QueryConcept"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="PosQueryAnnotator">
+  <delegateAnalysisEngine key="PosQueryAnnotator">
       <import name="descriptors.ae.PosQueryAnnotator"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="QueryCombiner">
+    <delegateAnalysisEngine key="QueryCombiner">
       <import name="descriptors.ae.QueryCombiner"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="SnippetAnnotator">
-      <import name="descriptors.ae.SnippetAnnotator"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="DocReranker">
-      <import name="descriptors.ae.DocReranker"/>
+  <delegateAnalysisEngine key="AbnerAnnotator">
+      <import name="descriptors.ae.AbnerAnnotator"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -34,10 +27,8 @@
       <fixedFlow>
         <node>PosQueryAnnotator</node>
       <node>QueryCombiner</node>
-        <node>QueryConcept</node>
-      <node>QueryDoc</node>
-      <node>DocReranker</node>
-        <node>SnippetAnnotator</node>
+        <node>AbnerAnnotator</node>
+      <node>QueryConcept</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>

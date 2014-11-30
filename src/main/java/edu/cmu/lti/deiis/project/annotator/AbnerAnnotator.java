@@ -66,7 +66,6 @@ public class AbnerAnnotator extends JCasAnnotator_ImplBase {
           tag = "GENE";
         }
       }
-      System.out.println(tag);
       tags.add(tag);
       query.setNamedEntityTypes(Utils.createStringList(aJCas, tags));
     } catch (Exception e) {
