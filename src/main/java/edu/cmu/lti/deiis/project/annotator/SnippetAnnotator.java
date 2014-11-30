@@ -77,6 +77,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     String queryWOOp = query.getWholeQueryWithoutOp();
     System.out.println("Snippet Retrieval...");
 
+    List<RawSentence> allRawSents = new ArrayList<RawSentence>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
       String pmid = doc.getDocId();
@@ -89,7 +90,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         sec0 = secArr.get(0).getAsString();
       } else {
         sec0 = doc.getAbstract();
-        //continue;
+        // continue;
       }
 
       Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
@@ -101,7 +102,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         int start = sentence.start();
         int end = sentence.end();
         String text = sec0.substring(start, end);
-        rawSentences.add(new RawSentence(start, end, text));
+        rawSentences.add(new RawSentence(start, end, text, pmid, doc.getUri()));
       }
 
       SimCalculator simCalcInst = SimCalculator.getInstance();
@@ -110,32 +111,35 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         double score = scoreList.get(i);
         rawSentences.get(i).setScore(score);
       }
+      
+      allRawSents.addAll(rawSentences);
+    }
 
-      Collections.sort(rawSentences, new MyComp.SenSimComparator());
+    Collections.sort(allRawSents, new MyComp.SenSimComparator());
 
-      int threshold = Math.min(5, sentences.size());
-      for (int i = 0; i < threshold; ++i) {
-        Passage snippet = new Passage(aJCas);
-        int startIdx = rawSentences.get(i).getStartIdx();
-        int endIdx = rawSentences.get(i).getEndIdx();
-        String tmpText = sec0.substring(startIdx, endIdx);
-        if (tmpText.contains("a larger gene number")) {
-          FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
-          System.out.println(((Question)iter.next()).getText());
-          System.out.println(doc.getUri());
-          System.out.println(startIdx + " " + endIdx);
-          System.out.println(tmpText);
-        }
-        snippet.setDocId(pmid);
-        snippet.setUri(doc.getUri());
-        snippet.setRank(i);
-        snippet.setText(sec0.substring(startIdx, endIdx));
-        snippet.setBeginSection("sections.0");
-        snippet.setEndSection("sections.0");
-        snippet.setOffsetInBeginSection(startIdx);
-        snippet.setOffsetInEndSection(endIdx);
-        snippet.addToIndexes();
+    int threshold = Math.min(10, allRawSents.size());
+    for (int i = 0; i < threshold; ++i) {
+      Passage snippet = new Passage(aJCas);
+      RawSentence rawSent = allRawSents.get(i);
+      int startIdx = rawSent.getStartIdx();
+      int endIdx = rawSent.getEndIdx();
+      String tmpText = rawSent.getText();
+      if (tmpText.contains("a larger gene number")) {
+        FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
+        System.out.println(((Question) iter.next()).getText());
+        System.out.println(rawSent.getSrcURI());
+        System.out.println(startIdx + " " + endIdx);
+        System.out.println(tmpText);
       }
+      snippet.setDocId(rawSent.getDocID());
+      snippet.setUri(rawSent.getSrcURI());
+      snippet.setRank(i);
+      snippet.setText(rawSent.getText());
+      snippet.setBeginSection("sections.0");
+      snippet.setEndSection("sections.0");
+      snippet.setOffsetInBeginSection(startIdx);
+      snippet.setOffsetInEndSection(endIdx);
+      snippet.addToIndexes();
     }
 
     System.out.println("Snippet Retrieval Finished!");
