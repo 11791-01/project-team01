@@ -179,6 +179,14 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       List<Double> wts ;
       wts = new ArrayList<Double>();
       
+      wts.add(1.0);
+      wts.add(1.0);
+      wts.add(1.0);
+      //wts.add(1.0);
+      wts.add(1.0);
+      
+      
+      
       wts.add(multiplyByMean(meshPrunedFinding));
       wts.add(multiplyByMean(DOPrunedFinding));
       wts.add(multiplyByMean(GOPrunedFinding));
@@ -193,7 +201,10 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       
       
-      List<Double> normwts=normalizeMean(wts);
+      List<Double> normwts=normalizeWtsSim(wts);
+      
+      //Double alpha = 0.5;
+      //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
       
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
@@ -281,7 +292,24 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
     return allscores/count;
   }
-  private List<Double> normalizeMean(List <Double> wts){
+  
+  private List<Double> normalizeWtsQuery(String querytype, List<Double> wts, double alpha){
+    
+    if(querytype == null ||querytype.isEmpty()){
+      return wts;
+    }
+    List<Double> normwts = new ArrayList<Double>();
+    if(querytype.equals("protein")){
+      wts.set(3, wts.get(3)+alpha);
+    }
+    else if(querytype.equals("gene")){
+      wts.set(3, wts.get(3)+(0.25*alpha)); 
+      wts.set(3, wts.get(3)+(0.75*alpha)); 
+    }
+    normwts = normalizeWtsSim(wts);
+    return normwts;
+  }
+private List<Double> normalizeWtsSim(List <Double> wts){
     
     List<Double> normwts;
     normwts = new ArrayList<Double>();
@@ -290,7 +318,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       sum+=wt;
     }
     for (int i = 0; i < wts.size(); i++){
-      normwts.add(wts.get(i)/sum);
+      normwts.add(4*wts.get(i)/sum);
     }
     return normwts;
     
