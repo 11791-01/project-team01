@@ -14,7 +14,7 @@ public class WeightedFinding {
   public Finding getfndg(){
     return fndg;
   }
-  public Double getnewSco(){
+  public Double getNewSco(){
     return newsco;
   }
   public void setFndg(Finding fnd){

@@ -52,19 +52,18 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
     FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
     
     if (iter.isValid() && iter.hasNext()) {
-      // Get the question first
+      // Get the question first.
       Question question = (Question) iter.next();
       String queString = question.getText();
       
       TreeMap<Integer, Integer> begin2end = (TreeMap<Integer, Integer>) mRecognizer.getGeneSpans(queString);
       for (Map.Entry<Integer, Integer> entry : begin2end.entrySet()) {
-        // Create an atomic query first
+        // Create an atomic query for the QueryCombiner.
         AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
         atomicQuery.setText(queString.substring(entry.getKey(), entry.getValue()));
         atomicQuery.addToIndexes();
       }
     }
-
   }
 
 }
