@@ -178,20 +178,20 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       List<Double> wts ;
       wts = new ArrayList<Double>();
-      
-      wts.add(1.0);
-      wts.add(1.0);
-      wts.add(1.0);
+
       //wts.add(1.0);
-      wts.add(1.0);
+      //wts.add(1.0);
+      //wts.add(1.0);
+      ////wts.add(1.0);
+      //wts.add(1.0);
       
       
       
-      //wts.add(multiplyByMean(meshPrunedFinding));
-      //wts.add(multiplyByMean(DOPrunedFinding));
-      //wts.add(multiplyByMean(GOPrunedFinding));
+      wts.add(multiplyByMean(meshPrunedFinding));
+      wts.add(multiplyByMean(DOPrunedFinding));
+      wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
-      //wts.add(multiplyByMean(UOPrunedFinding));
+      wts.add(multiplyByMean(UOPrunedFinding));
       
       //Double wtmesh = multiplyByMean(meshPrunedFinding);
       //Double wtDO  = multiplyByMean(DOPrunedFinding);
@@ -203,9 +203,9 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       List<Double> normwts=normalizeWtsSim(wts);
       
-      //Double alpha = 0.5;
+      Double alpha = 1.0;
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
-      
+      normwts=normalizeWtsQuery(querytype,wts,alpha);
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
       
@@ -300,12 +300,12 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
     List<Double> normwts = new ArrayList<Double>();
     if(querytype.equals("PROTEIN")){
-      wts.set(3, wts.get(3)+(0.25*alpha));
-      wts.set(4, wts.get(4)+(0.75*alpha)); 
+      wts.set(2, wts.get(2)+(0.25*alpha));
+      wts.set(3, wts.get(3)+(0.75*alpha)); 
     }
     else if(querytype.equals("GENE")){
-      wts.set(3, wts.get(3)+(0.75*alpha)); 
-      wts.set(4, wts.get(4)+(0.25*alpha)); 
+      wts.set(2, wts.get(2)+(0.75*alpha)); 
+      wts.set(3, wts.get(3)+(0.25*alpha)); 
     }
     normwts = normalizeWtsSim(wts);
     return normwts;
