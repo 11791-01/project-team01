@@ -6,12 +6,17 @@ public class EvaluationResult {
   private double recall;
   private double fMeasure;
   private double avgPrec;
+  private boolean isCorrect;
   
   public EvaluationResult(double p, double r, double fm, double ap) {
     precision = p;
     recall = r;
     fMeasure = fm;
     avgPrec = ap;
+  }
+  
+  public EvaluationResult(boolean isCorrect) {
+    this.isCorrect = isCorrect;
   }
 
   public double getPrecision() {
@@ -44,6 +49,14 @@ public class EvaluationResult {
 
   public void setAvgPrec(double avgPrec) {
     this.avgPrec = avgPrec;
+  }
+
+  public boolean getIsCorrect() {
+    return isCorrect;
+  }
+
+  public void setIsCorrect(boolean isCorrect) {
+    this.isCorrect = isCorrect;
   }
 
 }

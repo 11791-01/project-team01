@@ -82,7 +82,7 @@ public class Evaluation {
         documentsEval.add(doDocumentsEval(goldQ.getDocuments(), testQ.getDocuments()));
         triplesEval.add(doTriplesEval(goldQ.getTriples(), testQ.getTriples()));
         snippetsEval.add(doSnippetsEval(goldQ.getSnippets(), testQ.getSnippets()));
-//        answersEval.add(doAnswersEval(goldQ, testQ));
+        answersEval.add(doAnswersEval(goldQ, testQ));
       }
       details_sb.append("===================================================================\n");
     }
@@ -105,6 +105,9 @@ public class Evaluation {
     double[] snipMeans = calcMeanMetrics(snippetsEval);
     eval_sb.append(String.format("%12s%12.5f%12.5f%12.5f%12.5f%12.5f\n", "Snippets", snipMeans[0], snipMeans[1], 
             snipMeans[2], snipMeans[3], snipMeans[4]));
+    
+    eval_sb.append(String.format("%nAnswers:%n"));
+    eval_sb.append(String.format("\tYesNo - Accuracy: %8.5f%n", calcAnswerMetrics(answersEval)));
     
     FileOp.writeToFile(evalOutputFile, eval_sb.toString());
     FileOp.writeToFile(evalDetailOutputFile, details_sb.toString());
@@ -183,18 +186,23 @@ public class Evaluation {
     double ap = 0;
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
-  public EvaluationResult doAnswersEval(String qid, String test) {
-    Question gold = findGoldQuestion(qid);
-    if (gold != null)
-      return doAnswersEval(gold, test);
-    return null;
-  }
   
-  private EvaluationResult doAnswersEval(Question gold, String test) {
+//  public EvaluationResult doAnswersEval(String qid, Question test) {
+//    Question gold = findGoldQuestion(qid);
+//    if (gold != null)
+//      return doAnswersEval(gold, test);
+//    return null;
+//  }
+  private EvaluationResult doAnswersEval(Question gold, Question test) {
     details_sb.append("Answer:\n");
 //    printSnippetEvalDetails(gold, test);
     if (gold instanceof TestYesNoQuestion) {
-      return new EvaluationResult(((TestYesNoQuestion)gold).getExactAnswer() == test);
+      String goldAnswer = ((TestYesNoQuestion)gold).getExactAnswer();
+      goldAnswer = goldAnswer.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+      String testAnswer = ((OutputQuestion)test).getExactAnswer();
+      details_sb.append(String.format("\tGold: %s%n", goldAnswer));
+      details_sb.append(String.format("\tTest: %s%n", testAnswer));
+      return new EvaluationResult(goldAnswer.equals(testAnswer));
     }
     return null;
   }
@@ -373,7 +381,6 @@ public class Evaluation {
     double meanFmeas = 0;
     double MAP = 0;
     double GMAP = 1;
-    double accuracy = 0;
     int numQues = evals.size();
     
     for (EvaluationResult eval : evals) {
@@ -382,10 +389,21 @@ public class Evaluation {
       meanFmeas += eval.getfMeasure();
       MAP += eval.getAvgPrec();
       GMAP *= (eval.getAvgPrec() + epsilon);
-      accuracy += (eval.getIsCorrect() ? 1 : 0);
     }
     return new double[] { meanPrec / numQues, meanRec / numQues, meanFmeas / numQues, 
-            MAP / numQues, Math.pow(GMAP, 1.0 / numQues), accuracy };
+            MAP / numQues, Math.pow(GMAP, 1.0 / numQues) };
+  }
+  
+  private double calcAnswerMetrics(List<EvaluationResult> evals) {
+
+    double accuracy = 0;
+    int numQues = evals.size();
+    
+    for (EvaluationResult eval : evals) {
+      accuracy += (eval.getIsCorrect() ? 1 : 0);
+    }
+    
+    return accuracy / numQues;
   }
   
   private <T> void printEvalDetails(List<T> gold, List<T> test) {
