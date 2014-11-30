@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.uima.resource.ResourceInitializationException;
 
+import com.aliasi.spell.JaccardDistance;
 import com.aliasi.spell.TfIdfDistance;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 import com.aliasi.tokenizer.LowerCaseTokenizerFactory;
@@ -79,9 +80,44 @@ public class SimCalculator {
     return scoreList;
   }
 
-  /*
-   * public List<Double> tfidfScore(String queryWOOp, List<RawSentence> rawSentList) {
-   * 
-   * }
-   */
+  @SuppressWarnings("unchecked")
+  public List<Double> jaccardScore(String queryWOOp, List<?> objList, RetrType retrType) {
+    List<Double> scoreList = new ArrayList<Double>();
+    JaccardDistance jaccard = new JaccardDistance(REFINED_TKFACTORY);
+
+    if (retrType == RetrType.DOC) {
+      for (Document doc : (List<Document>) objList) {
+        double score = jaccard.proximity(queryWOOp, doc.getAbstract());
+        scoreList.add(score);
+      }
+    } else if (retrType == RetrType.RAW_SENT) {
+      for (RawSentence rawSent : (List<RawSentence>) objList) {
+        double score = jaccard.proximity(queryWOOp, rawSent.getText());
+        scoreList.add(score);
+      }
+    }
+
+    return scoreList;
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<Double> cosSimScore(String queryWOOp, List<?> objList, RetrType retrType) {
+    List<Double> scoreList = new ArrayList<Double>();
+    CosineSim cosSim = new CosineSim();
+
+    if (retrType == RetrType.DOC) {
+      for (Document doc : (List<Document>) objList) {
+        double score = cosSim.Cosine_Similarity_Score(queryWOOp, doc.getAbstract());
+        scoreList.add(score);
+      }
+    } else if (retrType == RetrType.RAW_SENT) {
+      for (RawSentence rawSent : (List<RawSentence>) objList) {
+        double score = cosSim.Cosine_Similarity_Score(queryWOOp, rawSent.getText());
+        scoreList.add(score);
+      }
+    }
+
+    return scoreList;
+  }
+
 }
