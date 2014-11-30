@@ -179,19 +179,19 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       List<Double> wts ;
       wts = new ArrayList<Double>();
       
-      wts.add(1.0);
-      wts.add(1.0);
-      wts.add(1.0);
       //wts.add(1.0);
-      wts.add(1.0);
+      //wts.add(1.0);
+      //wts.add(1.0);
+      ////wts.add(1.0);
+      //wts.add(1.0);
       
       
       
-      //wts.add(multiplyByMean(meshPrunedFinding));
-      //wts.add(multiplyByMean(DOPrunedFinding));
-      //wts.add(multiplyByMean(GOPrunedFinding));
-      ////wts.add(multiplyByMean(JOPrunedFinding));
-      //wts.add(multiplyByMean(UOPrunedFinding));
+      wts.add(multiplyByMean(meshPrunedFinding));
+     wts.add(multiplyByMean(DOPrunedFinding));
+      wts.add(multiplyByMean(GOPrunedFinding));
+      //wts.add(multiplyByMean(JOPrunedFinding));
+      wts.add(multiplyByMean(UOPrunedFinding));
       
       //Double wtmesh = multiplyByMean(meshPrunedFinding);
       //Double wtDO  = multiplyByMean(DOPrunedFinding);
@@ -201,10 +201,10 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       
       
-      List<Double> normwts=normalizeWtsSim(wts);
+      //List<Double> normwts=normalizeWtsSim(wts);
       
-      //Double alpha = 0.5;
-      //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
+      Double alpha = 1.0;
+      List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
       
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
