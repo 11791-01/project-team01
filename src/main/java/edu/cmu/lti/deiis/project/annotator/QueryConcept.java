@@ -94,10 +94,10 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //}
 
       
-      int DOretsize = 20;
-      int GOretsize = 20;
+      int DOretsize = 10;
+      int GOretsize = 10;
       //int JOretsize = 20;
-      int UOretsize = 20;
+      int UOretsize = 10;
       
       Double mthres = 0.1;
       Double DOthres = 0.1;
@@ -187,11 +187,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       
       
-      wts.add(multiplyByMean(meshPrunedFinding));
-      wts.add(multiplyByMean(DOPrunedFinding));
-      wts.add(multiplyByMean(GOPrunedFinding));
-      //wts.add(multiplyByMean(JOPrunedFinding));
-      wts.add(multiplyByMean(UOPrunedFinding));
+      //wts.add(multiplyByMean(meshPrunedFinding));
+      //wts.add(multiplyByMean(DOPrunedFinding));
+      //wts.add(multiplyByMean(GOPrunedFinding));
+      ////wts.add(multiplyByMean(JOPrunedFinding));
+      //wts.add(multiplyByMean(UOPrunedFinding));
       
       //Double wtmesh = multiplyByMean(meshPrunedFinding);
       //Double wtDO  = multiplyByMean(DOPrunedFinding);
