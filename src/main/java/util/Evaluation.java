@@ -17,7 +17,7 @@ import json.gson.Triple;
 /**
  * The Evaluation class, used to do evaluation.
  * 
- * @author Fei Xia <feixia@cs.cmu.edu>
+ * @author Jeremy, Anurag <alnu@cs.cmu.edu>
  *
  */
 public class Evaluation {
