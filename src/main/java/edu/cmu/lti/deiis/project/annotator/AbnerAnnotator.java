@@ -60,8 +60,13 @@ public class AbnerAnnotator extends JCasAnnotator_ImplBase {
       ArrayList<String> tags = new ArrayList<String>();
       String tag = "";
       if (entities[1].length > 0) {
-        tag = entities[1][0];
+        if (entities[1][0].equals("PROTEIN")) {
+          tag = entities[1][0];
+        } else {
+          tag = "GENE";
+        }
       }
+      System.out.println(tag);
       tags.add(tag);
       query.setNamedEntityTypes(Utils.createStringList(aJCas, tags));
     } catch (Exception e) {
