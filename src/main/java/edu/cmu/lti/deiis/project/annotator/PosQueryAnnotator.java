@@ -39,7 +39,7 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     try {
       mRecognizer = new PosTagNamedEntityRecognizer();
-      mParser = new QuestionParser();
+//      mParser = new QuestionParser();
     } catch (ResourceInitializationException e) {
       e.printStackTrace();
     }
@@ -67,11 +67,10 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
         atomicQuery.addToIndexes();
       }
       
-      //System.out.println(queString);
-      String root = mParser.getRoot(queString);
-      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
-      atomicQuery.setText(root);
-      atomicQuery.addToIndexes();
+//      String root = mParser.getRoot(queString);
+//      AtomicQueryConcept atomicQuery = new AtomicQueryConcept(aJCas);
+//      atomicQuery.setText(root);
+//      atomicQuery.addToIndexes();
     }
   }
 
