@@ -96,7 +96,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       
       int DOretsize = 20;
       int GOretsize = 20;
-      int JOretsize = 20;
+      //int JOretsize = 20;
       int UOretsize = 20;
       
       Double mthres = 0.1;
@@ -299,12 +299,13 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       return wts;
     }
     List<Double> normwts = new ArrayList<Double>();
-    if(querytype.equals("protein")){
-      wts.set(3, wts.get(3)+alpha);
+    if(querytype.equals("PROTEIN")){
+      wts.set(3, wts.get(3)+(0.25*alpha));
+      wts.set(4, wts.get(4)+(0.75*alpha)); 
     }
-    else if(querytype.equals("gene")){
-      wts.set(3, wts.get(3)+(0.25*alpha)); 
+    else if(querytype.equals("GENE")){
       wts.set(3, wts.get(3)+(0.75*alpha)); 
+      wts.set(4, wts.get(4)+(0.25*alpha)); 
     }
     normwts = normalizeWtsSim(wts);
     return normwts;
