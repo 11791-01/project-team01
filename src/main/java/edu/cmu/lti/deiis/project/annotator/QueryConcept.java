@@ -94,10 +94,10 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //}
 
       
-      int DOretsize = 10;
-      int GOretsize = 10;
+      int DOretsize = 6;
+      int GOretsize = 6;
       //int JOretsize = 20;
-      int UOretsize = 10;
+      int UOretsize = 6;
       
       Double mthres = 0.1;
       Double DOthres = 0.1;
@@ -105,7 +105,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //Double JOthres = 0.1;
       Double UOthres = 0.1;
       
-      OntologyServiceResponse.Result diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
+      OntologyServiceResponse.Result diseaseOntologyResult = null;
+      diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
       System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : diseaseOntologyResult.getFindings()) {
@@ -113,7 +114,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
         // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
       //}
 
-      OntologyServiceResponse.Result geneOntologyResult = service.findGeneOntologyEntitiesPaged(
+      OntologyServiceResponse.Result geneOntologyResult = null;
+      geneOntologyResult = service.findGeneOntologyEntitiesPaged(
               text, 0, GOretsize);
       System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : geneOntologyResult.getFindings()) {
@@ -133,8 +135,8 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //} catch (Exception e) {
       //  e.printStackTrace();
       //}
-
-      OntologyServiceResponse.Result uniprotResult = service.findUniprotEntitiesPaged(text, 0,
+      OntologyServiceResponse.Result uniprotResult = null;
+      uniprotResult = service.findUniprotEntitiesPaged(text, 0,
               UOretsize);
       System.out.println("UniProt: " + uniprotResult.getFindings().size());
       //for (OntologyServiceResponse.Finding finding : uniprotResult.getFindings()) {
@@ -200,12 +202,13 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //Double wtUO = multiplyByMean(UOPrunedFinding);
       
       
-      
+      System.out.println("Weights" + wts);
       List<Double> normwts=normalizeWtsSim(wts);
-      
-      Double alpha = 1.0;
+      System.out.println("Normal Weights" + normwts);
+      Double alpha = 0.2;
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
-      normwts=normalizeWtsQuery(querytype,wts,alpha);
+      //normwts=normalizeWtsQuery(querytype,normwts,alpha);
+      System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
       
@@ -229,7 +232,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
          Double score = wtfinding.getNewSco();
          Finding finding = wtfinding.getfndg();
          System.out.println(" > " + finding.getConcept().getLabel() + " "
-         + finding.getConcept().getUri()+"\t Score"+score);
+         + finding.getConcept().getUri()+"\t ScoreOrg"+finding.getScore()+"\t ScoreFin"+score);
       }
 
       aJCas = addSelectedServiceWtd(unionFinding, text, aJCas);
@@ -281,7 +284,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   private double multiplyByMean(List<Finding> Result){
     
-    if (Result == null) {
+    if (Result.size() == 0 || Result == null) {
       return 0.0;
     }
     double allscores = 0.0;
@@ -319,7 +322,7 @@ private List<Double> normalizeWtsSim(List <Double> wts){
       sum+=wt;
     }
     for (int i = 0; i < wts.size(); i++){
-      normwts.add(4*wts.get(i)/sum);
+      normwts.add(wts.get(i)/sum);
     }
     return normwts;
     
