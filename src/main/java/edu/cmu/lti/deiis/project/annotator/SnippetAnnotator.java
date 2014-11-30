@@ -117,7 +117,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
 
     Collections.sort(allRawSents, new MyComp.SenSimComparator());
 
-    int threshold = Math.min(10, allRawSents.size());
+    int threshold = Math.min(5, allRawSents.size());
     for (int i = 0; i < threshold; ++i) {
       Passage snippet = new Passage(aJCas);
       RawSentence rawSent = allRawSents.get(i);
