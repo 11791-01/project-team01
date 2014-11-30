@@ -71,7 +71,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       // Get the query text
       String text = query.getWholeQueryWithOp();
-      // String text = query.getWholeQueryWithoutOp();
+      
 
       StringList queryTypes = query.getNamedEntityTypes();
       
