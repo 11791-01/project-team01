@@ -82,19 +82,19 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
             
       mResultsPerPage = 6;
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
-
+      //System.out.println("Disease ontology: " + meshResult.getFindings().size());
       // Adding multiple sources here
-  
+      //System.out.println("Disease ontology: ");
       int DOretsize = 6;
       int GOretsize = 6;
       //int JOretsize = 20;
       int UOretsize = 6;
       
       Double mthres = 0.1;
-      Double DOthres = 0.1;
-      Double GOthres = 0.1;
+      Double DOthres = 0.20;
+      Double GOthres = 0.15;
       //Double JOthres = 0.1;
-      Double UOthres = 0.1;
+      Double UOthres = 0.15;
       
       OntologyServiceResponse.Result diseaseOntologyResult = null;
       diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
@@ -136,33 +136,31 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       List<Double> wts ;
       wts = new ArrayList<Double>();
 
-      //wts.add(1.0);
-      //wts.add(1.0);
-      //wts.add(1.0);
+      wts.add(1.0);
+      wts.add(1.0);
+      wts.add(1.0);
       ////wts.add(1.0);
-      //wts.add(1.0);
+      wts.add(1.0);
       
-      wts.add(multiplyByMean(meshPrunedFinding));
-
-      wts.add(multiplyByMean(DOPrunedFinding));
-      wts.add(multiplyByMean(GOPrunedFinding));
+      //wts.add(multiplyByMean(meshPrunedFinding));
+      //wts.add(multiplyByMean(DOPrunedFinding));
+      //wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
-      wts.add(multiplyByMean(UOPrunedFinding));
+      //wts.add(multiplyByMean(UOPrunedFinding));
       
       
       //System.out.println("Weights" + wts);
       List<Double> normwts=normalizeWtsSim(wts);
 
       //System.out.println("Normal Weights" + normwts);
-      Double alpha = 0.2;
+      Double alpha = 0.0;
 
 
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
 
-      normwts=normalizeWtsQuery(querytype,normwts,alpha);
+      //normwts=normalizeWtsQuery(querytype,normwts,alpha);
       //System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
 
-      normwts=normalizeWtsQuery(querytype,wts,alpha);
       
       List<WeightedFinding> unionFinding = new ArrayList<WeightedFinding>();
       
