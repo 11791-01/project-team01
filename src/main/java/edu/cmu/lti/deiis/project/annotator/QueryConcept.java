@@ -242,7 +242,13 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
     return allscores/count;
   }
-  
+  /**
+   * Re-weighing based on the query
+   * @param querytype - if query id gene or protein
+   * @param wts - initial weights
+   * @param alpha - amount to add add in weights
+   * @return - query based weights
+   */
   private List<Double> normalizeWtsQuery(String querytype, List<Double> wts, double alpha){
     
     if(querytype == null ||querytype.isEmpty()){
@@ -260,6 +266,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     normwts = normalizeWtsSim(wts);
     return normwts;
   }
+  /**
+   * Simple normalization of weights for different sources
+   * @param wts - initial weights
+   * @return normalized weights
+   */
 private List<Double> normalizeWtsSim(List <Double> wts){
     
     List<Double> normwts;
