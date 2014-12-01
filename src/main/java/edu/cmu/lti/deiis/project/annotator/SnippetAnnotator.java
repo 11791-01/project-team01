@@ -52,6 +52,9 @@ import edu.cmu.lti.oaqa.type.retrieval.Passage;
  *
  */
 public class SnippetAnnotator extends JCasAnnotator_ImplBase {
+  /**
+   * The sentence chunker
+   */
   private SentenceChunker SENTENCE_CHUNKER;
 
   /**
@@ -68,6 +71,11 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     SENTENCE_CHUNKER = new SentenceChunker(BASE_TKFACTORY, SENTENCE_MODEL);
   }
 
+  /**
+   * Process to do snippet retrieval
+   * 
+   * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<TOP> DocIter = aJCas.getJFSIndexRepository().getAllIndexedFS(Document.type);
@@ -77,6 +85,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
     String queryWOOp = query.getWholeQueryWithoutOp();
     System.out.println("Snippet Retrieval...");
 
+    // Getting the text
     List<RawSentence> allRawSents = new ArrayList<RawSentence>();
     while (DocIter.hasNext()) {
       Document doc = (Document) DocIter.next();
@@ -90,9 +99,9 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         sec0 = secArr.get(0).getAsString();
       } else {
         sec0 = doc.getAbstract();
-        // continue;
       }
 
+      // sentence splitting
       Chunking chunking = SENTENCE_CHUNKER.chunk(sec0.toCharArray(), 0, sec0.length());
       List<Chunk> sentences = new ArrayList<Chunk>(chunking.chunkSet());
 
@@ -105,6 +114,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
         rawSentences.add(new RawSentence(start, end, text, pmid, doc.getUri()));
       }
 
+      // calculate the score and do retrieval
       SimCalculator simCalcInst = SimCalculator.getInstance();
       List<Double> scoreList = simCalcInst.tfidfScore(queryWOOp, rawSentences, RetrType.RAW_SENT);
       for (int i = 0; i < scoreList.size(); ++i) {
@@ -117,6 +127,7 @@ public class SnippetAnnotator extends JCasAnnotator_ImplBase {
 
     Collections.sort(allRawSents, new MyComp.SenSimComparator());
 
+    // set the snippet
     int threshold = Math.min(5, allRawSents.size());
     for (int i = 0; i < threshold; ++i) {
       Passage snippet = new Passage(aJCas);
