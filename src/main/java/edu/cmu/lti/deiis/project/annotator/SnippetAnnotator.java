@@ -47,6 +47,7 @@ import edu.cmu.lti.oaqa.type.retrieval.Document;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
 
 /**
+ * The snippet annotator, used to find the relevant snippet
  * 
  * @author Fei Xia <feixia@cs.cmu.edu>
  *

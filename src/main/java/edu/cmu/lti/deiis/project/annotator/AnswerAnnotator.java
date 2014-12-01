@@ -20,6 +20,7 @@ import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
 
 /**
+ * The answer annotator, used to generate the exact answer for yes/no questions
  * 
  * @author Fei Xia <feixia@cs.cmu.edu>
  */
