@@ -21,6 +21,15 @@ public class CosineSim {
     }
   }// end of class values
 
+  /**
+   * Calculating the cosine similarity score
+   * 
+   * @param Text1
+   *          the text1
+   * @param Text2
+   *          the text2
+   * @return the cosine similarity score
+   */
   public double Cosine_Similarity_Score(String Text1, String Text2) {
     double sim_score = 0.0000000;
     // 1. Identify distinct words from both documents
@@ -75,16 +84,14 @@ public class CosineSim {
 
       double freq1 = (double) vals12.val1;
       double freq2 = (double) vals12.val2;
-      System.out.println(Distinct_words_text_1_2.get(i) + "#" + freq1 + "#" + freq2);
 
       VectAB = VectAB + (freq1 * freq2);
 
       VectA_Sq = VectA_Sq + freq1 * freq1;
       VectB_Sq = VectB_Sq + freq2 * freq2;
     }
-    System.out.println("VectAB " + VectAB + " VectA_Sq " + VectA_Sq + " VectB_Sq " + VectB_Sq);
     sim_score = ((VectAB) / (Math.sqrt(VectA_Sq) * Math.sqrt(VectB_Sq)));
 
-    return (sim_score);
+    return sim_score;
   }
 }

@@ -67,11 +67,9 @@ public class NLParser {
         String lemma = token.get(LemmaAnnotation.class);
         if (negWordSet.contains(lemma)) {
           flag = false;
-          System.out.print(lemma + ", ");
         }
       }
     }
-    System.out.println("");
 
     return flag;
   }

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.cmu.lti.11791.f14.project</groupId>
 	<artifactId>project-team01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>DEIIS-project</name>
 	<build>
 		<extensions>
@@ -35,7 +35,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>2.5</version>
 				<executions>
 					<execution>
 						<id>default</id>
@@ -47,6 +47,18 @@
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-api</artifactId>
+						<version>1.9.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.9.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
@@ -124,11 +136,11 @@
 			<version>3.4</version>
 		</dependency>
 		<dependency>
-      <groupId>edu.stanford.nlp</groupId>
-      <artifactId>stanford-corenlp</artifactId>
-      <version>3.4</version>
-      <classifier>models</classifier>
-    </dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.4</version>
+			<classifier>models</classifier>
+		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -180,7 +192,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:11791-01/project-team01.git</connection>
 		<developerConnection>scm:git:git@github.com:11791-01/project-team01.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>project-team01-0.0.1</tag>
 	</scm>
 	<repositories>
 		<repository>
