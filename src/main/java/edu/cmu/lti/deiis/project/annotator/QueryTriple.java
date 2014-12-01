@@ -31,7 +31,7 @@ import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
  */
 public class QueryTriple extends JCasAnnotator_ImplBase {
 
-  /*
+  /**
    * The GoPubMedService
    */
   private GoPubMedService service;
@@ -78,6 +78,7 @@ public class QueryTriple extends JCasAnnotator_ImplBase {
               .findLinkedLifeDataEntitiesPaged(text, 0, mResultsPerPage);
       List<LinkedLifeDataServiceResponse.Entity> entities = linkedLifeDataResult.getEntities();
 
+      // Add to triple
       for (int i = 0; i < entities.size(); ++i) {
         LinkedLifeDataServiceResponse.Entity entity = entities.get(i);
         LinkedLifeDataServiceResponse.Relation relation = entity.getRelations().get(0);

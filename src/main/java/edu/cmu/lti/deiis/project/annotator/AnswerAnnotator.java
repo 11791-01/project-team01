@@ -20,15 +20,24 @@ import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.Passage;
 
 /**
+ * The answer annotator, used to generate the exact answer for yes/no questions
  * 
  * @author Fei Xia <feixia@cs.cmu.edu>
- *
  */
 
 public class AnswerAnnotator extends JCasAnnotator_ImplBase {
 
+  /**
+   * The nlp parser used to detect positive and negative
+   */
   NLParser nlparser;
 
+  /**
+   * Perform initialization logic. Initialize the service.
+   * 
+   * @param aContext
+   *          the UimaContext object
+   */
   @Override
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
@@ -40,16 +49,22 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
     }
   }
 
+  /**
+   * Process to get the exact answer
+   * @see org.apache.uima.analysis_component.JCasAnnotator_ImplBase#process(org.apache.uima.jcas.JCas)
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     FSIterator<Annotation> iter = aJCas.getAnnotationIndex(Question.type).iterator();
 
+    // check the question type
     Question question = (Question) iter.next();
     String type = question.getQuestionType();
     if (!type.equals("YES_NO")) {
       return;
     }
 
+    // positive and negative detection
     FSIterator<TOP> snippetIter = aJCas.getJFSIndexRepository().getAllIndexedFS(Passage.type);
     List<Boolean> yesnoList = new ArrayList<Boolean>();
     while (snippetIter.hasNext()) {
@@ -59,14 +74,13 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
       yesnoList.add(yesno);
     }
 
+    // voting
     int yesNum = 0, noNum = 0;
     for (int i = 0; i < yesnoList.size(); ++i) {
       if (yesnoList.get(i)) {
         ++yesNum;
-        System.out.print("yes, ");
       } else {
         ++noNum;
-        System.out.print("no, ");
       }
     }
     System.out.println("");
@@ -82,10 +96,10 @@ public class AnswerAnnotator extends JCasAnnotator_ImplBase {
       ansStr = "no";
     }
 
+    // add to cas
     Answer answer = new Answer(aJCas);
     answer.setText(ansStr);
     answer.addToIndexes();
-    System.out.println("-----------------------");
     System.out.println(yesNum + ", " + noNum);
     System.out.println(ansStr);
   }

@@ -37,10 +37,6 @@ import edu.cmu.lti.oaqa.type.retrieval.Document;
  */
 public class DocReranker extends JCasAnnotator_ImplBase {
 
-  /*public static final String PARAM_STOP_WORD_FILE = "StopWordFile";
-
-  private TokenizerFactory REFINED_TKFACTORY = null;*/
-
   /**
    * Perform initialization logic. Initialize the service.
    * 
@@ -49,21 +45,6 @@ public class DocReranker extends JCasAnnotator_ImplBase {
    */
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
-
-    /*String stopFilePath = (String) aContext.getConfigParameterValue(PARAM_STOP_WORD_FILE);
-    String content = FileOp.getFileAsStream(stopFilePath, DocReranker.class);
-    String[] lines = content.split("\n");
-    Set<String> tmpSet = new HashSet<String>();
-    for (String line : lines) {
-      tmpSet.add(line);
-    }
-    Set<String> stopSet = Collections.unmodifiableSet(tmpSet);
-
-    REFINED_TKFACTORY = IndoEuropeanTokenizerFactory.INSTANCE;
-    REFINED_TKFACTORY = new StopTokenizerFactory(REFINED_TKFACTORY, stopSet);
-    REFINED_TKFACTORY = new LowerCaseTokenizerFactory(REFINED_TKFACTORY);
-    REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);
-    */
   }
 
   @Override
@@ -76,27 +57,6 @@ public class DocReranker extends JCasAnnotator_ImplBase {
     String queryWOOp = query.getWholeQueryWithoutOp();
     System.out.println("Doc Reranking...");
 
-    /*TfIdfDistance tfIdf = new TfIdfDistance(REFINED_TKFACTORY);
-    tfIdf.handle(queryWOOp);
-
-    List<Document> docList = new ArrayList<Document>();
-    while (DocIter.hasNext()) {
-      Document doc = (Document) DocIter.next();
-      if (doc.getAbstract() == null || doc.getAbstract().trim().length() == 0) {
-        System.out.println("-----------------------------");
-        continue;
-      }
-
-      tfIdf.handle(doc.getAbstract());
-
-      docList.add(doc);
-    }
-
-    for (int i = 0; i < docList.size(); ++i) {
-      Document doc = docList.get(i);
-      double sim = tfIdf.proximity(queryWOOp, docList.get(i).getAbstract());
-      doc.setScore(sim);
-    }*/
     List<Document> docList = new ArrayList<Document>();
     while (DocIter.hasNext()) {
       docList.add((Document)DocIter.next());
@@ -109,25 +69,9 @@ public class DocReranker extends JCasAnnotator_ImplBase {
       docList.get(i).setScore(score);
     }
 
-    //Collections.sort(docList, new DocSimComparator());
     Collections.sort(docList, new MyComp.DocSimComparator());
     for (int i = 0; i < docList.size(); ++i) {
       docList.get(i).setRank(i);
     }
   }
 }
-
-/*
-class DocSimComparator implements Comparator<Document> {
-  @Override
-  public int compare(Document lhs, Document rhs) {
-    if (lhs.getScore() < rhs.getScore()) {
-      return 1;
-    } else if (lhs.getScore() > rhs.getScore()) {
-      return -1;
-    } else {
-      return lhs.getRank() - rhs.getRank();
-    }
-  }
-}
-*/

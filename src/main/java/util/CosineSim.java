@@ -21,6 +21,15 @@ public class CosineSim {
     }
   }// end of class values
 
+  /**
+   * Calculating the cosine similarity score
+   * 
+   * @param Text1
+   *          the text1
+   * @param Text2
+   *          the text2
+   * @return the cosine similarity score
+   */
   public double Cosine_Similarity_Score(String Text1, String Text2) {
     double sim_score = 0.0000000;
     // 1. Identify distinct words from both documents
@@ -83,6 +92,6 @@ public class CosineSim {
     }
     sim_score = ((VectAB) / (Math.sqrt(VectA_Sq) * Math.sqrt(VectB_Sq)));
 
-    return (sim_score);
+    return sim_score;
   }
 }
