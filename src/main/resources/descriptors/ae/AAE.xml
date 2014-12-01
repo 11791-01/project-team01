@@ -15,6 +15,21 @@
   <delegateAnalysisEngine key="AbnerAnnotator">
       <import name="descriptors.ae.AbnerAnnotator"/>
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="QueryTriple">
+      <import name="descriptors.ae.QueryTriple"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QueryDoc">
+      <import name="descriptors.ae.QueryDoc"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DocReranker">
+      <import name="descriptors.ae.DocReranker"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="SnippetAnnotator">
+      <import name="descriptors.ae.SnippetAnnotator"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AnswerAnnotator">
+      <import name="descriptors.ae.AnswerAnnotator"/>
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>AAE</name>
@@ -29,6 +44,11 @@
       <node>QueryCombiner</node>
         <node>AbnerAnnotator</node>
       <node>QueryConcept</node>
+      <node>QueryTriple</node>
+        <node>QueryDoc</node>
+        <node>DocReranker</node>
+        <node>SnippetAnnotator</node>
+        <node>AnswerAnnotator</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>

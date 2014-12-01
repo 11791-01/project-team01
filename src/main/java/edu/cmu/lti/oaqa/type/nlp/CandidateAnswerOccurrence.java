@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** Annotates a span of text identified as a candidate answer.
- * Updated by JCasGen Wed Nov 19 01:11:54 EST 2014
- * XML source: /home/kylemao/git/project-team01/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Mon Dec 01 11:42:23 EST 2014
+ * XML source: /home/fei/Projects/java_workspace/project-team01/src/main/resources/descriptors/ae/AAE.xml
  * @generated */
 public class CandidateAnswerOccurrence extends Annotation {
   /** @generated
