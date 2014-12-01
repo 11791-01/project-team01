@@ -75,14 +75,12 @@ public class CosineSim {
 
       double freq1 = (double) vals12.val1;
       double freq2 = (double) vals12.val2;
-      System.out.println(Distinct_words_text_1_2.get(i) + "#" + freq1 + "#" + freq2);
 
       VectAB = VectAB + (freq1 * freq2);
 
       VectA_Sq = VectA_Sq + freq1 * freq1;
       VectB_Sq = VectB_Sq + freq2 * freq2;
     }
-    System.out.println("VectAB " + VectAB + " VectA_Sq " + VectA_Sq + " VectB_Sq " + VectB_Sq);
     sim_score = ((VectAB) / (Math.sqrt(VectA_Sq) * Math.sqrt(VectB_Sq)));
 
     return (sim_score);
