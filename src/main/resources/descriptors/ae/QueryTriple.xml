@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>ResultsPerPage</name>
         <value>
-          <integer>1</integer>
+          <integer>5</integer>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
