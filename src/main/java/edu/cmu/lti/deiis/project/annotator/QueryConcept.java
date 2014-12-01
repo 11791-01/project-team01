@@ -84,26 +84,17 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       OntologyServiceResponse.Result meshResult = service.findMeshEntitiesPaged(text, 0, mResultsPerPage);
 
       // Adding multiple sources here
-
-      System.out.println(text);
-
-      System.out.println("Mesh Results: " + meshResult.getFindings().size());
-      //for (OntologyServiceResponse.Finding finding : meshResult.getFindings()) {
-        // System.out.println(" > " + finding.getConcept().getLabel() + " "
-        // + finding.getConcept().getUri()+"\t Score"+finding.getScore());
-      //}
-
-      
+  
       int DOretsize = 6;
       int GOretsize = 6;
       //int JOretsize = 20;
       int UOretsize = 6;
       
       Double mthres = 0.1;
-      Double DOthres = 0.15;
-      Double GOthres = 0.15;
+      Double DOthres = 0.1;
+      Double GOthres = 0.1;
       //Double JOthres = 0.1;
-      Double UOthres = 0.15;
+      Double UOthres = 0.1;
       
       OntologyServiceResponse.Result diseaseOntologyResult = null;
       diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
@@ -145,27 +136,25 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       List<Double> wts ;
       wts = new ArrayList<Double>();
 
-      //wts.add(1.0);
-      //wts.add(1.0);
-      //wts.add(1.0);
+      wts.add(1.0);
+      wts.add(1.0);
+      wts.add(1.0);
       ////wts.add(1.0);
-      //wts.add(1.0);
+      wts.add(1.0);
       
-      
-      
-      wts.add(multiplyByMean(meshPrunedFinding));
+      //wts.add(multiplyByMean(meshPrunedFinding));
 
-      wts.add(multiplyByMean(DOPrunedFinding));
-      wts.add(multiplyByMean(GOPrunedFinding));
+      //wts.add(multiplyByMean(DOPrunedFinding));
+      //wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
-      wts.add(multiplyByMean(UOPrunedFinding));
+      //wts.add(multiplyByMean(UOPrunedFinding));
       
       
       System.out.println("Weights" + wts);
       List<Double> normwts=normalizeWtsSim(wts);
 
       System.out.println("Normal Weights" + normwts);
-      Double alpha = 0.2;
+      Double alpha = 1.0;
 
 
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
@@ -285,6 +274,14 @@ private List<Double> normalizeWtsSim(List <Double> wts){
     return normwts;
     
   }
+
+/**
+ * 
+ * @param unionFinding - union of all concepts
+ * @param text - query text
+ * @param aJCas - to add to jcas
+ * @return items added to ajCas
+ */
   private JCas addSelectedServiceWtd(List<WeightedFinding> unionFinding, String text, JCas aJCas) {
 
     // Rank the returned concepts and add them to CAS
@@ -309,27 +306,5 @@ private List<Double> normalizeWtsSim(List <Double> wts){
     }
     return aJCas;
   }
-  
-   
-  private JCas addSelectedService(List<Finding> unionFinding, String text, JCas aJCas) {
 
-    // Rank the returned concepts and add them to CAS
-    int currRank = 0;
-    for (Finding finding : unionFinding) {
-
-      Concept concept = new Concept(aJCas);
-      concept.setName(finding.getConcept().getLabel());
-      concept.addToIndexes();
-
-      ConceptSearchResult result = new ConceptSearchResult(aJCas);
-      result.setConcept(concept);
-      result.setUri(finding.getConcept().getUri());
-      result.setScore(finding.getScore());
-      result.setText(finding.getConcept().getLabel());
-      result.setRank(currRank++);
-      result.setQueryString(text);
-      result.addToIndexes();
-    }
-    return aJCas;
-  }
 }
