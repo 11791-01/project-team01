@@ -24,7 +24,7 @@ import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 /**
  * Query to get the concept.
  * 
- * @author Anurag Kumar <alnu@cs.cmu.edu, Fei Xia <feixia@cs.cmu.edu>, Zexi Mao <zexim@cs.cmu.edu>
+ * @author Anurag Kumar <alnu@cs.cmu.edu, Zexi Mao <zexim@cs.cmu.edu>
  */
 public class QueryConcept extends JCasAnnotator_ImplBase {
 
@@ -99,12 +99,12 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       OntologyServiceResponse.Result diseaseOntologyResult = null;
       diseaseOntologyResult = service.findDiseaseOntologyEntitiesPaged(text, 0,DOretsize);
 
-      System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
+      //System.out.println("Disease ontology: " + diseaseOntologyResult.getFindings().size());
 
       OntologyServiceResponse.Result geneOntologyResult = null;
       geneOntologyResult = service.findGeneOntologyEntitiesPaged(
               text, 0, GOretsize);
-      System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
+      //System.out.println("Gene ontology: " + geneOntologyResult.getFindings().size());
 
       //OntologyServiceResponse.Result jochemResult = null;
       //try {
@@ -150,17 +150,17 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       //wts.add(multiplyByMean(UOPrunedFinding));
       
       
-      System.out.println("Weights" + wts);
+      //System.out.println("Weights" + wts);
       List<Double> normwts=normalizeWtsSim(wts);
 
-      System.out.println("Normal Weights" + normwts);
-      Double alpha = 1.0;
+      //System.out.println("Normal Weights" + normwts);
+      Double alpha = 0.2;
 
 
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
 
       //normwts=normalizeWtsQuery(querytype,normwts,alpha);
-      System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
+      //System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
 
       normwts=normalizeWtsQuery(querytype,wts,alpha);
       
@@ -180,14 +180,14 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
               (s1, s2) -> ((Double) s2.getNewSco()).compareTo((Double) s1.getNewSco()));
 
       // print the union
-      System.out.println("Printing the Union"+unionFinding.size());
-      for (WeightedFinding wtfinding : unionFinding) {
+      //System.out.println("Printing the Union"+unionFinding.size());
+      //for (WeightedFinding wtfinding : unionFinding) {
 
-         Double score = wtfinding.getNewSco();
-         Finding finding = wtfinding.getfndg();
-         System.out.println(" > " + finding.getConcept().getLabel() + " "
-         + finding.getConcept().getUri()+"\t ScoreOrg"+finding.getScore()+"\t ScoreFin"+score);
-      }
+      //   Double score = wtfinding.getNewSco();
+      //   Finding finding = wtfinding.getfndg();
+      //   System.out.println(" > " + finding.getConcept().getLabel() + " "
+      //   + finding.getConcept().getUri()+"\t ScoreOrg"+finding.getScore()+"\t ScoreFin"+score);
+      //}
 
       aJCas = addSelectedServiceWtd(unionFinding, text, aJCas);
 
@@ -197,7 +197,13 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
   }
 
- 
+ /**
+  * union of all rescored concepts
+  * @param PrunedFinding -- pruned concepts
+  * @param unionFinding -- union of all sources
+  * @param wt -- 
+  * @return
+  */
   private List<WeightedFinding> CombineSourcesWeighted(List<Finding> PrunedFinding, List<WeightedFinding> unionFinding, Double wt) {
 
     for (Finding finding : PrunedFinding) {
@@ -206,7 +212,12 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
     }
     return unionFinding;
   }
-  
+  /**
+   * prune the results based on the threshold -- only reliable concepts are retained
+   * @param Result - the result returned by the web service
+   * @param threshold - threshold to prune -
+   * @return list of pruned concepts
+   */
   
   private List<Finding> pruneFindings(OntologyServiceResponse.Result Result, Double threshold) {
 
@@ -229,6 +240,11 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
   }
 
+  /**
+   * computing mean of scores of concepts for a source - this is initial weight
+   * @param Result - list of found concepts
+   * @return - mean of the scores
+   */
   private double multiplyByMean(List<Finding> Result){
     
     if (Result.size() == 0 || Result == null) {
