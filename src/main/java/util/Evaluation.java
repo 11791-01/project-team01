@@ -490,7 +490,9 @@ public class Evaluation {
       
 
     details_sb.append("\tTrue Pos:\n");
-    matches.forEach(m -> details_sb.append(String.format("\t\tTest: %s%n\t\tGold: %s%n-%n", m[0].getText(), m[1].getText())));
+    matches.forEach(m -> details_sb.append(String.format("\t\tTest: |%s, %s-%s, %d-%d|%n\t\t\t%s%n\t\tGold: |%s, %s-%s, %d-%d|%n\t\t\t%s%n-%n",
+            m[0].getDocument(), m[0].getBeginSection(), m[0].getEndSection(), m[0].getOffsetInBeginSection(), m[0].getOffsetInEndSection(), m[0].getText(), 
+            m[1].getDocument(), m[1].getBeginSection(), m[1].getEndSection(), m[1].getOffsetInBeginSection(), m[1].getOffsetInEndSection(), m[1].getText())));
     
     Set<Snippet> testOnly = new HashSet<Snippet>(test);
     testOnly.removeAll(testMatches);
