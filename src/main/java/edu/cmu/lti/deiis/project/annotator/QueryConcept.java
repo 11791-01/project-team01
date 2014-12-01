@@ -117,7 +117,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       OntologyServiceResponse.Result uniprotResult = null;
       uniprotResult = service.findUniprotEntitiesPaged(text, 0,
               UOretsize);
-      System.out.println("UniProt: " + uniprotResult.getFindings().size());
+      //System.out.println("UniProt: " + uniprotResult.getFindings().size());
 
             
       List<Finding> meshPrunedFinding = pruneFindings(meshResult, mthres);
@@ -136,18 +136,18 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
       List<Double> wts ;
       wts = new ArrayList<Double>();
 
-      wts.add(1.0);
-      wts.add(1.0);
-      wts.add(1.0);
+      //wts.add(1.0);
+      //wts.add(1.0);
+      //wts.add(1.0);
       ////wts.add(1.0);
-      wts.add(1.0);
+      //wts.add(1.0);
       
-      //wts.add(multiplyByMean(meshPrunedFinding));
+      wts.add(multiplyByMean(meshPrunedFinding));
 
-      //wts.add(multiplyByMean(DOPrunedFinding));
-      //wts.add(multiplyByMean(GOPrunedFinding));
+      wts.add(multiplyByMean(DOPrunedFinding));
+      wts.add(multiplyByMean(GOPrunedFinding));
       ////wts.add(multiplyByMean(JOPrunedFinding));
-      //wts.add(multiplyByMean(UOPrunedFinding));
+      wts.add(multiplyByMean(UOPrunedFinding));
       
       
       //System.out.println("Weights" + wts);
@@ -159,7 +159,7 @@ public class QueryConcept extends JCasAnnotator_ImplBase {
 
       //List<Double> normwts=normalizeWtsQuery(querytype,wts,alpha);
 
-      //normwts=normalizeWtsQuery(querytype,normwts,alpha);
+      normwts=normalizeWtsQuery(querytype,normwts,alpha);
       //System.out.println("Query based normal Weights for query " + querytype + "is"+ normwts);
 
       normwts=normalizeWtsQuery(querytype,wts,alpha);
