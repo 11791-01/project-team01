@@ -82,7 +82,9 @@ public class Evaluation {
         documentsEval.add(doDocumentsEval(goldQ.getDocuments(), testQ.getDocuments()));
         triplesEval.add(doTriplesEval(goldQ.getTriples(), testQ.getTriples()));
         snippetsEval.add(doSnippetsEval(goldQ.getSnippets(), testQ.getSnippets()));
-        answersEval.add(doAnswersEval(goldQ, testQ));
+        EvaluationResult ansResult = doAnswersEval(goldQ, testQ);
+        if (ansResult != null)
+          answersEval.add(ansResult);
       }
       details_sb.append("===================================================================\n");
     }
@@ -183,7 +185,7 @@ public class Evaluation {
     double precision = calcSnippetPrecision(gold, test);
     double recall = calcSnippetRecall(gold, test);
     double fmeasure = calcFMeasure(precision, recall);
-    double ap = 0;
+    double ap = calcSnippetAP(gold, test);
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
   
@@ -195,7 +197,6 @@ public class Evaluation {
 //  }
   private EvaluationResult doAnswersEval(Question gold, Question test) {
     details_sb.append("Answer:\n");
-//    printSnippetEvalDetails(gold, test);
     if (gold instanceof TestYesNoQuestion) {
       String goldAnswer = ((TestYesNoQuestion)gold).getExactAnswer();
       goldAnswer = goldAnswer.replaceAll("[^a-zA-Z ]", "").toLowerCase();
@@ -273,6 +274,36 @@ public class Evaluation {
       goldSize += ( snip.getOffsetInEndSection() - snip.getOffsetInBeginSection() );
  
     return ((double) overlap) / goldSize;
+  }
+  
+  private double calcSnippetAP(List<Snippet> gold, List<Snippet> test) {
+    
+    int poscount = 0;
+    double ap = 0.0;
+    int totalOverlap = 0;
+    int totalTest = 0;
+    
+
+    for (Snippet testSnip : test) {
+      //find gold snips matching sect/doc
+      List<Snippet> goldMatches = new ArrayList<Snippet>();
+      for (Snippet s : gold) {
+        if (s.getDocument().equals(testSnip.getDocument()) && s.getBeginSection().equals(testSnip.getBeginSection()))
+          goldMatches.add(s);
+      }
+      totalTest += testSnip.getOffsetInEndSection() - testSnip.getOffsetInBeginSection();
+      //calculate overlap
+      for (Snippet goldSnip : goldMatches) {
+        int overlapBegin = Math.max(testSnip.getOffsetInBeginSection(), goldSnip.getOffsetInBeginSection());
+        int overlapEnd = Math.min(testSnip.getOffsetInEndSection(), goldSnip.getOffsetInEndSection());
+        if (overlapBegin < overlapEnd) {
+          totalOverlap += (overlapEnd - overlapBegin);
+          poscount += 1;
+          ap += (totalOverlap / ((double) (totalTest)));
+        }
+      }
+    }
+    return ap / (poscount + Math.pow(10, -15));
   }
   
   private int calcSnippetOverlapAmount(List<Snippet> gold, List<Snippet> test) {
@@ -353,12 +384,12 @@ public class Evaluation {
    *          retrieved list
    * @return Average Precision
    */
-  private <T> Double calcAP(List<T> trueval, List<T> retval) {
+  private <T> double calcAP(List<T> trueval, List<T> retval) {
 
     trueval = emptyListIfNull(trueval);
     retval = emptyListIfNull(retval);
     int poscount = 0;
-    Double ap = 0.0;
+    double ap = 0.0;
     int c = 0;
     for (T item : retval) {
 
