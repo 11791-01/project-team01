@@ -20,6 +20,12 @@ import edu.cmu.lti.deiis.project.assitance.RawSentence;
 import edu.cmu.lti.deiis.project.assitance.RetrType;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 
+/**
+ * Used to do the similarity calculation
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
 public class SimCalculator {
 
   private static SimCalculator instance = null;
@@ -37,6 +43,13 @@ public class SimCalculator {
     return instance;
   }
 
+  /**
+   * Init the instance
+   * 
+   * @param stopFilePath
+   *          the stop word file path
+   * @throws ResourceInitializationException
+   */
   public void init(String stopFilePath) throws ResourceInitializationException {
     // init lingpipe tokenization factory
     String content = FileOp.getFileAsStream(stopFilePath, SimCalculator.class);
@@ -53,6 +66,17 @@ public class SimCalculator {
     REFINED_TKFACTORY = new PorterStemmerTokenizerFactory(REFINED_TKFACTORY);
   }
 
+  /**
+   * Calculating the tfidf score
+   * 
+   * @param queryWOOp
+   *          the query string
+   * @param objList
+   *          the object list
+   * @param retrType
+   *          the object type
+   * @return the tfidf score
+   */
   @SuppressWarnings("unchecked")
   public List<Double> tfidfScore(String queryWOOp, List<?> objList, RetrType retrType) {
     List<Double> scoreList = new ArrayList<Double>();
@@ -80,6 +104,17 @@ public class SimCalculator {
     return scoreList;
   }
 
+  /**
+   * Calculating the jaccard score
+   * 
+   * @param queryWOOp
+   *          the query string
+   * @param objList
+   *          the object list
+   * @param retrType
+   *          the object type
+   * @return the jaccard score
+   */
   @SuppressWarnings("unchecked")
   public List<Double> jaccardScore(String queryWOOp, List<?> objList, RetrType retrType) {
     List<Double> scoreList = new ArrayList<Double>();
@@ -100,6 +135,17 @@ public class SimCalculator {
     return scoreList;
   }
 
+  /**
+   * Calculating the cosine score
+   * 
+   * @param queryWOOp
+   *          the query string
+   * @param objList
+   *          the object list
+   * @param retrType
+   *          the object type
+   * @return the cosine score
+   */
   @SuppressWarnings("unchecked")
   public List<Double> cosSimScore(String queryWOOp, List<?> objList, RetrType retrType) {
     List<Double> scoreList = new ArrayList<Double>();
