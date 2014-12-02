@@ -25,12 +25,30 @@ import edu.stanford.nlp.trees.TypedDependency;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.TypesafeMap.Key;
 
+/**
+ * NLParser class, used to detect positive or negative sentence
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
+
 public class NLParser {
 
+  /**
+   * The standford nlp pipeline
+   */
   private StanfordCoreNLP pipeline;
 
+  /**
+   * The negative word set
+   */
   private Set<String> negWordSet;
 
+  /**
+   * Constructor. Construct the Stanford NLP pipeline.
+   * 
+   * @throws ResourceInitializationException
+   */
   public NLParser() throws ResourceInitializationException {
     Properties props = new Properties();
     props.put("annotators", "tokenize, ssplit, pos, lemma, parse");
@@ -44,6 +62,11 @@ public class NLParser {
     }
   }
 
+  /**
+   * Do the parse and return positive or negative
+   * @param text the text
+   * @return true if positive, false otherwise
+   */
   public boolean doParse(String text) {
     Annotation document = new Annotation(text);
     pipeline.annotate(document);
