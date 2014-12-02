@@ -13,13 +13,18 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * 
+ * Help to query the full text
  * @author Fei Xia <feixia@cs.cmu.edu>
  */
 
 public class WebServiceHelper {
   private static final String PREFIX_DocFullText =  "http://metal.lti.cs.cmu.edu:30002/pmc/";
   
+  /**
+   * Read all text from the reader
+   * @param rd the reader
+   * @return the text string
+   */
   private static String readAll(Reader rd) {
     StringBuilder sb = new StringBuilder();
     char[] buf = new char[4086];
@@ -36,6 +41,11 @@ public class WebServiceHelper {
     return sb.toString();
   }
 
+  /**
+   * Read json from the given url
+   * @param url the given url
+   * @return the json object
+   */
   public static JsonObject readJsonFromUrl(String url) {
     InputStream is;
     JsonObject jsonObj = null;
@@ -65,6 +75,11 @@ public class WebServiceHelper {
     return jsonObj;
   }
   
+  /**
+   * Get json given a pubmed id
+   * @param pmid the pubmed id
+   * @return the json object
+   */
   public static JsonObject getJsonFromPMID(String pmid) {
     String url = PREFIX_DocFullText + pmid;
     //System.out.println("Getting full text from: " + url);
