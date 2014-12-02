@@ -5,6 +5,13 @@ import java.util.Comparator;
 import edu.cmu.lti.deiis.project.assitance.RawSentence;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
 
+/**
+ * Used to do comparison
+ * 
+ * @author Fei Xia <feixia@cs.cmu.edu>
+ *
+ */
+
 public class MyComp {
   public static class DocSimComparator implements Comparator<Document> {
     @Override
