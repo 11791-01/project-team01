@@ -1,5 +1,12 @@
 package util;
 
+/**
+ * A class to contain the results of evaluation for a particular retrieval item
+ * on a particular question. It has fields for various metrics used in evaluation.
+ * 
+ * @author jeremy
+ *
+ */
 public class EvaluationResult {
   
   private double precision;
@@ -8,6 +15,14 @@ public class EvaluationResult {
   private double avgPrec;
   private boolean isCorrect;
   
+  /**
+   * Constructor for metrics pertaining to retrieval (concepts, docs, triples, snippets).
+   * 
+   * @param p Precision
+   * @param r Recall
+   * @param fm f-measure
+   * @param ap Average precision
+   */
   public EvaluationResult(double p, double r, double fm, double ap) {
     precision = p;
     recall = r;
@@ -15,6 +30,11 @@ public class EvaluationResult {
     avgPrec = ap;
   }
   
+  /**
+   * Constructor for metrics pertaining to yes/no answer generation.
+   * 
+   * @param isCorrect Whether or not the answer is correct
+   */
   public EvaluationResult(boolean isCorrect) {
     this.isCorrect = isCorrect;
   }

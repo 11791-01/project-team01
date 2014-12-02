@@ -30,6 +30,11 @@ public class Evaluation {
   StringBuilder eval_sb;
   StringBuilder details_sb;
 
+  /**
+   * Constructor for creating an evaluation object with a particular gold data file
+   * 
+   * @param goldDataPath Path to the gold data file
+   */
   public Evaluation(String goldDataPath) {
     
     try {
@@ -47,6 +52,18 @@ public class Evaluation {
     
   }
   
+  /**
+   * Performs evaluation on test output. Originally intended to have as input the path
+   * to the test output file, so that evaluation could be done at any time on any output. 
+   * Wasn't able to load it correctly from here though. So now the test output is just 
+   * passed in as List of OutputQuestion objects.
+   * 
+   * Calls methods to perform evaluation on Concept, Document, Triple, and Snippet retrieval,
+   * as well as answer generation for each question. Then calls methods to perform aggregate 
+   * analysis of the metrics used for evaluation over all questions. 
+   * 
+   * @param testOutput List of OutputQuestions
+   */
   public void doEvaluation(List<OutputQuestion> testOutput) {
 
     details_sb = new StringBuilder();
@@ -116,6 +133,11 @@ public class Evaluation {
     
   }
   
+  /**
+   * Finds the question in the gold standard list from a question id.
+   * @param qid Question ID
+   * @return Gold standard Question
+   */
   public Question findGoldQuestion(String qid) {
     for (Question q : goldStandard) {
       if (qid.equals(q.getId())) {
@@ -125,12 +147,28 @@ public class Evaluation {
     return null;
   }
   
+  /**
+   * Public method for Concept evaluation. Calls private version with
+   * gold standard concepts based on question ID.
+   * 
+   * @param qid Question ID
+   * @param test List of concepts to evaluate
+   * @return
+   */
   public EvaluationResult doConceptsEval(String qid, List<String> test) {
     Question gold = findGoldQuestion(qid);
     if (gold != null)
       return doConceptsEval(gold.getConcepts(), test);
     return null;
   }
+   
+  /**
+   * Private method for Concept evaluation. Calls methods to calculate Precision,
+   * Recall, F-measure, and Avg. Precision. 
+   * @param gold List of gold standard concepts
+   * @param test List of concepts to evaluate
+   * @return
+   */
   private EvaluationResult doConceptsEval(List<String> gold, List<String> test) {
     details_sb.append("Concepts:\n");
     printEvalDetails(gold, test);
@@ -141,12 +179,27 @@ public class Evaluation {
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
   
+  /**
+   * Public method for Document evaluation. Calls private version with
+   * gold standard documents based on question ID.
+   * @param qid Question ID
+   * @param test List of documents to evaluate
+   * @return
+   */
   public EvaluationResult doDocumentsEval(String qid, List<String> test) {
     Question gold = findGoldQuestion(qid);
     if (gold != null)
       return doDocumentsEval(gold.getDocuments(), test);
     return null;
   }
+  
+  /**
+   * Private method for Document evaluation. Calls methods to calculate Precision,
+   * Recall, F-measure, and Avg. Precision. 
+   * @param gold List of gold standard documents
+   * @param test List of documents to evaluate
+   * @return
+   */
   private EvaluationResult doDocumentsEval(List<String> gold, List<String> test) {
     details_sb.append("Documents:\n");
     printEvalDetails(gold, test);
@@ -157,12 +210,27 @@ public class Evaluation {
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
   
+  /**
+   * Public method for Triple evaluation. Calls private version with
+   * gold standard triples based on question ID.
+   * @param qid Question ID
+   * @param test List of triples to evaluate
+   * @return
+   */
   public EvaluationResult doTriplesEval(String qid, List<Triple> test) {
     Question gold = findGoldQuestion(qid);
     if (gold != null)
       return doTriplesEval(gold.getTriples(), test);
     return null;
   }
+  
+  /**
+   * Private method for Triple evaluation. Calls methods to calculate Precision,
+   * Recall, F-measure, and Avg. Precision. 
+   * @param gold List of gold standard triples
+   * @param test List of triples to evaluate
+   * @return
+   */
   private EvaluationResult doTriplesEval(List<Triple> gold, List<Triple> test) {
     details_sb.append("Triples:\n");
     printEvalDetails(gold, test);
@@ -173,12 +241,27 @@ public class Evaluation {
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
 
+  /**
+   * Public method for Snippet evaluation. Calls private version with
+   * gold standard snippets based on question ID.
+   * @param qid Question ID
+   * @param test List of snippets to evaluate
+   * @return
+   */
   public EvaluationResult doSnippetsEval(String qid, List<Snippet> test) {
     Question gold = findGoldQuestion(qid);
     if (gold != null)
       return doSnippetsEval(gold.getSnippets(), test);
     return null;
   }
+  
+  /**
+   * Private method for Snippet evaluation. Calls methods to calculate Precision,
+   * Recall, F-measure, and Avg. Precision. 
+   * @param gold List of gold standard snippets
+   * @param test List of snippets to evaluate
+   * @return
+   */
   private EvaluationResult doSnippetsEval(List<Snippet> gold, List<Snippet> test) {
     details_sb.append("Snippets:\n");
     printSnippetEvalDetails(gold, test);
@@ -189,12 +272,27 @@ public class Evaluation {
     return new EvaluationResult(precision, recall, fmeasure, ap);
   }
   
-//  public EvaluationResult doAnswersEval(String qid, Question test) {
-//    Question gold = findGoldQuestion(qid);
-//    if (gold != null)
-//      return doAnswersEval(gold, test);
-//    return null;
-//  }
+  /**
+   * Public method for Answer evaluation. Calls private version with
+   * gold standard Question based on question ID.
+   * @param qid Question ID
+   * @param test Question to evaluate
+   * @return
+   */
+  public EvaluationResult doAnswersEval(String qid, Question test) {
+    Question gold = findGoldQuestion(qid);
+    if (gold != null)
+      return doAnswersEval(gold, test);
+    return null;
+  }
+  
+  /**
+   * Private method for Answer evaluation. Only evaluates Yes/No questions.
+   * Checks whether or not the answer is correct. 
+   * @param gold Gold standard Question
+   * @param test Question to evaluate
+   * @return
+   */
   private EvaluationResult doAnswersEval(Question gold, Question test) {
     details_sb.append("Answer:\n");
     if (gold instanceof TestYesNoQuestion) {
@@ -208,6 +306,11 @@ public class Evaluation {
     return null;
   }
   
+  /** 
+   * Helper method to return an empty list if passed a null value.
+   * @param list
+   * @return
+   */
   private <T> List<T> emptyListIfNull(List<T> list) {
     if (list == null)
       return new ArrayList<T>();
@@ -242,6 +345,13 @@ public class Evaluation {
 
   }
   
+  /**
+   * Calculates the Snippet precision for a particular question, based on
+   * article-offset pairs of characters in the snippet.
+   * @param gold List of gold snippets
+   * @param test List of snippets to evaluate
+   * @return
+   */
   private double calcSnippetPrecision(List<Snippet> gold, List<Snippet> test) {
     
     gold = emptyListIfNull(gold);
@@ -259,6 +369,13 @@ public class Evaluation {
     return ((double) overlap) / testSize;
   }
   
+  /**
+   * Calculates the Snippet recall for a particular question, based on
+   * article-offset pairs of characters in the snippet.
+   * @param gold List of gold snippets
+   * @param test List of snippets to evaluate
+   * @return
+   */
   private double calcSnippetRecall(List<Snippet> gold, List<Snippet> test) {
     
     gold = emptyListIfNull(gold);
@@ -276,6 +393,12 @@ public class Evaluation {
     return ((double) overlap) / goldSize;
   }
   
+  /**
+   * Calculates the Snippet average precision for a particular question.
+   * @param gold List of gold standard snippets
+   * @param test List of snippets to evaluate
+   * @return
+   */
   private double calcSnippetAP(List<Snippet> gold, List<Snippet> test) {
     
     int poscount = 0;
@@ -306,6 +429,13 @@ public class Evaluation {
     return ap / (poscount + Math.pow(10, -15));
   }
   
+  /**
+   * Calculates the amount of overlap in characters between two lists of 
+   * snippets. This is used for calculating precision/recall.
+   * @param gold
+   * @param test
+   * @return
+   */
   private int calcSnippetOverlapAmount(List<Snippet> gold, List<Snippet> test) {
     
     int overlapAmt = 0;
@@ -404,7 +534,12 @@ public class Evaluation {
 
   }
   
-
+  /**
+   * Calculates the means of the Precisions, Recalls, F-measures, and Avg. Precisions,
+   * over a list of questions.
+   * @param evals List of Evaluation results for the questions
+   * @return
+   */
   private double[] calcMeanMetrics(List<EvaluationResult> evals) {
     double epsilon = 0.001;
     double meanPrec = 0;
@@ -425,6 +560,11 @@ public class Evaluation {
             MAP / numQues, Math.pow(GMAP, 1.0 / numQues) };
   }
   
+  /**
+   * Calculates the Accuracy over a list of questions
+   * @param evals List of Evaluation results for the questions
+   * @return
+   */
   private double calcAnswerMetrics(List<EvaluationResult> evals) {
 
     double accuracy = 0;
@@ -437,6 +577,12 @@ public class Evaluation {
     return accuracy / numQues;
   }
   
+  /**
+   * Prints the details of the evaluation for Concepts, Docs, and Triples.
+   * That is, the lists of True Positives, False Positives, and False Negatives.
+   * @param gold 
+   * @param test
+   */
   private <T> void printEvalDetails(List<T> gold, List<T> test) {
     
     gold = emptyListIfNull(gold);
@@ -459,6 +605,13 @@ public class Evaluation {
     goldOnly.forEach(m -> details_sb.append(String.format("\t\t%s%n", m.toString())));
   }
   
+  /**
+   * Prints the details of the evaluation for Snippets.
+   * Prints both the gold and test versions of overlapping snippets. Also
+   * prints the False Positive and False Negative snippets.
+   * @param gold
+   * @param test
+   */
   private void printSnippetEvalDetails(List<Snippet> gold, List<Snippet> test) {
     
     gold = emptyListIfNull(gold);
@@ -490,7 +643,9 @@ public class Evaluation {
       
 
     details_sb.append("\tTrue Pos:\n");
-    matches.forEach(m -> details_sb.append(String.format("\t\tTest: %s%n\t\tGold: %s%n-%n", m[0].getText(), m[1].getText())));
+    matches.forEach(m -> details_sb.append(String.format("\t\tTest: |%s, %s-%s, %d-%d|%n\t\t\t%s%n\t\tGold: |%s, %s-%s, %d-%d|%n\t\t\t%s%n-%n",
+            m[0].getDocument(), m[0].getBeginSection(), m[0].getEndSection(), m[0].getOffsetInBeginSection(), m[0].getOffsetInEndSection(), m[0].getText(), 
+            m[1].getDocument(), m[1].getBeginSection(), m[1].getEndSection(), m[1].getOffsetInBeginSection(), m[1].getOffsetInEndSection(), m[1].getText())));
     
     Set<Snippet> testOnly = new HashSet<Snippet>(test);
     testOnly.removeAll(testMatches);
